@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131052727) do
+ActiveRecord::Schema.define(:version => 20120212071830) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -27,6 +27,32 @@ ActiveRecord::Schema.define(:version => 20120131052727) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "episodes", :force => true do |t|
+    t.string   "title"
+    t.string   "promo"
+    t.text     "abstract"
+    t.string   "teaser_file_name"
+    t.string   "teaser_content_type"
+    t.integer  "teaser_file_size"
+    t.datetime "teaser_updated_at"
+    t.string   "status"
+    t.datetime "showtime"
+    t.integer  "user_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "slug"
+  end
+
+  add_index "episodes", ["slug"], :name => "index_episodes_on_slug"
+
+  create_table "participants", :force => true do |t|
+    t.integer  "episode_id"
+    t.integer  "user_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

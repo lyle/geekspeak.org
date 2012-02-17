@@ -1,0 +1,16 @@
+<%= form_for @participant do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :episode_id %><br />
+    <%= f.number_field :episode_id %>
+  </p>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :role %><br />
+    <%= f.text_field :role %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

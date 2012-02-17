@@ -1,0 +1,33 @@
+<% title "Episode" %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @episode.title %>
+</p>
+<p>
+  <strong>Promo:</strong>
+  <%= @episode.promo %>
+</p>
+<p>
+  <strong>Abstract:</strong>
+  <%= @episode.abstract %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @episode.user_id %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= @episode.status %>
+</p>
+<p>
+  <strong>Showtime:</strong>
+  <%= @episode.showtime %>
+</p>
+<%= image_tag @episode.teaser.url(:medium) %>
+
+<p>
+  <%= link_to "Edit", edit_episode_path(@episode) %> |
+  <%= link_to "Destroy", @episode, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", episodes_path %>
+</p>

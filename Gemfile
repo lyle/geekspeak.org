@@ -14,6 +14,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem "paperclip", "~> 2.0"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -29,6 +30,12 @@ group :test do
   gem 'turn', :require => false
 end
 
+gem "nifty-generators", :group => :development
+
 
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
+
+gem "mocha", :group => :test
+
+gem "friendly_id", "~> 4.0.0"

@@ -1,0 +1,17 @@
+one:
+  title: MyString
+  promo: MyString
+  abstract: MyText
+  user_id: 1
+  status: MyString
+  showtime: 2012-02-02 23:50:53
+  teaser_id: 1
+
+two:
+  title: MyString
+  promo: MyString
+  abstract: MyText
+  user_id: 1
+  status: MyString
+  showtime: 2012-02-02 23:50:53
+  teaser_id: 1

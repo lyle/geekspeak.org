@@ -1,0 +1,34 @@
+<% title "Episodes" %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Promo</th>
+    <th>Abstract</th>
+    <th>Status</th>
+    <th>Showtime</th>
+    <th>Teaser</th>
+  </tr>
+  <% for episode in @episodes %>
+    <tr>
+      <td>
+		<h3 class="title"><%= link_to "#{episode.title}", episode %></h3>
+		<div><%=h episode.showtime.strftime("%Y-%m-%d") %></div>
+		</td>
+      <td><%= image_tag episode.teaser.url(:thumb) %>
+	</td>
+      <td><%= episode.abstract %></td>
+      <td><%= episode.status %></td>
+      <td><%= episode.showtime %></td>
+      <td><%= link_to "Show", episode %></td>
+      <td><%= link_to "Edit", edit_episode_path(episode) %></td>
+      <td><%= link_to "Destroy", episode, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+
+
+
+<p><%= link_to "New Episode", new_episode_path if signed_in? %></p>
