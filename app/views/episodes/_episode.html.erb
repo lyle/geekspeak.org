@@ -1,0 +1,10 @@
+
+    <div>
+
+		<h3 class="title"><%= link_to "#{episode.title}", episode %></h3>
+		<div class="airdate"><%=h episode.airdate.strftime("%Y-%m-%d")   %></div>
+		<%= content_tag(:div, image_tag(episode.teaser.url(:thumb)), :class => "thumbnail") if episode.teaser?%>
+		<div class="abstract"><%= textilize(episode.abstract).html_safe %>
+		</div>
+	</div>	
+	
