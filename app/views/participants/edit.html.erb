@@ -1,8 +1,4 @@
-<% title "Edit Participant" %>
-
-<%= render 'form' %>
-
-<p>
-  <%= link_to "Show", @participant %> |
-  <%= link_to "View All", participants_path %>
-</p>
+<%= form_for @participant, :url => participant_path(@participant), :html => { :class => "edit_participant", :id => "edit_participant" } do |f| -%>
+  <input name="_method" type="hidden" value="put" />
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>

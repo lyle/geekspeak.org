@@ -4,3 +4,15 @@
 
 // To customize the Active Admin interfaces, add your
 // styles here:
+
+#episodes .status {
+	
+	text-transform:none;
+	color:black;
+	background:none;
+	font-size:1em;
+}
+
+#episodes.index_table tr.even td.status {
+background: #F4F5F5;
+}

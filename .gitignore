@@ -6,3 +6,4 @@ tmp/
 *.DS_Store
 config/database.yml
 vendor
+public/system/*

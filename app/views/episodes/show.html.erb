@@ -1,33 +1,14 @@
-<% title "Episode" %>
+<% title "#{@episode.title} - GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @episode.title %>
-</p>
-<p>
-  <strong>Promo:</strong>
-  <%= @episode.promo %>
-</p>
-<p>
-  <strong>Abstract:</strong>
-  <%= @episode.abstract %>
-</p>
-<p>
-  <strong>User:</strong>
-  <%= @episode.user_id %>
-</p>
-<p>
-  <strong>Status:</strong>
-  <%= @episode.status %>
-</p>
-<p>
-  <strong>Showtime:</strong>
-  <%= @episode.showtime %>
-</p>
-<%= image_tag @episode.teaser.url(:medium) %>
+<h3 class="title"><%=h @episode.title %></h3>
+<div class="airdate"><%=h @episode.airdate.strftime("%Y-%m-%d")   %></div>
 
-<p>
-  <%= link_to "Edit", edit_episode_path(@episode) %> |
-  <%= link_to "Destroy", @episode, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", episodes_path %>
-</p>
+<div class="span3">
+	<%= image_tag @episode.teaser.url(:dem300x600) if @episode.teaser? %>
+</div>
+
+<%= textilize(@episode.abstract).html_safe %>
+
+<div class="span5 offset3">  <%= link_to "Edit", edit_admin_episode_path(@episode) if :authenticate_user! %>
+</div>
+

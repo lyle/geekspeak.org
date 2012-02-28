@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120212071830) do
+ActiveRecord::Schema.define(:version => 20120203080342) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(:version => 20120212071830) do
     t.integer  "teaser_file_size"
     t.datetime "teaser_updated_at"
     t.string   "status"
-    t.datetime "showtime"
+    t.date     "airdate"
     t.integer  "user_id"
+    t.string   "slug"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "slug"
   end
 
   add_index "episodes", ["slug"], :name => "index_episodes_on_slug"

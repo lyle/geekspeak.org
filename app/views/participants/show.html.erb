@@ -1,20 +1,15 @@
-<% title "Participant" %>
 
-<p>
-  <strong>Episode:</strong>
-  <%= @participant.episode_id %>
-</p>
-<p>
-  <strong>User:</strong>
-  <%= @participant.user_id %>
-</p>
-<p>
-  <strong>Role:</strong>
-  <%= @participant.role %>
-</p>
+<label class="label"><%= t("activerecord.attributes.participant.episode_id", :default => t("activerecord.labels.episode_id", :default => "Episode")) %>:</label>
+<p><%= @participant.episode_id %></p>
 
-<p>
-  <%= link_to "Edit", edit_participant_path(@participant) %> |
-  <%= link_to "Destroy", @participant, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", participants_path %>
-</p>
+<label class="label"><%= t("activerecord.attributes.participant.user_id", :default => t("activerecord.labels.user_id", :default => "User")) %>:</label>
+<p><%= @participant.user_id %></p>
+
+<label class="label"><%= t("activerecord.attributes.participant.role", :default => t("activerecord.labels.role", :default => "Role")) %>:</label>
+<p><%= @participant.role %></p>
+
+<div class="form-actions">
+<%= link_to "Back", participants_path, :class => 'btn'  %>
+<%= link_to "Edit", edit_participant_path(@participant), :class => 'btn' %>
+<%= link_to "Delete", participant_path(@participant), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn' %>
+</div>

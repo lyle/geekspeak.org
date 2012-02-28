@@ -6,10 +6,12 @@ class CreateEpisodes < ActiveRecord::Migration
       t.text :abstract
       t.has_attached_file :teaser
       t.string :status
-      t.datetime :showtime
+      t.date :airdate
       t.integer :user_id
+      t.string :slug
       t.timestamps
     end
+    add_index :episodes, :slug
   end
 
   def self.down

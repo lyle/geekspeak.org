@@ -1,5 +1,3 @@
-<% title "New Participant" %>
-
-<%= render 'form' %>
-
-<p><%= link_to "Back to List", participants_path %></p>
+<%= form_for @participant, :url => participants_path, :html => { :class => :form } do |f| -%>
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>

@@ -1,21 +1,30 @@
-<% title "Participants" %>
-
-<table>
+<h1>Participants</h1>
+<table class="table table-striped">
+ <thead>
   <tr>
-    <th>Episode</th>
-    <th>User</th>
-    <th>Role</th>
+    <th>ID</th>
+        <th>
+      <%= t("activerecord.attributes.participant.episode_id", :default => t("activerecord.labels.episode_id", :default => "Episode_id")) %>
+    </th>
+        <th>Created at</th>
+    <th>Actions</th>
   </tr>
-  <% for participant in @participants %>
-    <tr>
-      <td><%= participant.episode_id %></td>
-      <td><%= participant.user_id %></td>
-      <td><%= participant.role %></td>
-      <td><%= link_to "Show", participant %></td>
-      <td><%= link_to "Edit", edit_participant_path(participant) %></td>
-      <td><%= link_to "Destroy", participant, :confirm => 'Are you sure?', :method => :delete %></td>
+  </thead>
+  <tbody>
+  <% @participants.each do |participant| -%>
+   <tr>
+    <td><%= participant.id %></td>
+        <td><%= link_to participant.episode_id, participant_path(participant) %>
+    </td>
+        <td><%= participant.created_at %></td>
+    <td>
+      <%= link_to "Show", participant_path(participant) %>
+      <%= link_to "Edit", edit_participant_path(participant) %>
+      <%= link_to "Destroy", participant_path(participant), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+    </td>
     </tr>
-  <% end %>
+    <% end -%>
+   </tbody>
 </table>
 
-<p><%= link_to "New Participant", new_participant_path %></p>
+<%= link_to "New", new_participant_path, :class => 'btn btn-primary' %>

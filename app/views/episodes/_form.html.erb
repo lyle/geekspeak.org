@@ -14,11 +14,12 @@
   </p>
   <p>
     <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= f.select :status, status_list 
+     %>
   </p>
   <p>
-    <%= f.label :showtime %><br />
-    <%= f.datetime_select :showtime %>
+    <%= f.label :airdate %><br />
+    <%= f.date_select :airdate %>
   </p>
  	
   <p>

@@ -1,12 +1,26 @@
 BetaGeekspeakOrg::Application.routes.draw do
   resources :participants
 
-  resources :episodes, :id => /[0-9]+\/[0-9]+\/.+/
+  resources :episodes, :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  
+  devise_for :users, ActiveAdmin::Devise.config
   
   ActiveAdmin.routes(self)
-
-  devise_for :users, ActiveAdmin::Devise.config
-    
+  
+  
+  get '/admin/episodes/:id', :controller => "admin/episodes",
+      :action => 'show', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  get '/admin/episodes/:id/edit', :controller => "admin/episodes",
+          :action => 'edit', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  put '/admin/episodes/:id', :controller => "admin/episodes",
+              :action => 'update', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  delete '/admin/episodes/:id', :controller => "admin/episodes",
+              :action => 'destroy', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  
+  
+ # mount Refinery::Core::Engine => '/engin/refinery.geekspeak.org/'
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -56,7 +70,7 @@ BetaGeekspeakOrg::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'episodes#index'
+  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+  status_list:
+      new: New
+      waiting: Waiting
+      pending: Pending Approval
+      live: Live

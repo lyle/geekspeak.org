@@ -4,7 +4,7 @@ one:
   abstract: MyText
   user_id: 1
   status: MyString
-  showtime: 2012-02-02 23:50:53
+  airdate: 2012-02-02 23:50:53
   teaser_id: 1
 
 two:
@@ -13,5 +13,5 @@ two:
   abstract: MyText
   user_id: 1
   status: MyString
-  showtime: 2012-02-02 23:50:53
+  airdate: 2012-02-02 23:50:53
   teaser_id: 1
