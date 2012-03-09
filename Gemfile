@@ -26,23 +26,30 @@ gem "paperclip", "~> 2.0"
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem "rspec-rails", :group => [:test, :development]
+
 group :test do
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
+  gem "mocha"
+  
   # Pretty printed test output
   gem 'turn', :require => false
 end
 
 gem "nifty-generators", :group => :development
 
-
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 
-gem "mocha", :group => :test
 
 gem "friendly_id", "~> 4.0.0"
 gem 'twitter-bootstrap-rails'
 
 gem "RedCloth"
 
-
 gem "breadcrumbs_on_rails"
+
+gem 'will_paginate'
+gem 'refinerycms', '~> 2.0.0'

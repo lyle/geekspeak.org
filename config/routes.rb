@@ -3,6 +3,12 @@ BetaGeekspeakOrg::Application.routes.draw do
 
   resources :episodes, :id => /[0-9]+\/[0-9]+\/[0-9]+/
   
+  match "/episodes/:year/" => "episodes#year_archive", 
+               :constraints => {:year => /\d{4}/ }
+  match "/episodes/:year/:month/" => "episodes#month_archive", 
+               :constraints => {:year => /\d{4}/, :month => /0[1-9]|1[0-2]/ }
+               
+               
   devise_for :users, ActiveAdmin::Devise.config
   
   ActiveAdmin.routes(self)

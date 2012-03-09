@@ -1,2 +1,50 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+
+
+
+We are using textile and some stylizing, so you can write this stuff:
+
+
+Love baby!
+
+bc. 
+def index
+  @article = Article.all
+end
+
+<pre class="prettyprint
+     linenums">
+  def to_param
+    showdate_as_url
+  end
+</pre>
+Love baby!
+
+bc. 
+def index
+  @article = Article.all
+end
+
+<pre class="prettyprint
+     linenums">
+  def to_param
+    showdate_as_url
+  end
+</pre>
+
+Lorem dalaknsd as;l fas;l fnas;dfj ;aslnd fjkashd ;lfaskjf hwbfiua befasblkjasbdiufbsayjbfiusakbflbsalkjdfbvasjkd bfbsabhjkd asghjbkj jsdbjagsvdbiukj fsadkcjascbahsd ufijksadjb gjsdvd
+as sadasd fsad fsad fsa 
+as dasdsa sad fas dfsad f
+Lorem dalaknsd as;l fas;l fnas;dfj ;aslnd fjkashd ;lfaskjf hwbfiua befasblkjasbdiufbsayjbfiusakbflbsalkjdfbvasjkd bfbsabhjkd asghjbkj jsdbjagsvdbiukj fsadkcjascbahsd ufijksadjb gjsdvd
+as sadasd fsad fsad fsa 
+as dasdsa sad fas dfsad f
+Lorem dalaknsd as;l fas;l fnas;dfj ;aslnd fjkashd ;lfaskjf hwbfiua befasblkjasbdiufbsayjbfiusakbflbsalkjdfbvasjkd bfbsabhjkd asghjbkj jsdbjagsvdbiukj fsadkcjascbahsd ufijksadjb gjsdvd
+as sadasd fsad fsad fsa 
+as dasdsa sad fas dfsad f
+Lorem dalaknsd as;l fas;l fnas;dfj ;aslnd fjkashd ;lfaskjf hwbfiua befasblkjasbdiufbsayjbfiusakbflbsalkjdfbvasjkd bfbsabhjkd asghjbkj jsdbjagsvdbiukj fsadkcjascbahsd ufijksadjb gjsdvd
+as sadasd fsad fsad fsa 
+as dasdsa sad fas dfsad f
+Lorem dalaknsd as;l fas;l fnas;dfj ;aslnd fjkashd ;lfaskjf hwbfiua befasblkjasbdiufbsayjbfiusakbflbsalkjdfbvasjkd bfbsabhjkd asghjbkj jsdbjagsvdbiukj fsadkcjascbahsd ufijksadjb gjsdvd
+as sadasd fsad fsad fsa 
+as dasdsa sad fas dfsad f

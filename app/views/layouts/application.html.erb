@@ -39,8 +39,7 @@
           <div class="container nav-collapse">
             <ul class="nav">
                 <li><%= link_to "Episodes", "/episodes"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
+                <li><%= link_to "Contact Us", "/contact" %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -49,29 +48,30 @@
 
     <div class="container">
 	  <%= render_breadcrumbs %>
+	<% flash.each do |name, msg| %>
+	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+	    <a class="close" data-dismiss="alert">×</a>
+	    <%= msg %>
+	  </div>
+	<% end %>
       <div class="content">
         <div class="row">
           <div class="span9">
             <%= yield %>
           </div>
           <div class="span1">&nbsp;</div>
+
             <div class="span3">
               <div class="well sidebar-nav">
-                <h3>Sidebar</h3>
-                <ul class="nav nav-list">
-                  <li class="nav-header">Sidebar</li>
-                    <li><%= link_to "Link1", "/path1"  %></li>
-                    <li><%= link_to "Link2", "/path2"  %></li>
-                    <li><%= link_to "Link3", "/path3"  %></li>
-                </ul>
+				<%= content_for?(:sidebar) ? yield(:sidebar) : render("shared/sidebar") %>
               </div>
             </div>
           </div>
         </div><!--/row-->
       </div><!--/content-->
-
+<br style="clear:both">
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; GeekSpeak 2012 <span class="pull-right"><i>GeekSpeak</i> is a registered service mark of <a href="http://www.thedavidlawrenceshow.com/">The David Lawrence Show</a> and is used with gracious permission.</span></p>
       </footer>
 
     </div> <!-- /container -->

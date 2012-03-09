@@ -1,1 +1,4 @@
-Another attempt at a GeekSpeak editing and webstie
+!Beta.GeekSpeak.org
+
+To run testing with gaurd in it's own terminal (using the correct rvm)
+ 'bundle exec guard'

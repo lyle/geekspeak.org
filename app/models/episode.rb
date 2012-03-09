@@ -2,6 +2,9 @@ class Episode < ActiveRecord::Base
   extend FriendlyId
   friendly_id :showdate_as_url, :use => :slugged
   
+  #scope :by_year, lambda {|year| where("date >= ? and date <= ?", "#{year}-01-01", "#{year}-12-31")}
+  scope :by_year, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_year..d.end_of_year } } }
+  scope :by_month, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_month..d.end_of_month } } }
   
   has_many :participants
   has_many :users,  :through => :participants

@@ -3,12 +3,28 @@
 <h3 class="title"><%=h @episode.title %></h3>
 <div class="airdate"><%=h @episode.airdate.strftime("%Y-%m-%d")   %></div>
 
-<div class="span3">
-	<%= image_tag @episode.teaser.url(:dem300x600) if @episode.teaser? %>
-</div>
+<%= content_tag(:div, image_tag(@episode.teaser.url(:dem300x600)), :class => "abstractimage") if @episode.teaser?%>
+
 
 <%= textilize(@episode.abstract).html_safe %>
 
 <div class="span5 offset3">  <%= link_to "Edit", edit_admin_episode_path(@episode) if :authenticate_user! %>
 </div>
 
+
+<% content_for :sidebar do %>
+	<ul class="nav nav-list">
+	  <li class="nav-header">Episode Archive</li>
+		<li><%= link_to "2012", "/episodes/2012/"  %></li>
+		<li><%= link_to "2011", "/episodes/2011/"  %></li>
+		<li><%= link_to "2010", "/episodes/2010/"  %></li>
+		<li><%= link_to "2009", "/episodes/2009/"  %></li>
+		<li><%= link_to "2008", "/episodes/2008/"  %></li>
+		<li><%= link_to "2007", "/episodes/2007/"  %></li>
+		<li><%= link_to "2006", "/episodes/2006/"  %></li>
+		<li><%= link_to "2005", "/episodes/2005/"  %></li>
+		<li><%= link_to "2004", "/episodes/2004/"  %></li>
+		<li><%= link_to "2003", "/episodes/2003/"  %></li>
+		<li><%= link_to "2002", "/episodes/2002/"  %></li>
+	</ul>
+<% end %>
