@@ -1,5 +1,12 @@
-<% title "Episodes" %>
+<% title "GeekSpeak Episodes" %>
 
+<%
+if params[:action] == 'year_archive'
+	 title " in #{params[:year]}"
+elsif params[:action] == 'month_archive'
+	 title " in #{Date::MONTHNAMES[params[:month].to_i]} of #{params[:year]}"
+end 
+%>
 <% for episode in @episodes %>
 	<%= render :partial => "episodes/episode", :object => episode %>
 <% end %>
