@@ -1,0 +1,26 @@
+<h1>Bits</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bits.each do |bit| %>
+      <tr>
+        <td><%= bit.id %></td>
+        <td><%= link_to bit.title, bit_path(bit) %></td>
+        <td><%= bit.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_bit_path(bit), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', bit_path(bit), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_bit_path, :class => 'btn btn-primary' %>

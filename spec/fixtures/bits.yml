@@ -1,0 +1,11 @@
+one:
+  title: MyString
+  url: MyString
+  user_id: 1
+  body: MyText
+
+two:
+  title: MyString
+  url: MyString
+  user_id: 1
+  body: MyText

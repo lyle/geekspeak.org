@@ -1,0 +1,21 @@
+<% title "Segment Bits" %>
+
+<table>
+  <tr>
+    <th>Segment</th>
+    <th>Bit</th>
+    <th>Position</th>
+  </tr>
+  <% for segment_bit in @segment_bits %>
+    <tr>
+      <td><%= segment_bit.segment_id %></td>
+      <td><%= segment_bit.bit_id %></td>
+      <td><%= segment_bit.position %></td>
+      <td><%= link_to "Show", segment_bit %></td>
+      <td><%= link_to "Edit", edit_segment_bit_path(segment_bit) %></td>
+      <td><%= link_to "Destroy", segment_bit, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Segment Bit", new_segment_bit_path %></p>

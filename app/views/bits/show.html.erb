@@ -1,0 +1,32 @@
+<h1>Bit</h1>
+
+<p>
+  <b>Title</b><br>
+  <%= @bit.title %>
+</p>
+
+<p>
+  <b>Url</b><br>
+  <%= @bit.url %>
+</p>
+
+<p>
+  <b>User</b><br>
+  <%= @bit.user_id %>
+</p>
+
+<p>
+  <b>Body</b><br>
+  <%= @bit.body %>
+</p>
+
+<p>
+  <b>Status</b><br>
+  <%= @bit.status %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', bits_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_bit_path(@bit), :class => 'btn' %>
+  <%= link_to 'Delete', bit_path(@bit), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

@@ -1,0 +1,18 @@
+<% title "Segments" %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Show</th>
+    <th>Position</th>
+  </tr>
+  <% for segment in @segments %>
+    <tr>
+      <td><%= segment.title %></td>
+      <td><%= segment.show_id %></td>
+      <td><%= segment.position %></td>
+      <td><%= link_to "Show", segment %></td>
+    </tr>
+  <% end %>
+</table>
+

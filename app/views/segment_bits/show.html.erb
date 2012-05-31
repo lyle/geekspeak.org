@@ -1,0 +1,20 @@
+<% title "Segment Bit" %>
+
+<p>
+  <strong>Segment:</strong>
+  <%= @segment_bit.segment_id %>
+</p>
+<p>
+  <strong>Bit:</strong>
+  <%= @segment_bit.bit_id %>
+</p>
+<p>
+  <strong>Position:</strong>
+  <%= @segment_bit.position %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_segment_bit_path(@segment_bit) %> |
+  <%= link_to "Destroy", @segment_bit, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", segment_bits_path %>
+</p>
