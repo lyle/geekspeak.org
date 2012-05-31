@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120203080342) do
+ActiveRecord::Schema.define(:version => 20120316083944) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -50,6 +50,53 @@ ActiveRecord::Schema.define(:version => 20120203080342) do
     t.integer  "episode_id"
     t.integer  "user_id"
     t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "refinery_roles", :force => true do |t|
+    t.string "title"
+  end
+
+  create_table "refinery_roles_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "refinery_roles_users", ["role_id", "user_id"], :name => "index_refinery_roles_users_on_role_id_and_user_id"
+  add_index "refinery_roles_users", ["user_id", "role_id"], :name => "index_refinery_roles_users_on_user_id_and_role_id"
+
+  create_table "refinery_user_plugins", :force => true do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.integer "position"
+  end
+
+  add_index "refinery_user_plugins", ["name"], :name => "index_refinery_user_plugins_on_name"
+  add_index "refinery_user_plugins", ["user_id", "name"], :name => "index_refinery_user_plugins_on_user_id_and_name", :unique => true
+
+  create_table "refinery_users", :force => true do |t|
+    t.string   "username",               :null => false
+    t.string   "email",                  :null => false
+    t.string   "encrypted_password",     :null => false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "sign_in_count"
+    t.datetime "remember_created_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
+
+  create_table "segments", :force => true do |t|
+    t.string   "title"
+    t.integer  "episode_id"
+    t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

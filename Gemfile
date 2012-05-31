@@ -4,12 +4,13 @@ gem 'rails', '3.2.0'
 
 gem 'pg'
 
+#gem 'commonjs', "0.2.0"
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails', "~> 3.2.3"
-  gem 'less-rails'
+  gem 'less-rails', "2.1.6"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
 end
@@ -53,3 +54,7 @@ gem "breadcrumbs_on_rails"
 
 #gem 'will_paginate'
 #gem 'refinerycms', '~> 2.0.0'
+
+
+gem 'acts-as-taggable-on', '~> 2.2.2'
+gem 'acts_as_list'

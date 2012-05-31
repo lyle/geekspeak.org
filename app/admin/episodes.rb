@@ -23,8 +23,15 @@ ActiveAdmin.register Episode do
      f.has_many :participants do |af|
          af.input :user
          af.input :role, :collection=>Participant::ROLES
+         af.input :_destroy, :as => :boolean, :label => "delete"
          #participant.role
      end
+    f.has_many :segments do |seg|
+        seg.input :title
+        seg.input :position
+        seg.input :_destroy, :as => :boolean, :label => "delete"
+        #participant.role
+    end
     #
    #  f.has_many :participants do |app_f|
    #       app_f.inputs "Participants" do
@@ -66,12 +73,37 @@ ActiveAdmin.register Episode do
     
     panel "Participants" do
       table_for episode.participants do
-      column :role
+        column :role
         column "user" do |participant|
           participant.user.display_name
         end
       end
     end
+    
+    panel "Segments" do
+      
+    
+        
+      table_for episode.segments, {:id=>'segments'} do
+        column :title
+        column :position
+      end
+      
+      
+      #column :title do |artwork|
+      #   content_tag(:span, artwork.title, :"data-id" => artwork.id, :class => "artwork")
+      #end
+      
+     # column 'seg' do |segment|
+      #   content_tag(:span, segment.title, :"data-id" => segment.id, :class => "segment")
+      #end
+      #episode.segments.each do |segment|
+        #column :title do |segment| 
+       #   content_tag(:span, segment.title, :"data-id" => segment.id, :class => "segment")
+        #end
+      #end
+    end
+    
     active_admin_comments
   end
   

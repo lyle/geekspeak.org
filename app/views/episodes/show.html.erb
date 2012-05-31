@@ -13,6 +13,10 @@
 
 
 <% content_for :sidebar do %>
+    
+	<%= render :partial => 'participants', :locals => {:participants => @episode.participants} if @episode.participants.length > 0%>
+
+
 	<ul class="nav nav-list">
 	  <li class="nav-header">Episode Archive</li>
 		<li><%= link_to "2012", "/episodes/2012/"  %></li>
