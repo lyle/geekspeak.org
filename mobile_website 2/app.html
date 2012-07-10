@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+        <title>
+        </title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+        <style>
+            /* App custom styles */
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js">
+        </script>
+        <script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js">
+        </script>
+    </head>
+    <body>
+        <div data-role="page" id="page1">
+            <div data-theme="a" data-role="header">
+                <div data-theme="a" data-role="header" data-position="fixed">
+                    <h2>
+                        GeekSpeak Episodes
+                    </h2>
+                </div>
+            </div>
+            <div data-theme="a" data-role="header">
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-divider-theme="c" data-inset="false">
+                    <li data-theme="c">
+                        <a href="#page2" data-transition="slide">
+                            2012-02-27 Simple Subjects
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page2" data-transition="slide">
+                            2012-02-20 News of the GeekSpeak and
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" id="page2">
+            <div data-theme="a" data-role="header">
+                <h2>
+                    2012-02-20
+                </h2>
+                <a data-role="button" data-inline="true" data-direction="reverse" data-rel="back" data-transition="slide" href="#page1" data-icon="arrow-l" data-iconpos="left">
+                    Button
+                </a>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-divider-theme="b" data-inset="false">
+                    <li data-role="list-divider" role="heading">
+                        Episode Details
+                    </li>
+                    <li data-theme="d">
+                        <a href="#page1" data-transition="slide">
+                            Title
+                        </a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#page1" data-transition="slide">
+                            Abstract
+                        </a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#page1" data-transition="slide">
+                            Participants
+                        </a>
+                    </li>
+                    <li data-role="list-divider" role="heading">
+                        Segments
+                    </li>
+                    <li data-theme="d">
+                        <a href="#page3" data-transition="slideup">
+                            Introduction
+                        </a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#page1" data-transition="slideup">
+                            GeekNews
+                        </a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#page1" data-transition="slideup">
+                            Middle Break
+                        </a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#page1" data-transition="slideup">
+                            Calls / Interview
+                        </a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#page1" data-transition="slide">
+                            Close
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" id="page3">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Introduction
+                </h3>
+                <a data-role="button" data-inline="true" data-rel="back" data-transition="fade" href="#page3">
+                    Back
+                </a>
+                <a data-role="button" data-inline="true" data-transition="fade" href="#page3" data-icon="gear" data-iconpos="left">
+                </a>
+            </div>
+            <div data-role="content">
+            </div>
+        </div>
+        <div data-role="page" data-theme="d" id="page4">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    2012-02-20
+                </h3>
+            </div>
+            <div data-theme="a" data-role="header">
+            </div>
+            <div data-role="content">
+                <div data-role="collapsible-set" data-theme="" data-content-theme="">
+                    <div data-role="collapsible" data-collapsed="true">
+                        <h3>
+                            Episode Details
+                        </h3>
+                        <form url="/episode/update" action="POST">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup">
+                                    <label for="textinput1">
+                                    </label>
+                                    <input id="textinput1" placeholder="Show Title Here" value="" type="text" />
+                                </fieldset>
+                            </div>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup">
+                                    <label for="textarea1">
+                                    </label>
+                                    <textarea id="textarea1" placeholder="Episode Abstract">
+                                    </textarea>
+                                </fieldset>
+                            </div>
+                            <input type="submit" data-inline="true" value="Cancel" />
+                            <input type="submit" data-inline="true" data-theme="e" value="Save" />
+                        </form>
+                    </div>
+                </div>
+                <ul data-role="listview" data-divider-theme="b" data-inset="false">
+                    <li data-role="list-divider" role="heading">
+                        Divider
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slideup">
+                            Button
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            //App custom javascript
+        </script>
+    </body>
+</html>

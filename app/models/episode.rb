@@ -8,10 +8,12 @@ class Episode < ActiveRecord::Base
   
   has_many :participants
   has_many :segments, :order => "position"
+  has_many :segment_bits, :through => :segments
+  has_many :bits, :through => :segment_bits
+  
   has_many :users,  :through => :participants
   accepts_nested_attributes_for :participants, :allow_destroy => true
   accepts_nested_attributes_for :segments  ,:allow_destroy => true
-
   
   belongs_to :owner,
              :class_name => "User",

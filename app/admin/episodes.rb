@@ -31,6 +31,10 @@ ActiveAdmin.register Episode do
         seg.input :position
         seg.input :_destroy, :as => :boolean, :label => "delete"
         #participant.role
+        seg.has_many :bits do |bit|
+          bit.input :title
+          bit.input :url
+        end
     end
     #
    #  f.has_many :participants do |app_f|
@@ -55,6 +59,9 @@ ActiveAdmin.register Episode do
      column :status
      column :users do |episode|
        episode.users.length
+     end
+     column :segments do |episode|
+       episode.segments.length
      end
      default_actions
   end
@@ -81,29 +88,16 @@ ActiveAdmin.register Episode do
     end
     
     panel "Segments" do
-      
-    
         
       table_for episode.segments, {:id=>'segments'} do
-        column :title
-        column :position
+        column "Title" do |segment|
+          link_to segment.title, admin_segment_path(segment)
+        end
+        column :bits do |segment|
+          segment.bits.length
+        end 
       end
-      
-      
-      #column :title do |artwork|
-      #   content_tag(:span, artwork.title, :"data-id" => artwork.id, :class => "artwork")
-      #end
-      
-     # column 'seg' do |segment|
-      #   content_tag(:span, segment.title, :"data-id" => segment.id, :class => "segment")
-      #end
-      #episode.segments.each do |segment|
-        #column :title do |segment| 
-       #   content_tag(:span, segment.title, :"data-id" => segment.id, :class => "segment")
-        #end
-      #end
     end
-    
     active_admin_comments
   end
   
@@ -111,4 +105,8 @@ ActiveAdmin.register Episode do
     helper :episodes
   
   end
+  
+
+  
+  
 end
