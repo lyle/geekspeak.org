@@ -6,10 +6,13 @@ BetaGeekspeakOrg::Application.routes.draw do
 #  resources :segment_bits
 
  # resources :bits
+ resources :episode_audios
+ resources :episode_images
 
 
   resources :episodes, :id => /[0-9]+\/[0-9]+\/[0-9]+/ do
-    
+    resources :episode_audios
+    resources :episode_images
     resources :segments do
         resources :bits
     end

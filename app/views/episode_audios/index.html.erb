@@ -1,0 +1,12 @@
+<div>
+	<ul>
+		
+		<% for episode_audio in @episode_audios %>
+		<li><%= episode_audio.audio.url %> <%= button_to('Destroy', episode_audio_path(episode_audio), :confirm => 'Are you sure?',
+		          :method => "delete", :disable_with => 'loading...') %></li>
+		<% end %>
+		
+	</ul>
+	
+	<%= link_to "Upload Audio", new_episode_episode_audio_path(@episode) if :authenticate_user! %>
+</div>

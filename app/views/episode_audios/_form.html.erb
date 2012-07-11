@@ -1,0 +1,7 @@
+<%= form_for [@episode, @episode_audio], :html => { :multipart => true } do |form| %>
+  <%= form.file_field :audio %>
+
+
+  <p><%= form.submit %></p>
+
+<% end %>

@@ -11,6 +11,8 @@ class Episode < ActiveRecord::Base
   has_many :segments, :order => "position"
   has_many :segment_bits, :through => :segments
   has_many :bits, :through => :segment_bits
+  has_many :episode_audios
+  has_many :episode_images
   
   has_many :users,  :through => :participants
   accepts_nested_attributes_for :participants, :allow_destroy => true
@@ -20,7 +22,9 @@ class Episode < ActiveRecord::Base
              :class_name => "User",
              :foreign_key => "user_id"
   
-  has_attached_file :teaser, :styles => {:large=> "800x800", :medium => "600x600>", :dem300x600 => "300x600", :small=> "300x300", :thumb => "100x100>" }
+  has_attached_file :teaser, :styles => {:large=> "800x800", :medium => "600x600>", :small => "300x600", :smaller=> "200x200", :thumb => "100x100>" },
+                    :path => ":rails_root/public/episodes/:showdate_as_url/teaser-:style.:extension",
+                    :url => "/episodes/:showdate_as_url/teaser-:style.:extension"
 
   attr_accessible :title, :promo, :abstract, :user_id, :status, :airdate, :teaser, :participants_attributes, :segments_attributes
   

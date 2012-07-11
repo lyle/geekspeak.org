@@ -3,7 +3,8 @@
 
 		<h3 class="title"><%= link_to "#{episode.title}", episode %></h3>
 		<div class="airdate"><%=h episode.airdate.strftime("%Y-%m-%d")   %></div>
-		<%= content_tag(:div, image_tag(episode.teaser.url(:small)), :class => "abstractimage") if episode.teaser?%>
+		<% if ! episode.episode_audios.first.blank? %><div class="audio"><%= link_to "#{episode.episode_audios.first.audio_file_name}  #{number_to_human_size(episode.episode_audios.first.audio_file_size)}", episode.episode_audios.first.audio.url %></div><% end %>
+		<%= content_tag(:div, image_tag(episode.teaser.url(:smaller)), :class => "abstractimage") if episode.teaser?%>
 		<div class="abstract"><%= textilize(episode.abstract).html_safe %>
 		</div>
 	</div>	

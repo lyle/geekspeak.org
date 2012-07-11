@@ -1,0 +1,12 @@
+<div>
+	<ul>
+		
+		<% for episode_image in @episode_images %>
+		<li><%= image_tag episode_image.image.url(:small) %> <%= button_to('Destroy', episode_image_path(episode_image), :confirm => 'Are you sure?',
+		          :method => "delete", :disable_with => 'loading...') %></li>
+		<% end %>
+		
+	</ul>
+	
+	<%= link_to "Upload Image", new_episode_episode_image_path(@episode) if :authenticate_user! %>
+</div>

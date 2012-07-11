@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710100034) do
+ActiveRecord::Schema.define(:version => 20120711073041) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -38,6 +38,30 @@ ActiveRecord::Schema.define(:version => 20120710100034) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "episode_audios", :force => true do |t|
+    t.integer  "episode_id"
+    t.string   "audio_file_name"
+    t.string   "audio_content_type"
+    t.integer  "audio_file_size"
+    t.datetime "audio_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "episode_audios", ["episode_id"], :name => "index_episode_audios_on_episode_id"
+
+  create_table "episode_images", :force => true do |t|
+    t.integer  "episode_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "episode_images", ["episode_id"], :name => "index_episode_images_on_episode_id"
+
   create_table "episodes", :force => true do |t|
     t.string   "title"
     t.string   "promo"
@@ -56,6 +80,24 @@ ActiveRecord::Schema.define(:version => 20120710100034) do
   end
 
   add_index "episodes", ["slug"], :name => "index_episodes_on_slug"
+
+  create_table "headline_discussions", :id => false, :force => true do |t|
+    t.integer "id",          :null => false
+    t.integer "show_id",     :null => false
+    t.integer "headline_id", :null => false
+    t.integer "position",    :null => false
+  end
+
+  create_table "headlines", :id => false, :force => true do |t|
+    t.integer  "id",                                           :null => false
+    t.integer  "user_id",                                      :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.string   "title",      :limit => 64,                     :null => false
+    t.text     "content"
+    t.string   "status",     :limit => 64,  :default => "new"
+    t.string   "url",        :limit => 256
+  end
 
   create_table "participants", :force => true do |t|
     t.integer  "episode_id"
