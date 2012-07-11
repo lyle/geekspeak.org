@@ -1,6 +1,7 @@
 class SegmentsController < ApplicationController
   def index
-    @segments = Segment.all
+    @episode = Episode.find(params[:episode_id])
+    @segments = @episode.segments
   end
 
   def show

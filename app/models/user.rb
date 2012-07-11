@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  
+  extend FriendlyId
+  friendly_id :login
   has_many :participants
   has_many :episodes, :through => :participants
   

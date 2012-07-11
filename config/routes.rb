@@ -3,14 +3,17 @@ BetaGeekspeakOrg::Application.routes.draw do
 
   resources :users
 
-  resources :segment_bits
+#  resources :segment_bits
 
-  resources :bits
+ # resources :bits
 
-  resources :participants
 
   resources :episodes, :id => /[0-9]+\/[0-9]+\/[0-9]+/ do
-    resources :segments
+    
+    resources :segments do
+        resources :bits
+    end
+    resources :participants
   end
   
   match "/episodes/:year/" => "episodes#year_archive", 

@@ -1,0 +1,11 @@
+<div class="bits">
+<% bits.each do |bit | %>
+	<div class="bit">
+	<h4><%= link_to_unless bit.url.empty?, bit.title, bit.url %></h4>
+	<span class="bit-url"><%= bit.url %></span>
+	<%= textilize(bit.body).html_safe unless bit.body.blank? %>
+	
+		
+	</div>
+<% end %>
+</div>

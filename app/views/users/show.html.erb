@@ -3,7 +3,7 @@
 <p>
  <%= @user.login.capitalize %>
 
-  last logged in <%= time_ago_in_words(@user.current_sign_in_at) %> ago.
+  last logged in <%= time_ago_in_words(@user.current_sign_in_at) unless @user.current_sign_in_at.blank? %> ago.
 </p>
 
 <ul>

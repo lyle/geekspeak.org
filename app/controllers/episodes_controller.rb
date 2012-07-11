@@ -12,12 +12,12 @@ class EpisodesController < ApplicationController
   end
 
   def year_archive
-    @episodes = Episode.by_year(Date.strptime("#{params[:year]}-01-01")) 
+    @episodes = Episode.by_year(Date.strptime("#{params[:year]}-01-01")).where(:status => 'live') 
     
     render :template => 'episodes/index'
   end
   def month_archive
-    @episodes = Episode.by_month(Date.strptime("#{params[:year]}-#{params[:month]}-01")) 
+    @episodes = Episode.by_month(Date.strptime("#{params[:year]}-#{params[:month]}-01")).where(:status => 'live') 
     add_breadcrumb params[:year], "#{episodes_path}/#{params[:year]}"
     render :template => 'episodes/index' 
   end

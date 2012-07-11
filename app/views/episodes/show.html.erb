@@ -1,12 +1,19 @@
-<% title "#{@episode.title} - GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
+<% title "#{@episode.title} - #{@episode.airdate.strftime("%Y-%m-%d")}" %>
 
-<h3 class="title"><%=h @episode.title %></h3>
-<div class="airdate"><%=h @episode.airdate.strftime("%Y-%m-%d")   %></div>
+<h2 class="title"><%=h @episode.title %></h2>
+<div class="airdate">GeekSpeak for <%=h @episode.airdate.strftime("%Y-%m-%d")   %></div>
 
 <%= content_tag(:div, image_tag(@episode.teaser.url(:dem300x600)), :class => "abstractimage") if @episode.teaser?%>
 
 
-<%= textilize(@episode.abstract).html_safe %>
+<%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %>
+
+<hr>
+
+<%= textilize(@episode.content).html_safe  unless @episode.content.blank? %>
+
+
+<%= render :partial => 'segments', :locals=> {:segments => @episode.segments} if @episode.segments.length > 0 %>
 
 <div class="span5 offset3">  <%= link_to "Edit", edit_admin_episode_path(@episode) if :authenticate_user! %>
 </div>
@@ -14,7 +21,8 @@
 
 <% content_for :sidebar do %>
     
-	<%= render :partial => 'participants', :locals => {:participants => @episode.participants} if @episode.participants.length > 0%>
+	<%= render :partial => 'participants',
+		:locals => {:participants => @episode.participants} if @episode.participants.length > 0%>
 
 
 	<ul class="nav nav-list">

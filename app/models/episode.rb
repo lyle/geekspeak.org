@@ -1,6 +1,7 @@
 class Episode < ActiveRecord::Base
   extend FriendlyId
   friendly_id :showdate_as_url, :use => :slugged
+  default_scope :order => 'airdate DESC'
   
   #scope :by_year, lambda {|year| where("date >= ? and date <= ?", "#{year}-01-01", "#{year}-12-31")}
   scope :by_year, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_year..d.end_of_year } } }

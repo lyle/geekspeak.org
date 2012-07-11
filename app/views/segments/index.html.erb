@@ -9,9 +9,9 @@
   <% for segment in @segments %>
     <tr>
       <td><%= segment.title %></td>
-      <td><%= segment.show_id %></td>
+      <td> segment.show_id </td>
       <td><%= segment.position %></td>
-      <td><%= link_to "Show", segment %></td>
+      <td><%= link_to "Show", episode_segment_path(segment.episode, segment) %></td>
     </tr>
   <% end %>
 </table>

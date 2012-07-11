@@ -11,6 +11,8 @@ ActiveAdmin.register Segment do
             bit.input :url
             bit.input :user, :as => :select, :collection => User.all
             bit.input :body
+            bit.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
+            
       end
 
       f.buttons

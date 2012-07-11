@@ -1,7 +1,6 @@
 ActiveAdmin.register Episode do
   
 
-  
   form :html => { :enctype => "multipart/form-data" } do |f|
      f.inputs "Details" do
        f.input :title
@@ -13,7 +12,8 @@ ActiveAdmin.register Episode do
      end
      
      f.inputs "Thumbnail" do
-       f.input :teaser, :as => :file, :hint => (f.template.image_tag(f.object.teaser.url(:thumb)) if f.object.teaser?)
+       f.input :teaser, :as => :file,
+        :hint => (f.template.image_tag(f.object.teaser.url(:thumb)) if f.object.teaser?)
      end
      
    #  f.has_many :participants do |participant|
@@ -27,14 +27,20 @@ ActiveAdmin.register Episode do
          #participant.role
      end
     f.has_many :segments do |seg|
-        seg.input :title
-        seg.input :position
-        seg.input :_destroy, :as => :boolean, :label => "delete"
+        seg.input :title, :label => "Segment Title"
+        seg.input :_destroy, :as => :boolean, :label => "delete this segment when you update this episode"
         #participant.role
+        
+      #  link_to "modify bits #{:bits.length}", :segment
+      # This section puts the form for bits into this page.
         seg.has_many :bits do |bit|
-          bit.input :title
-          bit.input :url
-        end
+          bit.input :title, :label => "Bit Title"
+          bit.input :url, :label => "Bit URL"
+          bit.input :body, :label => "Bit Body"
+          bit.input :user, :label => "Who's Bit is This?"
+          
+          bit.input :_destroy, :as => :boolean, :label => "delete this bit when you update this episode"
+        end      
     end
     #
    #  f.has_many :participants do |app_f|
@@ -88,7 +94,6 @@ ActiveAdmin.register Episode do
     end
     
     panel "Segments" do
-        
       table_for episode.segments, {:id=>'segments'} do
         column "Title" do |segment|
           link_to segment.title, admin_segment_path(segment)
@@ -101,9 +106,15 @@ ActiveAdmin.register Episode do
     active_admin_comments
   end
   
+  
   controller do
     helper :episodes
   
+    def update
+      update! do |format|
+        format.html { redirect_to episode_url, :flash=> flash }
+      end
+    end
   end
   
 

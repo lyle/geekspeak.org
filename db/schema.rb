@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120318090858) do
+ActiveRecord::Schema.define(:version => 20120710100034) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20120318090858) do
     t.string   "slug"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.text     "content"
   end
 
   add_index "episodes", ["slug"], :name => "index_episodes_on_slug"
@@ -119,6 +120,23 @@ ActiveRecord::Schema.define(:version => 20120318090858) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "shows", :id => false, :force => true do |t|
+    t.integer  "id",                                               :null => false
+    t.string   "title",          :limit => 64,                     :null => false
+    t.string   "category",       :limit => 254
+    t.text     "promo"
+    t.text     "abstract",                                         :null => false
+    t.text     "content"
+    t.integer  "user_id",                                          :null => false
+    t.datetime "created_on",                                       :null => false
+    t.datetime "updated_on",                                       :null => false
+    t.string   "status",         :limit => 64,  :default => "new"
+    t.datetime "showtime"
+    t.integer  "teaser_id"
+    t.text     "planning_notes"
+    t.integer  "lock_version",                  :default => 0
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -155,5 +173,17 @@ ActiveRecord::Schema.define(:version => 20120318090858) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "userslive", :id => false, :force => true do |t|
+    t.integer "id",                                       :null => false
+    t.string  "login",                     :limit => 80
+    t.string  "password"
+    t.string  "display_name",              :limit => 64
+    t.string  "email",                     :limit => 128
+    t.string  "crypted_password",          :limit => nil
+    t.string  "salt",                      :limit => nil
+    t.time    "remimber_token_expires_at"
+    t.boolean "remimber_token"
+  end
 
 end

@@ -19,3 +19,11 @@ jQuery ($) ->
       cursor: 'move'
       update: (event, ui) ->
         sendSortRequestOfModel("segments")
+
+jQuery ($) ->
+	$(".bits").children('li').toggle()
+	$( ".bits h3").prepend  ->
+		$(this).next('li').children('fieldset').length + " "
+	$( ".bits h3").click ->
+		$(this).next('li').slideToggle()
+
