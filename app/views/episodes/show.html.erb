@@ -3,7 +3,7 @@
 <%  if user_signed_in?  %>
 <div class="span5 offset3"> 
 	<%= link_to "Edit", edit_admin_episode_path(@episode) %> | 
-	<%= link_to "Upload Audio", new_episode_episode_audio_path(@episode)  %> | 
+	<%= link_to "Audio", episode_episode_audios_path(@episode)  %> | 
 	<%= link_to "Images", episode_episode_images_path(@episode)  %>
 	</div>
 <% end %>
