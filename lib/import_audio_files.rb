@@ -5,7 +5,7 @@
 
 
 ENV['RAILS_ENV'] = "development" # Set to your desired Rails environment name
-#require '../config/environment.rb'
+require '../config/environment.rb'
 
 # After this point you have access to your models and other classes from your Rails application
 
@@ -31,9 +31,9 @@ Dir.glob('../../geekspeak.org/shows/audio/*.64kbps.mp3') do |mp3file|
     unless @episode.blank?
         @count += 1
         puts "#{@count} #{@episode.title} #{episodepath}"
-        @episode_audio = @episode.episode_audios.build(:audio => File.new(mp3file,"r"))
-        if @episode_audio.save
-           puts "Yeah #{@episode_audio.audio_file_size} of audio attached to this episode." 
-        end
-    end
+  #      @episode_audio = @episode.episode_audios.build(:audio => File.new(mp3file,"r"))
+  #      if @episode_audio.save
+  #         puts "Yeah #{@episode_audio.audio_file_size} of audio attached to this episode." 
+  #      end
+  #  end
 end
