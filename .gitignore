@@ -8,3 +8,4 @@ config/database.yml
 vendor
 public/system/*
 older\ content/*
+public/shows
