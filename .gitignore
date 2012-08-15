@@ -9,3 +9,5 @@ vendor
 public/system/*
 older\ content/*
 public/shows
+.rvmrc
+Gemfile.lock
