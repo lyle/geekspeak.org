@@ -11,3 +11,4 @@ older\ content/*
 public/shows
 .rvmrc
 Gemfile.lock
+*.swp
