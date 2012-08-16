@@ -10,7 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :reset_password_sent_at
 
       #t.rememberable
-      t.datetime :remimber_created_at
+      t.datetime :remember_created_at
 
       #t.trackable
       t.integer  :sign_in_count, :default => 0
@@ -32,7 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     end
 
     # Create a default user
-    User.create!(:email => 'lyle@geekspeak.org', :password => 'password', :password_confirmation => 'password')
+ #   User.create!(:email => 'lyle@geekspeak.org', :password => 'password', :password_confirmation => 'password')
 
     add_index :users, :email,                :unique => true
     add_index :users, :reset_password_token, :unique => true
