@@ -1,7 +1,7 @@
 class BitsController < ApplicationController
     respond_to :html, :json
     def index
-        @bits = Bit.all
+        @bits = Bit.where(:status => "on").paginate(:page => params[:page])
     end
 
     def show
