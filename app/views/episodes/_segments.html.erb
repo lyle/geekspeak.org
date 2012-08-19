@@ -1,10 +1,8 @@
-<div class="segment">
+<div class="segments">
 <% segments.each do |segment | %>
 	<div class="segment">
 	<h3 class="segment title"><%= segment.title%></h3>
 	<%= render :partial => 'bits', :locals=> {:bits => segment.bits} %>
-	
-	
 	</div>
 <% end %>
 </div>

@@ -43,7 +43,7 @@ gem "nifty-generators", :group => :development
 
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
-
+gem 'haml'
 
 gem "friendly_id", "~> 4.0.0"
 gem 'twitter-bootstrap-rails'
@@ -58,5 +58,7 @@ gem "breadcrumbs_on_rails"
 
 gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'acts_as_list'
+gem "best_in_place"
+
 
 #gem 'inherited_resources'
