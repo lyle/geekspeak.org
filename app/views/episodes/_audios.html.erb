@@ -1,6 +1,6 @@
 	<ul class="nav nav-list">
 		<% for episode_audio in episode.episode_audios %>
-		  <li class="nav-header"><%= user_signed_in? ? content_tag(:span, link_to("Audio", episode_episode_audios_path(episode)), :class=>"admin" ) :"Audio" %></li>
+		  <li class="nav-header"><%= user_signed_in? ? link_to("#{content_tag("i","",:class=>"icon-pencil")}Audio".html_safe, episode_episode_audios_path(episode), :class=>"edit") : "Audio" %></li>
 			<li><%= link_to "#{episode_audio.audio_file_name}  #{number_to_human_size(episode_audio.audio_file_size)}", episode_audio.audio.url %></li>
 		<% end %>
 

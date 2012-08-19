@@ -25,7 +25,7 @@
 
 
 <% content_for :sidebar do %>
-
+	<%= user_signed_in? ? render :partial => 'bits/bit_adder', :locals => {:episode => @episode} : ""%>
     <%= render :partial => 'audios',
 			:locals => {:episode => @episode} if @episode.episode_audios.length > 0%>
 			
