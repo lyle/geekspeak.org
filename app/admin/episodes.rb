@@ -15,41 +15,20 @@ ActiveAdmin.register Episode do
        f.input :teaser, :as => :file,
         :hint => (f.template.image_tag(f.object.teaser.url(:thumb)) if f.object.teaser?)
      end
-     
-   #  f.has_many :participants do |participant|
-  #        participant.inputs
-  #    end
-       
-     f.has_many :participants do |af|
-         af.input :user
-         af.input :role, :collection=>Participant::ROLES
-         af.input :_destroy, :as => :boolean, :label => "delete"
+     f.has_many :participants do |p|
+         p.input :user
+         p.input :role, :collection=>Participant::ROLES
+         p.input :_destroy, :as => :boolean, :label => "delete"
          #participant.role
      end
-    f.has_many :segments do |seg|
-        seg.input :title, :label => "Segment Title"
-        seg.input :_destroy, :as => :boolean, :label => "delete this segment when you update this episode"
-        #participant.role
-        
-      #  link_to "modify bits #{:bits.length}", :segment
-      # This section puts the form for bits into this page.
-        seg.has_many :bits do |bit|
-          bit.input :title, :label => "Bit Title"
-          bit.input :url, :label => "Bit URL"
-          bit.input :body, :label => "Bit Body"
-          bit.input :user, :label => "Who's Bit is This?"
-          
-          bit.input :_destroy, :as => :boolean, :label => "delete this bit when you update this episode"
-        end      
+    f.has_many :bits do |b|
+        b.input :title, :label => "Bit Title"
+        b.input :url, :label => "Bit URL"
+        b.input :body, :label => "Bit Body"
+        b.input :user, :label => "Who's Bit is This?"
+
+        b.input :_destroy, :as => :boolean, :label => "delete this bit when you update this episode"
     end
-    #
-   #  f.has_many :participants do |app_f|
-   #       app_f.inputs "Participants" do
-   #         app_f.input :users # it should automatically generate a drop-down select to choose from your existing patients
-   #         app_f.input :participants_role
-   #       end
-   #     end
-   #  
      
      f.buttons
   end
@@ -66,8 +45,8 @@ ActiveAdmin.register Episode do
      column :users do |episode|
        episode.users.length
      end
-     column :segments do |episode|
-       episode.segments.length
+     column :bits do |episode|
+       episode.bits.length
      end
      default_actions
   end
@@ -92,17 +71,13 @@ ActiveAdmin.register Episode do
         end
       end
     end
-    
-    panel "Segments" do
-      table_for episode.segments, {:id=>'segments'} do
-        column "Title" do |segment|
-          link_to segment.title, admin_segment_path(segment)
-        end
-        column :bits do |segment|
-          segment.bits.length
-        end 
-      end
-    end
+    panel "Bits" do
+    table_for episode.bits, {:id=>'bits'} do
+         column "Title" do |bit|
+           link_to bit.title, admin_bit_path(bit)
+         end
+       end
+     end
     active_admin_comments
   end
   
