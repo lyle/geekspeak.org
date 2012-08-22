@@ -32,7 +32,7 @@ ActiveAdmin.register Episode do
         f.input :content
     end
      
-     f.actions
+     f.buttons
   end
   
   filter :airdate
