@@ -81,7 +81,7 @@ ActiveAdmin.register Episode do
        end
      end
      panel "Content" do
-        div textilize.episode.content).html_safe 
+        div textilize(episode.content).html_safe 
      end
      
     active_admin_comments

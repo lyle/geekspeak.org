@@ -17,7 +17,7 @@
 <%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %>
 </div>
 <hr>
-<%= render :partial => 'bits', :locals=> {:bits => @episode.bits} %>
+<%= render :partial => 'bits/bits', :locals=> {:bits => @episode.bits, :display_episode => false} %>
 
 <hr>
 
@@ -25,7 +25,7 @@
 
 
 <% content_for :sidebar do %>
-
+	<%= user_signed_in? ? render( :partial => 'bits/bits_editor', :locals => {:episode => @episode}) : ""%>
     <%= render :partial => 'audios',
 			:locals => {:episode => @episode} if @episode.episode_audios.length > 0%>
 			

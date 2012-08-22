@@ -18,3 +18,4 @@ On the list of todo items:
 * Move to jRuby (currently does not work do to incompatablity with v8 for LESS)
 * Allow for linking existing bits to a segment instead of having to create new bits every time.
 * In general I need to move away from Active Admin so that the whole site works better.
+* Will be working on "in-place-editing":https://github.com/bernat/best_in_place
