@@ -17,7 +17,7 @@
 <%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %>
 </div>
 <hr>
-<%= render :partial => 'bits', :locals=> {:bits => @episode.bits} %>
+<%= render :partial => 'bits/bits', :locals=> {:bits => @episode.bits, :display_episode => false} %>
 
 <hr>
 
