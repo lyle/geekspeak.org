@@ -26,11 +26,13 @@ ActiveAdmin.register Episode do
         b.input :url, :label => "Bit URL"
         b.input :body, :label => "Bit Body"
         b.input :user, :label => "Who's Bit is This?"
-
         b.input :_destroy, :as => :boolean, :label => "delete this bit when you update this episode"
     end
+    f.inputs "Content" do
+        f.input :content
+    end
      
-     f.buttons
+     f.actions
   end
   
   filter :airdate
@@ -72,12 +74,16 @@ ActiveAdmin.register Episode do
       end
     end
     panel "Bits" do
-    table_for episode.bits, {:id=>'bits'} do
+        table_for episode.bits, {:id=>'bits'} do
          column "Title" do |bit|
            link_to bit.title, admin_bit_path(bit)
          end
        end
      end
+     panel "Content" do
+        div RedCloth.new(episode.content).to_html(:textile, :mtext).html_safe 
+     end
+     
     active_admin_comments
   end
   
