@@ -10,14 +10,14 @@
 <% end %>
 	
 
+<div class="abstract">
 <%= content_tag(:div, image_tag(@episode.teaser.url(:small)), :class => "abstractimage") if @episode.teaser?%>
 
 
 <%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %>
-
+</div>
 <hr>
-
-<%= render :partial => 'segments', :locals=> {:segments => @episode.segments} if @episode.segments.length > 0 %>
+<%= render :partial => 'bits', :locals=> {:bits => @episode.bits} %>
 
 <hr>
 
