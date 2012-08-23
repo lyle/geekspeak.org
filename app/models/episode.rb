@@ -34,6 +34,10 @@ class Episode < ActiveRecord::Base
 
   attr_accessible :title, :promo, :abstract, :user_id, :status, :airdate, :teaser, :participants_attributes, :segments_attributes
   
+  def airdate_to_s_rfc822
+     Time.new(airdate.year, airdate.month, airdate.day).advance(:hours => 10).rfc2822 
+  end
+  
   def air_year
     airdate.strftime("%Y")
   end
@@ -55,4 +59,6 @@ class Episode < ActiveRecord::Base
   def normalize_friendly_id(text)
     text
   end
+  
+  
 end
