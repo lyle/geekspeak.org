@@ -52,8 +52,10 @@ gem "RedCloth"
 
 gem "breadcrumbs_on_rails"
 
-gem 'will_paginate'
+#gem 'will_paginate'
+#gem 'will_paginate', '~> 3.0'
 #gem 'refinerycms', '~> 2.0.0'
+gem 'kaminari'
 
 
 gem 'acts-as-taggable-on', '~> 2.2.2'
