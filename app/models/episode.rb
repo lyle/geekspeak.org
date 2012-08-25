@@ -32,7 +32,7 @@ class Episode < ActiveRecord::Base
                     :path => ":rails_root/public/episodes/:showdate_as_url/teaser-:style.:extension",
                     :url => "/episodes/:showdate_as_url/teaser-:style.:extension"
 
-  attr_accessible :title, :promo, :abstract, :user_id, :status, :airdate, :teaser, :participants_attributes, :segments_attributes
+  attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :participants_attributes, :bits_attributes
   
   def airdate_to_s_rfc822
      Time.new(airdate.year, airdate.month, airdate.day).advance(:hours => 10).rfc2822 
