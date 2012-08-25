@@ -5,7 +5,6 @@ tmp/
 .sass-cache/
 *.DS_Store
 config/database.yml
-vendor
 public/system/*
 older\ content/*
 public/shows
