@@ -1,9 +1,9 @@
 class BitsController < ApplicationController
     respond_to :html, :json
     def index
-        @bits = Bit.where(:status => "on").paginate(:page => params[:page])
+        @bits = Bit.search(params[:search]).freshness(params[:purity]).order("updated_at DESC").page(params[:page]).per(50)
     end
-
+    
     def show
         @bit = Bit.find(params[:id])
     end

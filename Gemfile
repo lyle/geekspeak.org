@@ -62,5 +62,6 @@ gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'acts_as_list'
 gem "best_in_place"
 
+gem 'rack-pjax'
 
 #gem 'inherited_resources'

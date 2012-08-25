@@ -6,5 +6,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.pjax
 //= require twitter/bootstrap
 //= require_tree .
+
+
+
+$(function() {
+  $("#bits_search input").keyup(function() {
+    $.get($("#bits_search").attr("action"), $("#bits_search").serialize(), null, "script");
+    return false;
+  });
+});

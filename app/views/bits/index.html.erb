@@ -3,10 +3,18 @@
 
 <%= link_to 'New', new_bit_path, :class => 'btn btn-primary' if user_signed_in? %>
 
-<%= render :partial => 'bits', :locals=> {:bits => @bits, :display_episode => true } %>
 
+<%= form_tag bits_path, :method => 'get', :id => "bits_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %><br />
+	<input type="radio" name="purity" value="" />All | 
+	<input type="radio" name="purity" value="re_used" />Re-Used | 
+	<input type="radio" name="purity" value="fresh" />Fresh<br />
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+  <div id="bits"><%= render :partial => 'bits', :locals=> {:bits => @bits, :display_episode => true } %>
+	
+		<%= paginate @bits%>
 
-
-
-
-<%= will_paginate @bits %>
+</div>
+<% end %>

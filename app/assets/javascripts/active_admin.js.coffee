@@ -27,3 +27,4 @@ jQuery ($) ->
 	$( ".bits h3").click ->
 		$(this).next('li').slideToggle()
 
+
