@@ -66,3 +66,4 @@ gem 'rack-pjax'
 
 #gem 'inherited_resources'
 gem 'simple_form'
+gem 'unicorn'
