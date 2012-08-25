@@ -1,1 +1,2 @@
-$("#bits").html("<%= escape_javascript(render(:partial => "bits", :locals=> {:bits => @bits, :display_episode => true })) %>");
+$("#bits_from_search").html("<%= escape_javascript(render(:partial => "bits", :locals=> {:bits => @bits, :display_episode => true })) %>")
+	.effect("highlight", {color: "#333"}, 300).fadeIn();

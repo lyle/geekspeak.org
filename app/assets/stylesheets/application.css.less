@@ -1,15 +1,9 @@
-@import "twitter/bootstrap/bootstrap";
+@import "bootstrap_and_overrides.css.less";
 
 
-@navbarBackground:                #999;
-@navbarBackgroundHighlight:       #eee;
+@navbarBackground:                #000;
+@navbarBackgroundHighlight:       #666;
 
-
-body {background-image: url(/assets/subtle_zebra_3d.png);}
-
-@import "twitter/bootstrap/responsive";
-@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
-@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
 
 
 #logo {
@@ -59,7 +53,10 @@ h3.segment.title {display:none;}
 .airdate {
 	color: @grayLight;
 	}
-	
-	#bit_editor #bits .bit .metadata, #bits .bit p {
-		display:none;
+
+#bit_editor{
+	#bits .bit .metadata,
+	#bits .bit .bit-body{
+			display:none;
 	}
+}

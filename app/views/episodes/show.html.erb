@@ -4,7 +4,6 @@
 <%  if user_signed_in?  %>
 	<div class="span5 offset3"> 
 		<%= link_to "Edit", edit_admin_episode_path(@episode) %> | 
-		<%= link_to "Audio", episode_episode_audios_path(@episode)  %> | 
 		<%= link_to "Images", episode_episode_images_path(@episode)  %>
 	</div>
 <% end %>
@@ -17,18 +16,25 @@
 <%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %>
 </div>
 <hr>
+<div id="bits">
 <%= render :partial => 'bits/bits', :locals=> {:bits => @episode.bits, :display_episode => false} %>
-
+</div>
 <hr>
 
 <%= textilize(@episode.content).html_safe  unless @episode.content.blank? %>
 
 
 <% content_for :sidebar do %>
-	<%= user_signed_in? ? render( :partial => 'bits/bits_editor', :locals => {:episode => @episode}) : ""%>
     <%= render :partial => 'audios',
 			:locals => {:episode => @episode} if @episode.episode_audios.length > 0%>
-			
+	<% if user_signed_in? %>
+	<ul class="nav nav-list">
+				  <li class="nav-header"><%= link_to "#{content_tag("i","",:class=>"icon-plus")}Bits to Add".html_safe, new_bit_path %></li>
+				<li>
+	<%=  render( :partial => 'bits/bits_search_form', :locals => {:bits => @bits}) %>
+	</li>
+	</ul>
+	<% end %>	
 	<%= render :partial => 'participants',
 			:locals => {:participants => @episode.participants} if @episode.participants.length > 0%>
 

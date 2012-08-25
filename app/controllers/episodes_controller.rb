@@ -29,6 +29,11 @@ class EpisodesController < ApplicationController
     add_breadcrumb @episode.air_year, "#{episodes_path}#{@episode.air_year}/"
     add_breadcrumb @episode.air_month, "#{episodes_path}#{@episode.air_year}/#{@episode.air_month}/"
     add_breadcrumb @episode.air_day, "#{episodes_path}#{@episode.air_year}/#{@episode.air_month}/#{@episode.air_day}/"
+    
+    if user_signed_in?
+        @bits = Bit.freshness("fresh").order("updated_at DESC").page(params[:page]).per(50)
+    end
+    
     respond_with(@episode)
     
   end
