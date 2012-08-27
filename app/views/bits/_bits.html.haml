@@ -3,7 +3,7 @@
 		.bit{:id=>"bit_#{bit.id}"}
 			%h4
 				= link_to_unless bit.url.empty?, bit.title, bit.url, :rel=>"tooltip", :title=> bit.url
-				%a.icon-asterisk.icon-white{:href=>"#{user_path(bit.user)}", :rel=>"tooltip", :title=>"Added by #{bit.user.name}",:data=>{:placement=>"right"}}
+				%a.icon-asterisk.icon-white{:href=>"#{user_path(bit.user)}", :rel=>"tooltip", :title=>"Added by #{bit.user.display_name}",:data=>{:placement=>"right"}}
 			- if display_episode
 				.metadata
 					.user
