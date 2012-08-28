@@ -273,6 +273,7 @@ DEPENDENCIES
   capistrano
   capybara
   coffee-rails (~> 3.2.1)
+  execjs
   factory_girl_rails
   friendly_id (~> 4.0.0)
   guard-rspec
@@ -290,6 +291,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form
+  therubyracer
   turn
   twitter-bootstrap-rails (>= 2.1.3)
   uglifier (>= 1.0.3)

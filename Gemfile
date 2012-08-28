@@ -66,3 +66,8 @@ gem 'rack-pjax'
 
 #gem 'inherited_resources'
 gem 'simple_form'
+
+group :production do
+ gem 'therubyracer'
+ gem 'execjs'
+end
