@@ -31,7 +31,7 @@ xml.rss "version" => "2.0",
                 xml.link episode_url(episode)
                 xml.description textilize(episode.abstract)
                 xml.pubDate episode.airdate_to_s_rfc822
-                if (episode.airdate < Date.parse("2012-07-28")) then
+                if (episode.airdate < Date.parse("2012-07-29")) then
                     xml.guid "http://geekspeak.org/shows/#{episode.showdate_as_url}/"
                 else
                     xml.guid "http://geekspeak.org/episode/#{episode.showdate_as_url}/"
