@@ -7,7 +7,6 @@ tmp/
 config/database.yml
 public/system/*
 older\ content/*
-public/shows
 .rvmrc
 Gemfile.lock
 *.swp
