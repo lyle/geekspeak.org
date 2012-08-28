@@ -3,7 +3,7 @@
     <%= text_field_tag :search, params[:search], :placeholder=>"Search Bits to add...", :class=>"search-query" %><br />
 
 	<div class="btn-group bit-used-filter" data-toggle-name="purity" data-toggle="buttons-radio">
-	  <button type="button" class="btn btn-mini" value="">all bits</button>
+	  <button type="button" class="btn btn-mini" value="all">all bits</button>
 	  <button type="button" class="btn btn-mini" value="re_used">already used</button>
 	  <button type="button" class="btn btn-mini" value="fresh">never used</button>
 	  <input type="hidden" name="purity" value="fresh" />
