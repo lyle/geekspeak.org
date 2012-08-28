@@ -2,7 +2,9 @@ class BitsController < ApplicationController
     respond_to :html, :json
     def index
         freshness = params[:purity] || "fresh"
-        @bits = Bit.search(params[:search]).freshness(freshness).order("updated_at DESC").page(params[:page]).per(50)
+        #@bits = Bit.includes(:user).search(params[:search]).freshness(freshness).order("updated_at DESC").page(params[:page]).per(50)
+        @bits = Bit.includes(:user, :episodes).search(params[:search]).freshness(freshness).order("updated_at DESC").page(params[:page]).per(50)
+        
     end
     
     def show

@@ -12,7 +12,9 @@
 						= bit.created_at.strftime("%B %e, %Y")
 					- bit.episodes.each do |episode|
 						.episode
+							Used in 
 							= link_to episode.title, episode
+							( #{episode.showdate_as_url} )
 			.bit-body
 				= textilize(bit.body).html_safe unless bit.body.blank? 
 			
