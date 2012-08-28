@@ -37,13 +37,13 @@ namespace :deploy do
      
    end
      task :link_upload_folders do
-         run "ln -nfs #{shared_path}/shows/audio #{latest_release}/public/shows/audio"
-         run "ln -nfs #{shared_path}/episodes #{latest_release}/public/episodes"
+         run "ln -nfs #{shared_path}/shows/audio #{release_path}/public/shows/audio"
+         run "ln -nfs #{shared_path}/episodes #{release_path}/public/episodes"
      end
  end
 
 
 
 
-after "deploy:symlink","deploy:link_upload_folders"
+after "deploy","deploy:link_upload_folders"
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
