@@ -35,11 +35,11 @@ namespace :deploy do
          end
      end
      
+   end
      task :link_upload_folders do
          run "ln -nfs #{shared_path}/shows/audio #{release_path}/public/shows/audio"
          run "ln -nfs #{shared_path}/episodes #{release_path}/public/episodes"
      end
-   end
  end
 
 
