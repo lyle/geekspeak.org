@@ -37,6 +37,7 @@ namespace :deploy do
      
    end
      task :link_upload_folders do
+         run "mkdir -p #{release_path}/public/shows"
          run "ln -nfs #{shared_path}/shows/audio #{release_path}/public/shows/audio"
          run "ln -nfs #{shared_path}/episodes #{release_path}/public/episodes"
      end
