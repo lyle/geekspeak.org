@@ -23,8 +23,11 @@ set :branch, "master"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
-after "deploy", "deploy:cleanup" # keep only the last 5 releases
-task :after_symlink do
+task :link_upload_folders do
     run "ln -nfs #{shared_path}/shows/audio #{release_path}/public/shows/audio"
     run "ln -nfs #{shared_path}/episodes #{release_path}/public/episodes"
 end
+
+
+after "deploy:symlink","deploy:link_upload_folders"
+after "deploy", "deploy:cleanup" # keep only the last 5 releases
