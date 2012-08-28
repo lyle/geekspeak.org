@@ -19,10 +19,10 @@ gem 'jquery-rails'
 gem "paperclip", "~> 2.0"
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -66,4 +66,3 @@ gem 'rack-pjax'
 
 #gem 'inherited_resources'
 gem 'simple_form'
-gem 'unicorn'
