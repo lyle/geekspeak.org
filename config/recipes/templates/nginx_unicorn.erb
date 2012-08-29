@@ -12,6 +12,8 @@ server {
     expires max;
     add_header Cache-Control public;
   }
+  rewrite ^/shows/rss.xml$ http://www.npr.org/rss/podcast.php?id=510168 ;
+
 
   try_files $uri/index.html $uri @unicorn;
   location @unicorn {
