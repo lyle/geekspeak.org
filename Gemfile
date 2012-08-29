@@ -71,3 +71,5 @@ group :production do
  gem 'therubyracer'
  gem 'execjs'
 end
+
+gem 'high_voltage'

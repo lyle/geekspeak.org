@@ -38,6 +38,10 @@ class Episode < ActiveRecord::Base
      Time.new(airdate.year, airdate.month, airdate.day).advance(:hours => 10).rfc2822 
   end
   
+  def showdate_as_file_part
+      
+  end
+  
   def air_year
     airdate.strftime("%Y")
   end
@@ -55,7 +59,10 @@ class Episode < ActiveRecord::Base
   def showdate_as_url
     "#{airdate.strftime("%Y/%m/%d")}"
   end
-  
+  def showdate_as_file_part
+      "#{airdate.strftime("%Y-%m-%d")}"
+  end
+
   def normalize_friendly_id(text)
     text
   end

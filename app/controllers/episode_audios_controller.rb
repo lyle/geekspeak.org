@@ -16,6 +16,8 @@ class EpisodeAudiosController < ApplicationController
   def create
     @episode = Episode.find(params[:episode_id])
     @episode_audio = @episode.episode_audios.build( params[:episode_audio] )
+    @episode_audio.audio.instance_write :file_name, "GeekSpeak_#{@episode.showdate_as_file_part}#{File.extname(@episode_audio.audio.instance_read(:file_name)).downcase}"
+    
     if @episode_audio.save
       redirect_to episode_url(@episode), :notice => "Successfully Added Audio"
     else
