@@ -1,10 +1,17 @@
 <h3>Check this out...</h3>
 <ul class="nav nav-list">
-  <li class="nav-header">Partners and Sponsors</li>
+  <li class="nav-header">Partners</li>
     <li><%= link_to "KUSP", "http://www.kusp.org/"  %></li>
     <li><%= link_to "Our Podcast @ NPR", "http://www.npr.org/rss/podcast/podcast_detail.php?siteId=7494293"  %></li>
-    <li><%= link_to "ImageQuest - our sponsor", "http://itunes.apple.com/us/app/imagequest/id354602525?mt=8"  %></li>
-  <li class="nav-header">The Geeks</li>
+  <li class="nav-header">Sponsor</li>
+    <li>
+		<ul class="thumbnails">
+			<li class="span2">
+				<%= link_to image_tag("/images/sponsors/imagequest_175x175.jpg", :title => "ImageQuest - Our Sponsor", :class=>'thumbnail') , "http://itunes.apple.com/us/app/imagequest/id354602525?mt=8"  %>
+			</li>
+		</ul>
+	</li>
+  <li class="nav-header">The Regular Geeks</li>
     <li><%= link_to "Lyle Troxell", "http://lyle.troxell.com/"  %></li>
     <li><%= link_to "Miles Elam", "http://www.linkedin.com/pub/miles-elam/0/b51/60b"  %></li>
     <li><%= link_to "Ben Jaffe", "https://plus.google.com/115520083766035260573/about"  %></li>

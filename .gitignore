@@ -10,4 +10,4 @@ older\ content/*
 .rvmrc
 Gemfile.lock
 *.swp
-shared
+/shared
