@@ -60,7 +60,7 @@ ActiveAdmin.register Episode do
      span "owner #{episode.owner.display_name}" if episode.user_id?
      
     panel "Abstract" do   
-       div image_tag episode.teaser.url(:dem300x600) if episode.teaser?
+       div image_tag episode.teaser.url(:smaller) if episode.teaser?
        div textilize(episode.abstract).html_safe
     end
      
