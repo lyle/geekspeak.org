@@ -1,21 +1,17 @@
-Beta.GeekSpeak.org
+GeekSpeak is a technology radio show which consits of a group of Geeks covering news of the week, doing interviews, and taking listener questions.
 
-The new GeekSpeak.org site - allows the creation of episodes, episodes have participants and segments.
-Segments have bits.
-A bit is a title, a link, and content.
+The new GeekSpeak.org site - allows the creation of episodes, episodes have participants and bits.
+A bit is a title (required), a link, and content.
+Bits are ordered to represent when they were covered on the radio show.
 
-Segments can be ordered within the episode.
-Bits can be ordered within segments.
-
-I am currently working moving to test-driven development and am using ...To run testing with gaurd in it's own terminal (using the correct rvm)
+I am currently working moving to test-driven development and am using factory girl ...To run testing with gaurd in it's own terminal (using the correct rvm)
  'bundle exec guard'
 
 
-Curently this is simply an Active Admin beast.
+Curently this is mostly an Active Admin beast with some additions. 
 
 On the list of todo items:
 
-* Move to jRuby (currently does not work do to incompatablity with v8 for LESS)
-* Allow for linking existing bits to a segment instead of having to create new bits every time.
+* Allow for linking existing bits to a episode instead of having to create new bits every time on the episode page.
 * In general I need to move away from Active Admin so that the whole site works better.
 * Will be working on "in-place-editing":https://github.com/bernat/best_in_place
