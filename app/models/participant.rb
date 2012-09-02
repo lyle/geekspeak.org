@@ -1,6 +1,6 @@
 class Participant < ActiveRecord::Base
   belongs_to :episode
-	belongs_to :user
+  belongs_to :user
 	
   accepts_nested_attributes_for :user
   

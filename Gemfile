@@ -29,11 +29,13 @@ gem 'capistrano'
 
 gem "rspec-rails", :group => [:test, :development]
 
+gem "factory_girl_rails", :group => [:test, :development]
+
 group :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
-  gem "mocha"
+  #gem "mocha"
   
   # Pretty printed test output
   gem 'turn', :require => false
@@ -73,3 +75,5 @@ group :production do
 end
 
 gem 'high_voltage'
+gem 'sanitize'
+gem 'ruby-mp3info', :require => 'mp3info'

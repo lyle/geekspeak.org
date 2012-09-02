@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120821060824) do
+ActiveRecord::Schema.define(:version => 20120902074727) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120821060824) do
     t.datetime "audio_updated_at"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "duration"
   end
 
   add_index "episode_audios", ["episode_id"], :name => "index_episode_audios_on_episode_id"
@@ -230,8 +231,8 @@ ActiveRecord::Schema.define(:version => 20120821060824) do
     t.string  "password"
     t.string  "display_name",              :limit => 64
     t.string  "email",                     :limit => 128
-    t.string  "crypted_password",          :limit => nil
-    t.string  "salt",                      :limit => nil
+    t.string  "crypted_password"
+    t.string  "salt"
     t.time    "remimber_token_expires_at"
     t.boolean "remimber_token"
   end

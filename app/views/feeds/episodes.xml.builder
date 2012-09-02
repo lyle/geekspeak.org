@@ -36,6 +36,14 @@ xml.rss "version" => "2.0",
                 else
                     xml.guid "http://geekspeak.org/episode/#{episode.showdate_as_url}/"
                 end
+                xml.itunes(:subtitle, episode.on_air_participants.collect{|p| p.user.display_name}.to_sentence)
+                xml.itunes(:summary, Sanitize.clean(episode.abstract))
+                xml.itunes(:explicit, "No")
+                xml.itunes(:author, episode.hosts.collect{|p| p.user.display_name}.to_sentence)
+                xml.itunes(:duration, episode.episode_audios.first.duration_in_hms)
+                
+                xml.itunes(:image, :href=> "http://geekspeak.org#{episode.teaser.url}") if episode.teaser.file?
+                
                 xml.enclosure :url => "http://geekspeak.org#{episode.episode_audios.first.audio.url}",
                     :length => episode.episode_audios.first.audio_file_size,
                     :type=> episode.episode_audios.first.audio_content_type

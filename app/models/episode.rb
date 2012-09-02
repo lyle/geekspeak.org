@@ -18,6 +18,9 @@ class Episode < ActiveRecord::Base
   has_many :episode_audios
   has_many :episode_images
   
+  has_many :hosts, :class_name => "Participant", :conditions => {:role => "host"}
+  has_many :on_air_participants, :class_name => "Participant", :conditions => { :role => ["host", "cohost", "guest"]}
+  
   has_many :users,  :through => :participants
   accepts_nested_attributes_for :participants, :allow_destroy => true
   accepts_nested_attributes_for :bits  ,:allow_destroy => true
@@ -29,7 +32,7 @@ class Episode < ActiveRecord::Base
              :foreign_key => "user_id"
   
   has_attached_file :teaser, :styles => {:large=> "800x800", :medium => "600x600>", :small => "300x600", :smaller=> "200x200", :thumb => "100x100>" },
-                    :path => ":rails_root/../../shared/episodes/:showdate_as_url/teaser-:style.:extension",
+                    :path => ":rails_root/public/episodes/:showdate_as_url/teaser-:style.:extension",
                     :url => "/episodes/:showdate_as_url/teaser-:style.:extension"
 
   attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :participants_attributes, :bits_attributes

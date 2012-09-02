@@ -23,7 +23,6 @@
 
 <%= textilize(@episode.content).html_safe  unless @episode.content.blank? %>
 
-
 <% content_for :sidebar do %>
     <%= render :partial => 'audios',
 			:locals => {:episode => @episode} if @episode.episode_audios.length > 0%>
