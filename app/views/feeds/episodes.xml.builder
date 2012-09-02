@@ -23,6 +23,12 @@ xml.rss "version" => "2.0",
         xml.itunes(:category, :text=>"Technology")
         xml.itunes(:explicit,"clean")
         xml.itunes(:keywords, "geek, geekspeek, radio, technology")
+        xml.itunes(:image, :href=> "http://geekspeak.org/images/GeekSpeak_Logo09022012.png")
+        xml.image do
+          xml.url "http://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
+          xml.title "GeekSpeak, KUSP"
+          xml.link "http://geekspeak.org/"
+        end
         
         
         @episodes.each do |episode|
@@ -37,7 +43,7 @@ xml.rss "version" => "2.0",
                     xml.guid "http://geekspeak.org/episode/#{episode.showdate_as_url}/"
                 end
                 xml.itunes(:subtitle, episode.on_air_participants.collect{|p| p.user.display_name}.to_sentence)
-                xml.itunes(:summary, sanitize(textilize(episode.abstract), :tags => [], :attributes => %w(id class style) ).strip   )
+                xml.itunes(:summary, strip_tags(textilize(episode.abstract) ).strip   )
                 xml.itunes(:explicit, "No")
                 xml.itunes(:author, episode.hosts.collect{|p| p.user.display_name}.to_sentence)
                 xml.itunes(:duration, episode.episode_audios.first.duration_in_hms)
