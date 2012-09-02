@@ -27,7 +27,7 @@ xml.rss "version" => "2.0",
         xml.image do
           xml.url "http://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
           xml.title "GeekSpeak, KUSP"
-          xml.link "http://geekspeak.org/"
+          xml.link episodes_url
         end
         
         
@@ -40,7 +40,7 @@ xml.rss "version" => "2.0",
                 if (episode.airdate < Date.parse("2012-07-29")) then
                     xml.guid "http://geekspeak.org/shows/#{episode.showdate_as_url}/"
                 else
-                    xml.guid "http://geekspeak.org/episode/#{episode.showdate_as_url}/"
+                    xml.guid "#{episodes_url}#{episode.showdate_as_url}/"
                 end
                 xml.itunes(:subtitle, episode.on_air_participants.collect{|p| p.user.display_name}.to_sentence)
                 xml.itunes(:summary, strip_tags(textilize(episode.abstract) ).strip   )
