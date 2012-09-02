@@ -37,7 +37,7 @@ xml.rss "version" => "2.0",
                     xml.guid "http://geekspeak.org/episode/#{episode.showdate_as_url}/"
                 end
                 xml.itunes(:subtitle, episode.on_air_participants.collect{|p| p.user.display_name}.to_sentence)
-                xml.itunes(:summary, episode.abstract)
+                xml.itunes(:summary, Sanitize.clean(textilize(episode.abstract)).strip   )
                 xml.itunes(:explicit, "No")
                 xml.itunes(:author, episode.hosts.collect{|p| p.user.display_name}.to_sentence)
                 xml.itunes(:duration, episode.episode_audios.first.duration_in_hms)
