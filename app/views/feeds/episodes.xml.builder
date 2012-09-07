@@ -43,7 +43,8 @@ xml.rss "version" => "2.0",
                     xml.guid "#{episodes_url}#{episode.showdate_as_url}/"
                 end
                 xml.itunes(:subtitle, episode.on_air_participants.collect{|p| p.user.display_name}.to_sentence)
-                xml.itunes(:summary, strip_tags(textilize(episode.abstract) ).strip   )
+                #xml.itunes(:summary, strip_tags(textilize(episode.abstract) ).strip   )
+                xml.itunes(:summary, stripped(episode.abstract))
                 xml.itunes(:explicit, "No")
                 xml.itunes(:author, episode.hosts.collect{|p| p.user.display_name}.to_sentence)
                 xml.itunes(:duration, episode.episode_audios.first.duration_in_hms)

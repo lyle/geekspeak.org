@@ -77,3 +77,5 @@ end
 gem 'high_voltage'
 gem 'sanitize'
 gem 'ruby-mp3info', :require => 'mp3info'
+
+gem "vidibus-textile"
