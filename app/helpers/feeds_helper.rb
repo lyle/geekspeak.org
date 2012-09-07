@@ -1,7 +1,7 @@
 module FeedsHelper
   
   def to_text(options = {})
-     text = strip_html(options[:text])
+     text = strip_html(options[:html])
      if options[:plain] == true
        return strip_newlines(text)
      end
