@@ -1,4 +1,5 @@
 class EpisodeAudio < ActiveRecord::Base
+  require "mp3info"
   belongs_to :episode
   attr_accessible :audio, :duration
   has_attached_file :audio,
