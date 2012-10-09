@@ -14,5 +14,5 @@
 </ul>
 
 <p>
-  <%= link_to "Edit", edit_admin_user_path(@user) if :authenticate_user!  %>
+  <%= link_to "Edit", edit_admin_user_path(@user) if :user_signed_in?!  %>
 </p>

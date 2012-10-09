@@ -54,9 +54,7 @@ gem "RedCloth"
 
 gem "breadcrumbs_on_rails"
 
-#gem 'will_paginate'
-#gem 'will_paginate', '~> 3.0'
-#gem 'refinerycms', '~> 2.0.0'
+# pagination
 gem 'kaminari'
 
 

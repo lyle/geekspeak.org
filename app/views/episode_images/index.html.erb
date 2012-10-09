@@ -8,5 +8,5 @@
 		
 	</ul>
 	
-	<%= link_to "Upload Image", new_episode_episode_image_path(@episode) if :authenticate_user! %>
+	<%= link_to "Upload Image", new_episode_episode_image_path(@episode) if :user_signed_in?! %>
 </div>
