@@ -25,7 +25,8 @@ ActiveAdmin.register Episode do
         b.input :title, :label => "Bit Title"
         b.input :url, :label => "Bit URL"
         b.input :body, :label => "Bit Body"
-        b.input :user, :selected => current_user.id, :label => "Who's Bit is This?"
+        #b.input :user, :label => "Who's Bit is This?"
+        b.input :user, :collection => User.all, :include_blank => false
         b.input :_destroy, :as => :boolean, :label => "delete this bit when you update this episode"
     end
     f.inputs "Content" do
@@ -75,7 +76,7 @@ ActiveAdmin.register Episode do
     panel "Bits" do
         table_for episode.bits, {:id=>'bits'} do
          column "Title" do |bit|
-           link_to bit.title, admin_bit_path(bit)
+           link_to bit.title, bit_path(bit)
          end
        end
      end
