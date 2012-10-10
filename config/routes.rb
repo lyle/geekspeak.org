@@ -96,6 +96,15 @@ BetaGeekspeakOrg::Application.routes.draw do
   # just remember to delete public/index.html.
   
   root :to => 'welcome#index'
+  
+  match '/lyle'    => redirect("/users/lyle")
+  match '/ben'     => redirect("/users/ben")
+  match '/alan'    => redirect("/users/alan")
+  match '/lindsey' => redirect("/users/lindsey")
+  match '/rick'    => redirect("/users/rick")
+  match '/alex'    => redirect("/users/alex")
+  match '/john'    => redirect("/users/john")
+         
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
 
