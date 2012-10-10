@@ -26,6 +26,14 @@ ActiveAdmin.register User do
     user.save
     redirect_to admin_users_path, :notice => user.admin ? "#{user.name} is now an admin!": "#{user.name} is no longer an admin."
   end
+  
+  filter :active , :as => :check_boxes
+  filter :email
+  filter :login
+  filter :display_name
+  filter :admin
+  
+  
   controller do
 
   end

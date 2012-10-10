@@ -1,4 +1,6 @@
 class BitsController < ApplicationController
+    before_filter :authenticate_user!, :except => [:index, :show]
+    
     respond_to :html, :json
     def index
         freshness = params[:purity] || "fresh"
@@ -13,6 +15,7 @@ class BitsController < ApplicationController
 
     def new
         @bit = Bit.new
+        @bit.user = current_user
     end
 
     def create

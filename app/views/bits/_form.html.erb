@@ -4,7 +4,7 @@
 
 	<%= f.input :title %>	
 	<%= f.input :url %>
-	<%= f.association :user, :collection => User.all, :prompt => "Choose a user"  %>
+	<%= f.association :user, :collection => User.all %>
 	<%= f.input :body %>
 
     <div class="form-actions">

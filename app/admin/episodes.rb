@@ -1,10 +1,10 @@
 ActiveAdmin.register Episode do
-  
+
 
   form :html => { :enctype => "multipart/form-data" } do |f|
      f.inputs "Details" do
        f.input :title
-       f.input :airdate, :default => Date.today
+       f.input :airdate
        f.input :abstract
      end
      f.inputs "Status" do
@@ -25,13 +25,12 @@ ActiveAdmin.register Episode do
         b.input :title, :label => "Bit Title"
         b.input :url, :label => "Bit URL"
         b.input :body, :label => "Bit Body"
-        b.input :user, :label => "Who's Bit is This?"
+        b.input :user, :selected => current_user.id, :label => "Who's Bit is This?"
         b.input :_destroy, :as => :boolean, :label => "delete this bit when you update this episode"
     end
     f.inputs "Content" do
         f.input :content
     end
-     
      f.buttons
   end
   
@@ -90,14 +89,19 @@ ActiveAdmin.register Episode do
   
   controller do
     helper :episodes
-  
+    def new
+      @resource = Episode.new
+      @resource.airdate ||= Date.today
+    end
     def update
       update! do |format|
         format.html { redirect_to episode_url, :flash=> flash }
       end
     end
+
   end
   
+
 
   
   

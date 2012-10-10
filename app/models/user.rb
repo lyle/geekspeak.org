@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :login
+  default_scope order("current_sign_in_at desc NULLS LAST")
   has_many :participants
   has_many :episodes, :through => :participants
   
