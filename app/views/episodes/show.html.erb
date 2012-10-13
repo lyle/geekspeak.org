@@ -25,7 +25,7 @@
 
 <% content_for :sidebar do %>
     <%= render :partial => 'audios',
-			:locals => {:episode => @episode} if @episode.episode_audios.length > 0%>
+			:locals => {:episode => @episode} if @episode.episode_audios.length > 0 || user_signed_in? %>
 	<% if user_signed_in? %>
 	<ul class="nav nav-list">
 				  <li class="nav-header"><%= link_to "#{content_tag("i","",:class=>"icon-plus")}Bits to Add".html_safe, new_bit_path %></li>
