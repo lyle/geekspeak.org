@@ -47,7 +47,7 @@ module BetaGeekspeakOrg
     config.assets.version = '1.0'
     
     config.action_controller.default_url_options = { :trailing_slash => true }
-    
+    config.assets.precompile += %w[active_admin.css active_admin/print.css active_admin.js]
     
   end
 end
