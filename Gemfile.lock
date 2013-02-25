@@ -293,7 +293,7 @@ DEPENDENCIES
   rspec-rails
   ruby-mp3info
   sanitize
-  sass-rails (~> 3.2.3)
+  sass-rails (~> 3.2.5)
   simple_form
   therubyracer
   turn
