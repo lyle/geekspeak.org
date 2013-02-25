@@ -47,7 +47,7 @@ gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'haml'
 
-gem "friendly_id", "~> 4.0.0"
+gem "friendly_id", "~> 4.0.9"
 gem 'twitter-bootstrap-rails', ">= 2.1.3"
 
 gem "RedCloth"
