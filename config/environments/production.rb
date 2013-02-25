@@ -46,7 +46,7 @@ BetaGeekspeakOrg::Application.configure do
   config.assets.precompile += %w( admin.js )
 
   config.assets.precompile += %w( admin.css )
-
+  config.assets.precompile += %w[active_admin.css active_admin.js]
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
