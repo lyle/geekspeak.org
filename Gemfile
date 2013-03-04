@@ -11,7 +11,8 @@ gem 'pg'
 group :assets do
   gem 'sass-rails', "~> 3.2.5"
   gem 'less-rails', "2.2.3"
-  gem 'coffee-rails', "~> 3.2.1"
+  gem 'coffee-rails', "~> 3.2.2"
+  gem 'coffee-script-source', '~> 1.4.0'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -43,7 +44,7 @@ end
 
 gem "nifty-generators", :group => :development
 
-gem 'activeadmin'
+gem 'activeadmin', '0.5.0'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'haml'
 
