@@ -16,3 +16,16 @@ On the list of todo items:
 * In general I need to move away from Active Admin so that the whole site works better.
 * Will be working on "in-place-editing":https://github.com/bernat/best_in_place
 * Note Audio upload - NPR needs 64Kbps, 44100 Hz, Mono (11.0:1)
+* 
+
+
+## Chef for Deploy
+
+On an Ubuntu 10.04 x64 server as root run:
+
+``` bash
+  wget https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/10.04/x86_64/chef-server_11.0.8-1.ubuntu.10.04_amd64.deb
+  dpkg -i chef-server_11.0.8-1.ubuntu.10.04_amd64.deb
+  chef-server-ctl reconfigure
+```
+
