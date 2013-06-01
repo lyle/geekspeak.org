@@ -16,6 +16,7 @@
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
     </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- Le fav and touch icons -->
@@ -39,22 +40,22 @@
           <div class="container nav-collapse">
             <ul class="nav">
                 <li><%= link_to "Episodes", "/episodes"  %></li>
-				<li class="dropdown"><a id="blogDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-					<ul class="dropdown-menu" role="menu" aria-labelledb="blogDrop">
-						<li>
-							<a href="http://blog.geekspeak.org/">GeekSpeak Blog</a>
-						</li>
-						<li>
-							<a href="http://tumblr.com/follow/geekspeak-kusp">Follow</a>
-						</li>
-						<li>
-							<a href="http://blog.geekspeak.org/archive">Archive</a>
-						</li>
-						<li>
-							<a href="http://blog.geekspeak.org/ask">Ask questions...</a>
-						</li>
-					</ul>
-				</li>
+                <li class="dropdown"><a id="blogDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledb="blogDrop">
+                        <li>
+                            <a href="http://blog.geekspeak.org/">GeekSpeak Blog</a>
+                        </li>
+                        <li>
+                            <a href="http://tumblr.com/follow/geekspeak-kusp">Follow</a>
+                        </li>
+                        <li>
+                            <a href="http://blog.geekspeak.org/archive">Archive</a>
+                        </li>
+                        <li>
+                            <a href="http://blog.geekspeak.org/ask">Ask questions...</a>
+                        </li>
+                    </ul>
+                </li>
                 <li><%= link_to "Contact Us", "/contact" %></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -63,35 +64,28 @@
     </div>
 
     <div class="container">
-	  <%= render_breadcrumbs %>
-	<% flash.each do |name, msg| %>
-	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-	    <a class="close" data-dismiss="alert">×</a>
-	    <%= msg %>
-	  </div>
-	<% end %>
-      <div class="content">
-        <div class="row">
-          <div class="span9">
-			<%= content_tag(:h1, (yield(:title)), :class=>"title") %>
-			<%= content_tag(:h3, (yield(:subtitle)), :class=>"subtitle") %>
-			
+        <%= render_breadcrumbs %>
+        <% flash.each do |name, msg| %>
+            <div class='alert alert-<%= name == :notice ? "success" : "error" %>'>
+                <a class="close" data-dismiss="alert">×</a>
+                <%= msg %>
+            </div>
+        <% end %>
+        <div id="content">
+          <div id="main">
+            <%= content_tag(:h1, (yield(:title)), :class=>"title") %>
+            <%= content_tag(:h3, (yield(:subtitle)), :class=>"subtitle") %>
             <%= yield %>
           </div>
-          <div class="span1">&nbsp;</div>
-
-            <div class="span3">
-              <div class="well sidebar-nav">
-				<%= content_for?(:sidebar) ? yield(:sidebar) : render("shared/sidebar") %>
-              </div>
-            </div>
+          <div id="sidebar" class="well sidebar-nav">
+              <%= content_for?(:sidebar) ? yield(:sidebar) : render("shared/sidebar") %>
           </div>
-        </div><!--/row-->
+          </div>
       </div><!--/content-->
 <br style="clear:both">
       <footer>
-        <p>&copy; GeekSpeak 2012 
-	<span class="pull-right"><i>GeekSpeak</i> is a registered service mark of <a href="http://www.thedavidlawrenceshow.com/">The David Lawrence Show</a> and is used with permission.
+        <p>&copy; GeekSpeak 1998-<%= Time.now.year %>
+        <span class="pull-right"><i>GeekSpeak</i> is a registered service mark of <a href="http://www.thedavidlawrenceshow.com/">The David Lawrence Show</a> and is used with permission.
 
 <a href="/admin" accesskey="a"><i class="icon-edit icon-white"></i></a>
 </span>
@@ -104,7 +98,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-	<!--script type="text/javascript" src="/jplayer/jquery.jplayer.min.js"></script-->
+    <!--script type="text/javascript" src="/jplayer/jquery.jplayer.min.js"></script-->
     <%= user_signed_in? ? javascript_include_tag("admin") : "" %>
     <%= user_signed_in? ? stylesheet_link_tag("admin", :media => "all") : "" %>
 

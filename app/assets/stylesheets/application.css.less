@@ -1,24 +1,31 @@
 @import "bootstrap_and_overrides.css.less";
 
-
 @navbarBackground:                #000;
 @navbarBackgroundHighlight:       #666;
 @navbarLinkColor:                 #fff;
 
-
 #logo {
-	position:relative;
-  margin: -80px 10px 0px;
-	z-index:1040;
+    position:relative;
+    margin: -80px 10px 0px;
+    z-index:1040;
+}
+#content {
+    .makeRow();
+}
+#main {
+    .makeColumn(10);
+}
+#sidebar{
+    .makeColumn(4);
 }
 
 select {
-width: initial;}
+    width: initial;
+}
 
 .image.episode {
-	float:left;
-	padding-right:10px;
-	
+    float:left;
+    padding-right:10px;
 }
 
 

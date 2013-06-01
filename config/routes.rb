@@ -1,9 +1,8 @@
 BetaGeekspeakOrg::Application.routes.draw do
-  
   match "shows/npr-feed.xml" => "feeds#episodes",
             :defaults => { :format => 'xml' }
 
-  resources :users
+  resources :geeks, :as => :users, :controller => :users
 
 #  resources :segment_bits
 
@@ -97,13 +96,15 @@ BetaGeekspeakOrg::Application.routes.draw do
   
   root :to => 'welcome#index'
   
-  match '/lyle'    => redirect("/users/lyle")
-  match '/ben'     => redirect("/users/ben")
-  match '/alan'    => redirect("/users/alan")
-  match '/lindsey' => redirect("/users/lindsey")
-  match '/rick'    => redirect("/users/rick")
-  match '/alex'    => redirect("/users/alex")
-  match '/john'    => redirect("/users/john")
+  match '/lyle'    => redirect("/geeks/lyle")
+  match '/ben'     => redirect("/geeks/ben")
+  match '/alan'    => redirect("/geeks/alan")
+  match '/lindsey' => redirect("/geeks/lindsey")
+  match '/rick'    => redirect("/geeks/rick")
+  match '/alex'    => redirect("/geeks/alex")
+  match '/john'    => redirect("/geeks/john")
+  match '/users'    => redirect("/geeks")
+  match '/users/:name' => redirect("/geeks/%{name}")
          
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
