@@ -25,7 +25,7 @@
 
 $(function() {
 	$("#bits_search input").keyup(function() {
-		$("#bits").fadeOut();
+		$("#bits_from_search").fadeOut();
 		$.get($("#bits_search").attr("action"), $("#bits_search").serialize(), null, "script");
 		return false;
 	});
@@ -39,10 +39,10 @@ $('div.btn-group').each(function(){
     $('button', group).each(function(){
       var button = $(this);
       button.on('click', function(){
-		$(this).parent().children().removeClass('active');
+        $(this).parent().children().removeClass('active');
         hidden.val($(this).val());
-		hidden.trigger('change');
-		$(this).addClass('active')
+        hidden.trigger('change');
+        $(this).addClass('active')
       });
       if(button.val() == hidden.val()) {
         button.addClass('active');

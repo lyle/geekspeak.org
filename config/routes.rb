@@ -9,7 +9,11 @@ BetaGeekspeakOrg::Application.routes.draw do
  # resources :bits
  resources :episode_audios
  resources :episode_images
-
+ 
+  resources :bits_episode do
+    collection { post :sort }
+  end
+  
  
  resources :bits
  

@@ -12,7 +12,7 @@ class Episode < ActiveRecord::Base
   has_many :segment_bits, :through => :segments
   #has_many :bits, :through => :segment_bits
   
-  has_many :bit_episodes, :order => "position", :include => :bits
+  has_many :bit_episodes, :order => "position"
   has_many :bits, :through => :bit_episodes, :order => "bit_episodes.position" 
   
   has_many :episode_audios

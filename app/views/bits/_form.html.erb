@@ -4,7 +4,7 @@
 
 	<%= f.input :title %>	
 	<%= f.input :url %>
-	<%= f.association :user, :collection => User.all %>
+	<%= f.association :user, :collection => User.all, :priority => [26] %>
 	<%= f.input :body %>
 
     <div class="form-actions">

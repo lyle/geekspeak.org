@@ -1,66 +1,23 @@
-// CSS Reset
-@import "twitter/bootstrap/reset.less";
-
-// Core variables and mixins
-@import "twitter/bootstrap/variables.less"; // Modify this for custom colors, font-sizes, etc
-@import "twitter/bootstrap/mixins.less";
-
-// Grid system and page structure
-@import "twitter/bootstrap/scaffolding.less";
-@import "twitter/bootstrap/grid.less";
-@import "twitter/bootstrap/layouts.less";
-
-// Base CSS
-@import "twitter/bootstrap/type.less";
-@import "twitter/bootstrap/code.less";
-@import "twitter/bootstrap/forms.less";
-@import "twitter/bootstrap/tables.less";
-
-// Components: common
-@import "twitter/bootstrap/sprites.less";
-@import "twitter/bootstrap/dropdowns.less";
-@import "twitter/bootstrap/wells.less";
-@import "twitter/bootstrap/component-animations.less";
-@import "twitter/bootstrap/close.less";
-
-// Components: Buttons & Alerts
-@import "twitter/bootstrap/buttons.less";
-@import "twitter/bootstrap/button-groups.less";
-@import "twitter/bootstrap/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
-
-// Components: Nav
-@import "twitter/bootstrap/navs.less";
-@import "twitter/bootstrap/navbar.less";
-@import "twitter/bootstrap/breadcrumbs.less";
-@import "twitter/bootstrap/pagination.less";
-@import "twitter/bootstrap/pager.less";
-
-// Components: Popovers
-@import "twitter/bootstrap/modals.less";
-@import "twitter/bootstrap/tooltip.less";
-@import "twitter/bootstrap/popovers.less";
-
-// Components: Misc
-@import "twitter/bootstrap/thumbnails.less";
-@import "twitter/bootstrap/labels.less";
-@import "twitter/bootstrap/progress-bars.less";
-@import "twitter/bootstrap/accordion.less";
-@import "twitter/bootstrap/carousel.less";
-@import "twitter/bootstrap/hero-unit.less";
-
-// Utility classes
-@import "twitter/bootstrap/utilities.less"; // Has to be last to override when necessary
-
-
-// body {background-image: url(/assets/subtle_zebra_3d.png);}
-
-
-
+@import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
-@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
-@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
+
+// Font Awesome
+@import "fontawesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
 
 // Your custom LESS stylesheets goes here
 //
@@ -68,11 +25,10 @@
 // you may use and inherit here
 //
 // If you'd like to override bootstrap's own variables, you can do so here as well
-// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
 //
 // Example:
 // @linkColor: #ff0000;
-
 
 
 footer {

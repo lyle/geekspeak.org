@@ -9,6 +9,7 @@ class ParticipantsController < ApplicationController
 
   def new
     @participant = Participant.new
+    @participant.user = current_user
   end
 
   def create

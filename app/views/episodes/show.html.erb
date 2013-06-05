@@ -16,8 +16,8 @@
 <%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %>
 </div>
 <hr>
-<div id="bits">
-<%= render :partial => 'bits/bits', :locals=> {:bits => @episode.bits, :display_episode => false} %>
+<div id="bits_episode" data-update-url="<%= sort_bits_episode_index_url %>">
+<%= render :partial => 'bits/bits_episode', :locals=> {:bits_episode => @episode.bit_episodes, :display_episode => false} %>
 </div>
 <hr>
 
@@ -39,7 +39,7 @@
 
 
 
-	<% if false %>
+	<% if true %>
 		<ul class="nav nav-list">
 		  <li class="nav-header">Episode Archive</li>
 			<li><%= link_to "2012", "/episodes/2012/"  %></li>
@@ -49,10 +49,6 @@
 			<li><%= link_to "2008", "/episodes/2008/"  %></li>
 			<li><%= link_to "2007", "/episodes/2007/"  %></li>
 			<li><%= link_to "2006", "/episodes/2006/"  %></li>
-			<li><%= link_to "2005", "/episodes/2005/"  %></li>
-			<li><%= link_to "2004", "/episodes/2004/"  %></li>
-			<li><%= link_to "2003", "/episodes/2003/"  %></li>
-			<li><%= link_to "2002", "/episodes/2002/"  %></li>
 		</ul>
 	<% end %>
 <% end %>

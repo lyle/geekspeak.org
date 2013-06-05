@@ -31,9 +31,24 @@ select {
 
 .abstractimage {
 	float: left;
-	margin-right: 20px;}
-
-
+	margin-right: 20px;
+}
+.navbar {
+  .nav {
+    float: none;
+    li.login {
+      float:right;
+      a {
+        font-size:20px;
+        color:darken(@navbarLinkColor, 90%);
+        
+      }
+      a:hover {
+        color:@navbarLinkColor;
+      }
+    }
+  }
+}
 
 footer {
 	padding-left:  20px;
@@ -73,5 +88,18 @@ h3.segment.title {display:none;}
 	.bit .episode {
 		font-size: 7pt;
 	}
+  .bit a i {display:none;}
 	
 }
+
+.bit {
+  a i {
+    font-size: small;
+    color:rgba(0,0,0,.1);
+  }
+  a:hover i {
+    color:black;
+  }
+  
+}
+.bitsort {display:none}

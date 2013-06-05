@@ -1,22 +1,22 @@
-.bits
-	- bits.each do |bit|
-		.bit.clearfix{:id=>"bit_#{bit.id}"}
-			%h4
-				= link_to_unless bit.url.blank?, bit.title, bit.url, :data=>{:toggle=>"tooltip"}, :title=> bit.url
-				%a.icon-asterisk.icon-white{:href=>"#{user_path(bit.user)}", :title=>"Added by #{bit.user.display_name}",:data=>{:toggle=>"tooltip",:placement=>"right"}}
-			- if display_episode
-				.metadata
-					.user
-						=bit.user.name
-					.created_at
-						= bit.created_at.strftime("%B %e, %Y")
-					- bit.episodes.each do |episode|
-						.episode
-							Used in 
-							= link_to episode.title, episode
-							( #{episode.showdate_as_url} )
-			.bit-body
-				= textilize(bit.body).html_safe unless bit.body.blank? 
-			
+- bits.each do |bit|
+	.bit.clearfix{:id=>"bit_#{bit.id}"}
+		%h4
+			= link_to_unless bit.url.blank?, bit.title, bit.url, :rel=>"tooltip", :title=> bit.url
+			%a{:href=>"#{user_path(bit.user)}", :title=>"Added by #{bit.user.display_name}",:rel=>"tooltip",:data=>{:placement=>"right"}}
+				%i.icon-question-sign.icon-white
+		- if display_episode
+			.metadata
+				.user
+					=bit.user.name
+				.created_at
+					= bit.created_at.strftime("%B %e, %Y")
+				- bit.episodes.each do |episode|
+					.episode
+						Used in 
+						= link_to episode.title, episode
+						( #{episode.showdate_as_url} )
+		.bit-body
+			= textilize(bit.body).html_safe unless bit.body.blank? 
+		
 -#	-if bits.respond_to?("current_page")
 -#		= paginate(bits, :remote => true)
