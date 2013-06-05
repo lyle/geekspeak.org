@@ -17,6 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem "paperclip", "~> 2.0"
 
 # Use unicorn as the web server
@@ -34,7 +35,7 @@ gem "factory_girl_rails", :group => [:test, :development]
 
 group :test do
   gem "factory_girl_rails"
-  gem "capybara"
+  #gem "capybara"
   gem "guard-rspec"
   #gem "mocha"
   

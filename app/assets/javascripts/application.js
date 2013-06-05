@@ -5,7 +5,8 @@
 // the compiled file.
 //
 //= require jquery
-//= require jquery_ujs
+// require jquery_ujs
+//= require jquery.ui.all
 //= require jquery.pjax
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-alert
@@ -30,14 +31,14 @@ $(function() {
 	});
 
 
-$('div.btn-group[data-toggle-name=*]').each(function(){
+$('div.btn-group').each(function(){
     var group   = $(this);
     var form    = group.parents('form').eq(0);
     var name    = group.attr('data-toggle-name');
     var hidden  = $('input[name="' + name + '"]', form);
     $('button', group).each(function(){
       var button = $(this);
-      button.live('click', function(){
+      button.on('click', function(){
 		$(this).parent().children().removeClass('active');
         hidden.val($(this).val());
 		hidden.trigger('change');

@@ -11,3 +11,4 @@ older\ content/*
 Gemfile.lock
 *.swp
 /shared
+public/episodes
