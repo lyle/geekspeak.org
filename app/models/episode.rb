@@ -35,7 +35,18 @@ class Episode < ActiveRecord::Base
                     :path => ":rails_root/public/episodes/:showdate_as_url/teaser-:style.:extension",
                     :url => "/episodes/:showdate_as_url/teaser-:style.:extension"
 
-  attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :participants_attributes, :bits_attributes
+  attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :lock_version, :participants_attributes, :bits_attributes
+  
+  def update_with_conflict_validation(*args)
+    update_attributes(*args)
+  rescue ActiveRecord::StaleObjectError
+    self.lock_version = lock_version_was
+    errors.add :base, "This record changed while you were editing."
+    changes.except("updated_at").each do |name, values|
+      errors.add name, "was #{values.first}"
+    end
+    false
+  end
   
   def airdate_to_s_rfc822
      Time.new(airdate.year, airdate.month, airdate.day).advance(:hours => 10).rfc2822 

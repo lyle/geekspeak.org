@@ -4,19 +4,18 @@ BetaGeekspeakOrg::Application.routes.draw do
 
   resources :geeks, :as => :users, :controller => :users
 
+  
 #  resources :segment_bits
 
  # resources :bits
  resources :episode_audios
  resources :episode_images
+ resources :bits
  
   resources :bits_episode do
     collection { post :sort }
   end
   
- 
- resources :bits
- 
  
   resources :episodes, :id => /[0-9]+\/[0-9]+\/[0-9]+/ do
     resources :episode_audios

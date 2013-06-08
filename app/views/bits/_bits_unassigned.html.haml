@@ -1,6 +1,11 @@
 - bits.each do |bit|
   .bit.clearfix{:id=>"bit_#{bit.id}"}
-    %div.tools
+    %div.tools 
+      = link_to content_tag(:i, '' ,:class=>'icon-arrow-left'),
+          url_for(:controller=>'bits_episode',
+                  :action=>'create',
+                  :bit_id=>bit.id,
+                  :episode_id=>@episode.id), :method => :post, :class=>'edit'
       = link_to content_tag(:i, '' ,:class=>'icon-edit'), edit_bit_path(bit, {:return_url=>request.url}), :class=>'edit'
     %h4
       = link_to_unless bit.url.blank?, bit.title, bit.url, :rel=>"tooltip", :title=> bit.url

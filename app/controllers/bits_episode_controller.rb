@@ -8,4 +8,15 @@ class BitsEpisodeController < ApplicationController
     end
     render nothing: true
   end
+  
+  def create
+    @bits_episode = BitEpisode.new(params[:bits_episode])
+    @bits_episode.bit_id = params[:bit_id]
+    @bits_episode.episode_id = params[:episode_id]
+    if @bits_episode.save
+      flash[:notice] = "Successfully added bit to episode!"
+    end
+    redirect_to @bits_episode.episode
+  end
+ 
 end

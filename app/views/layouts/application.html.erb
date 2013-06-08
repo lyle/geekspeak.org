@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title><%= content_for?(:title) ? h( yield :title) : "GeekSpeak, KUSP" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %></title>
+    <meta name="google-site-verification" content="dH19q4ltuA_ozVtVLgGb4HQ_TZnu4c-ym78NFAb3XSs" />
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -17,6 +18,8 @@
       }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%= user_signed_in? ? stylesheet_link_tag("admin", :media => "all") : "" %>
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- Le fav and touch icons -->
@@ -74,8 +77,6 @@
         <% end %>
         <div id="content">
           <div id="main">
-            <%= content_tag(:h1, (yield(:title)), :class=>"title") %>
-            <%= content_tag(:h3, (yield(:subtitle)), :class=>"subtitle") %>
             <%= yield %>
           </div>
           <div id="sidebar" class="well sidebar-nav">
@@ -101,7 +102,6 @@
     <%= javascript_include_tag "application" %>
     <!--script type="text/javascript" src="/jplayer/jquery.jplayer.min.js"></script-->
     <%= user_signed_in? ? javascript_include_tag("admin") : "" %>
-    <%= user_signed_in? ? stylesheet_link_tag("admin", :media => "all") : "" %>
 
   </body>
 </html>

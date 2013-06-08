@@ -59,10 +59,16 @@ class EpisodesController < ApplicationController
 
   def update
     @episode = Episode.find(params[:id])
-    if @episode.update_attributes(params[:episode])
-      flash[:notice] = "Successfully updated episode."
+    if @episode.update_with_conflict_validation(params[:episode])
+      
+
+      #format.html {
+      #  flash[:notice] = "Successfully updated episode."
+      #  respond_with(@episode)
+      #}
+      #format.json { respond_with_bip(@episode) }
     end
-    respond_with(@episode)
+    respond_with_bip(@episode)
     
   end
 

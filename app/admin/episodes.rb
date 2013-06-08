@@ -7,6 +7,7 @@ ActiveAdmin.register Episode do
        f.input :airdate
        f.input :abstract
      end
+     f.input :lock_version, :as => :hidden
      f.inputs "Status" do
        f.select :status, I18n.t(:status_list).map { |key, value| [ value, key ] }
      end
@@ -95,8 +96,16 @@ ActiveAdmin.register Episode do
       @resource.airdate ||= Date.today
     end
     def update
-      update! do |format|
-        format.html { redirect_to episode_url, :flash=> flash }
+      @resource = Episode.find(params[:id])
+      if @resource.update_with_conflict_validation(params[:episode])
+        
+      #update! do |format|
+        redirect_to episode_url(@resource)
+        #else
+        #format.html { redirect_to edit_admin_episode_url(@episode)}
+      else 
+        
+        redirect_to edit_admin_episode_url(@resource)
       end
     end
 

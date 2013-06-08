@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009044706) do
+ActiveRecord::Schema.define(:version => 20130607054136) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(:version => 20121009044706) do
     t.integer  "author_id"
     t.string   "author_type"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "namespace"
   end
 
@@ -83,30 +83,13 @@ ActiveRecord::Schema.define(:version => 20121009044706) do
     t.date     "airdate"
     t.integer  "user_id"
     t.string   "slug"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.text     "content"
+    t.integer  "lock_version",        :default => 0
   end
 
   add_index "episodes", ["slug"], :name => "index_episodes_on_slug"
-
-  create_table "headline_discussions", :id => false, :force => true do |t|
-    t.integer "id",          :null => false
-    t.integer "show_id",     :null => false
-    t.integer "headline_id", :null => false
-    t.integer "position",    :null => false
-  end
-
-  create_table "headlines", :id => false, :force => true do |t|
-    t.integer  "id",                                           :null => false
-    t.integer  "user_id",                                      :null => false
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.string   "title",      :limit => 64,                     :null => false
-    t.text     "content"
-    t.string   "status",     :limit => 64,  :default => "new"
-    t.string   "url",        :limit => 256
-  end
 
   create_table "participants", :force => true do |t|
     t.integer  "episode_id"
@@ -115,45 +98,6 @@ ActiveRecord::Schema.define(:version => 20121009044706) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "refinery_roles", :force => true do |t|
-    t.string "title"
-  end
-
-  create_table "refinery_roles_users", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-  end
-
-  add_index "refinery_roles_users", ["role_id", "user_id"], :name => "index_refinery_roles_users_on_role_id_and_user_id"
-  add_index "refinery_roles_users", ["user_id", "role_id"], :name => "index_refinery_roles_users_on_user_id_and_role_id"
-
-  create_table "refinery_user_plugins", :force => true do |t|
-    t.integer "user_id"
-    t.string  "name"
-    t.integer "position"
-  end
-
-  add_index "refinery_user_plugins", ["name"], :name => "index_refinery_user_plugins_on_name"
-  add_index "refinery_user_plugins", ["user_id", "name"], :name => "index_refinery_user_plugins_on_user_id_and_name", :unique => true
-
-  create_table "refinery_users", :force => true do |t|
-    t.string   "username",               :null => false
-    t.string   "email",                  :null => false
-    t.string   "encrypted_password",     :null => false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.integer  "sign_in_count"
-    t.datetime "remember_created_at"
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
-  end
-
-  add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
 
   create_table "segment_bits", :force => true do |t|
     t.integer  "segment_id"
@@ -169,23 +113,6 @@ ActiveRecord::Schema.define(:version => 20121009044706) do
     t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "shows", :id => false, :force => true do |t|
-    t.integer  "id",                                               :null => false
-    t.string   "title",          :limit => 64,                     :null => false
-    t.string   "category",       :limit => 254
-    t.text     "promo"
-    t.text     "abstract",                                         :null => false
-    t.text     "content"
-    t.integer  "user_id",                                          :null => false
-    t.datetime "created_on",                                       :null => false
-    t.datetime "updated_on",                                       :null => false
-    t.string   "status",         :limit => 64,  :default => "new"
-    t.datetime "showtime"
-    t.integer  "teaser_id"
-    t.text     "planning_notes"
-    t.integer  "lock_version",                  :default => 0
   end
 
   create_table "taggings", :force => true do |t|
@@ -206,37 +133,25 @@ ActiveRecord::Schema.define(:version => 20121009044706) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "",    :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "login"
     t.string   "display_name"
-    t.boolean  "admin",                                 :default => false
-    t.boolean  "active",                                :default => false
+    t.boolean  "admin",                  :default => false
+    t.boolean  "active",                 :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "userslive", :id => false, :force => true do |t|
-    t.integer "id",                                       :null => false
-    t.string  "login",                     :limit => 80
-    t.string  "password"
-    t.string  "display_name",              :limit => 64
-    t.string  "email",                     :limit => 128
-    t.string  "crypted_password"
-    t.string  "salt"
-    t.time    "remimber_token_expires_at"
-    t.boolean "remimber_token"
-  end
 
 end

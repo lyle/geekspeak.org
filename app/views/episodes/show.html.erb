@@ -1,6 +1,10 @@
 <% title "#{@episode.title}" %>
 <% subtitle "GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
 
+
+<h1><%= best_in_place_if user_signed_in?, @episode, :title, :data => {:lock_version => @episode.lock_version}%></h1>
+<%= content_tag(:h3, ("GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}"), :class=>"subtitle") %>
+
 <%  if user_signed_in?  %>
 	<div class="span5 offset3"> 
 		<%= link_to "Edit", edit_admin_episode_path(@episode) %> | 
@@ -12,8 +16,12 @@
 <div class="abstract">
 <%= content_tag(:div, image_tag(@episode.teaser.url(:small)), :class => "abstractimage") if @episode.teaser?%>
 
+<!--%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %-->
+<%= best_in_place_if user_signed_in?, @episode, :abstract, :type => :textarea,
+  :ok_button => 'Save', :cancel_button => 'Cancel',
+  :display_with => lambda { |v| textilize(v).html_safe }
+  %>
 
-<%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %>
 </div>
 <hr>
 <div id="bits_episode" data-update-url="<%= sort_bits_episode_index_url %>">
@@ -30,7 +38,7 @@
 	<ul class="nav nav-list">
 				  <li class="nav-header"><%= link_to "#{content_tag("i","",:class=>"icon-plus")}Bits to Add".html_safe, new_bit_path %></li>
 				<li>
-	<%=  render( :partial => 'bits/bits_search_form', :locals => {:bits => @bits}) %>
+	<%=  render( :partial => 'bits/bits_episode_search_form', :locals => {:bits => @bits}) %>
 	</li>
 	</ul>
 	<% end %>	
