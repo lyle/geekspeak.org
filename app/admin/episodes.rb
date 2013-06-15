@@ -22,14 +22,14 @@ ActiveAdmin.register Episode do
          p.input :_destroy, :as => :boolean, :label => "delete"
          #participant.role
      end
-    f.has_many :bits do |b|
-        b.input :title, :label => "Bit Title"
-        b.input :url, :label => "Bit URL"
-        b.input :body, :label => "Bit Body"
-        #b.input :user, :label => "Who's Bit is This?"
-        b.input :user, :collection => User.all, :include_blank => false
-        b.input :_destroy, :as => :boolean, :label => "delete this bit when you update this episode"
-    end
+    #f.has_many :bits do |b|
+    #    b.input :title, :label => "Bit Title"
+    #    b.input :url, :label => "Bit URL"
+    #    b.input :body, :label => "Bit Body"
+    #    #b.input :user, :label => "Who's Bit is This?"
+    #    b.input :user, :collection => User.all, :include_blank => false
+    #    b.input :_destroy, :as => :boolean, :label => "delete this bit when you update this episode"
+    #end
     f.inputs "Content" do
         f.input :content
     end
