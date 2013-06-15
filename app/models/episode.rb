@@ -6,6 +6,7 @@ class Episode < ActiveRecord::Base
   #scope :by_year, lambda {|year| where("date >= ? and date <= ?", "#{year}-01-01", "#{year}-12-31")}
   scope :by_year, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_year..d.end_of_year } } }
   scope :by_month, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_month..d.end_of_month } } }
+  scope :recent, order("airdate desc")
   
   has_many :participants
   has_many :segments, :order => "position"

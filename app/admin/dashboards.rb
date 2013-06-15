@@ -7,14 +7,36 @@ ActiveAdmin::Dashboards.build do
   # == Simple Dashboard Section
   # Here is an example of a simple dashboard section
   #
-  #   section "Recent Posts" do
-  #     ul do
-  #       Post.recent(5).collect do |post|
-  #         li link_to(post.title, admin_post_path(post))
-  #       end
-  #     end
-  #   end
-  
+    
+    section "Recent Bits" do
+      table_for Bit.recent.limit(30) do
+           column :geek do |bit|
+             div bit.user.login
+           end
+           column :bit_title do |bit|
+             div :class => ! bit.episodes.empty? ? 'assigned' : ""  do
+               link_to( bit.title, bit_path(bit)) 
+             end
+           end
+           column "episode?" do |bit|
+              div bit.episodes.empty? ? 'X' : "Y"
+           end
+           column :updated_at do |bit|
+             time_ago_in_words bit.updated_at
+           end
+      end
+    end
+    section "Recent Episodes" do
+      table_for Episode.recent.limit(8).collect do |episode|
+           column :title do |episode|
+             link_to(episode.title, episode_path(episode)) 
+           end
+           column :airdate do |episode|
+             div episode.airdate.strftime("%Y-%m-%d") 
+           end
+      end
+    end
+
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can
   # easily render a partial rather than build content in ruby.

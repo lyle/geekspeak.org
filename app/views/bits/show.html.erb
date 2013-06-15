@@ -12,7 +12,7 @@
 
 <p>
   <b>User</b><br>
-  <%= @bit.user_id %>
+  <%= @bit.user.login %>
 </p>
 
 <p>
@@ -30,3 +30,14 @@
   <%= link_to 'Edit', edit_bit_path(@bit), :class => 'btn' %>
   <%= link_to 'Delete', bit_path(@bit), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>
+
+<hr>
+
+<p>
+  <b>Apearing in Episodes</b>
+  <ul>
+    <% @bit.episodes.each do |ep| %>
+    <li><%= link_to ep.title, episode_path(ep)%></li>
+    <% end %>
+  </ul>
+</p>

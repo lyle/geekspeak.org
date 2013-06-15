@@ -25,3 +25,8 @@ form .has_many  .has_many {
 form .has_many h3 {
 	margin-top:1em;
 }
+
+
+body.active_admin table div.assigned a {
+  color: #555;
+}
