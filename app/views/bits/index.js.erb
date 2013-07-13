@@ -1,2 +1,8 @@
+<% if @episode %>
+$("#bits_from_search").html("<%= escape_javascript(render(:partial => "bits", :locals=> {:bits => @bits, :display_episode => true, :episode => @episode })) %>")
+	.effect("highlight", {color: "#333"}, 300).fadeIn();
+<% else %>
 $("#bits_from_search").html("<%= escape_javascript(render(:partial => "bits", :locals=> {:bits => @bits, :display_episode => true })) %>")
 	.effect("highlight", {color: "#333"}, 300).fadeIn();
+<% end %>  
+  //this problem is problemtatic - Cleichy 3:10am June 22nd

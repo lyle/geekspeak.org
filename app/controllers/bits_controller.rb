@@ -4,6 +4,9 @@ class BitsController < ApplicationController
     
     respond_to :html, :json
     def index
+        if params[:episode_id]
+          @episode = Episode.find(params[:episode_id])
+        end
         freshness = params[:purity] || "fresh"
         #@bits = Bit.includes(:user).search(params[:search]).freshness(freshness).order("updated_at DESC").page(params[:page]).per(50)
         @bits = Bit.includes(:user, :episodes).search(params[:search]).freshness(freshness).order("updated_at DESC").page(params[:page]).per(50)

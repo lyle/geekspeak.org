@@ -1,7 +1,7 @@
 
 <%= form_tag bits_path, :method => 'get', :id => "bits_search", :class=>"form-inline" do %>
     <%= text_field_tag :search, params[:search], :placeholder=>"Search Bits to add...", :class=>"search-query" %><br />
-
+    <input type="hidden" name="episode_id" value="<%=episode.id%>">
 	<div class="btn-group bit-used-filter" data-toggle-name="purity" data-toggle="buttons-radio">
 	  <button type="button" class="btn btn-mini" value="all">all bits</button>
 	  <button type="button" class="btn btn-mini" value="re_used">already used</button>
@@ -11,5 +11,5 @@
 	</div>
 	<% end %>
   <div id="bits_from_search_wrapper" class="well">
-  <div id="bits_from_search" ><%= render :partial => 'bits/bits_unassigned', :locals=> {:bits => bits, :display_episode => true } %>
+  <div id="bits_from_search" ><%= render :partial => 'bits/bits', :locals=> {:bits => bits, :display_episode => true, :episode => episode || nil} %>
 </div></div>

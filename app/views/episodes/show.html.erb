@@ -38,7 +38,7 @@
 	<ul class="nav nav-list">
 				  <li class="nav-header"><%= link_to "#{content_tag("i","",:class=>"icon-plus")}Bits to Add".html_safe, new_bit_path %></li>
 				<li>
-	<%=  render( :partial => 'bits/bits_episode_search_form', :locals => {:bits => @bits}) %>
+	<%=  render( :partial => 'bits/bits_episode_search_form', :locals => {:bits => @bits, :episode => @episode}) %>
 	</li>
 	</ul>
 	<% end %>	
