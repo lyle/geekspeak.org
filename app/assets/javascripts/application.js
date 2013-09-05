@@ -5,7 +5,7 @@
 // the compiled file.
 //
 //= require jquery
-// require jquery_ujs
+//= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.purr
 //= require best_in_place
@@ -22,7 +22,8 @@
 //= require twitter/bootstrap/bootstrap-collapse
 //= require twitter/bootstrap/bootstrap-carousel
 //= require twitter/bootstrap/bootstrap-typeahead
-//= require_tree .
+//= require bootstrap
+//// require_tree .
 
 
 $(function() {
