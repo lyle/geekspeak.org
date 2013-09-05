@@ -25,4 +25,11 @@ class User < ActiveRecord::Base
   def name
      display_name || login 
   end
+  def initial
+    ret = ''
+    name.split(' ').each {|n| 
+      ret += n[0]
+    }
+    ret
+  end
 end

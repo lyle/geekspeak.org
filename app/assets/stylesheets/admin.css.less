@@ -43,26 +43,33 @@
 	margin-left: -10px;
 		
 }
+.sort-bits {
+  float:right;
+}
 #bits_episode {
   .tools {
     display: block;
     float: left;
-    margin-left: -60px;
     margin-top: 2px;
-    width:60px;
     color: #999;
     a{
       color: #999;
+    }
+    .bitsort {
+      display:none;
+    }
+    .bitsort:hover {
+      color: #000;
+      cursor:move;
+    }
+    .bit-edit {
+      display:block;
     }
   }
   .tools i {
     float:left;
     padding-right:10px;
     display: block;
-  }
-  .bitsort:hover {
-    color: #000;
-    cursor:move;
   }
   .ui-sortable-helper {
     background-color: #eee;
@@ -72,3 +79,13 @@
     float:left;
   }  
 }
+#bits_episode.minimize{
+  .bitsort {
+    display: block;
+  }
+  .bit-body, .bit-edit {
+    display:none;
+  }
+  .tools {
+    width: 4em;}
+} 

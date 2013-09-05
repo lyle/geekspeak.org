@@ -14,6 +14,7 @@ class BitsController < ApplicationController
     end
 
     def new
+        session[:return_to] ||= request.referer
         @bit = Bit.new
         @bit.user = current_user
     end
@@ -32,6 +33,7 @@ class BitsController < ApplicationController
     end
 
     def edit
+      session[:return_to] ||= request.referer
       @bit = Bit.find(params[:id])
     end
     
@@ -61,6 +63,6 @@ class BitsController < ApplicationController
     def destroy
         @bit = Bit.find(params[:id])
         @bit.destroy
-        redirect_to bits_url, :notice => "Successfully destroyed bit."
+        redirect_smart "Successfully destroyed bit."
     end
 end
