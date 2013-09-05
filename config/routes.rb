@@ -2,7 +2,9 @@ BetaGeekspeakOrg::Application.routes.draw do
   match "shows/npr-feed.xml" => "feeds#episodes",
             :defaults => { :format => 'xml' }
 
-  resources :geeks, :as => :users, :controller => :users
+  resources :geeks, :as => :users,
+            :controller => :users,
+            :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
 
   
 #  resources :segment_bits
@@ -23,12 +25,19 @@ BetaGeekspeakOrg::Application.routes.draw do
     resources :participants
   end
   
+  get '/admin/users/:id', :controller => "admin/users",
+      :action => 'show', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
+
   match "/episodes/:year/" => "episodes#year_archive", 
                :constraints => {:year => /\d{4}/ }
   match "/episodes/:year/:month/" => "episodes#month_archive", 
                :constraints => {:year => /\d{4}/, :month => /0[1-9]|1[0-2]/ }
                
-               
+  
+  namespace :admin do
+    resources :users, :id =>  /[A-Za-z0-9\.\_\-]+?/ , :format => false
+  end
+             
   devise_for :users, ActiveAdmin::Devise.config
   
   ActiveAdmin.routes(self)
@@ -42,7 +51,11 @@ BetaGeekspeakOrg::Application.routes.draw do
               :action => 'update', :id => /[0-9]+\/[0-9]+\/[0-9]+/
   delete '/admin/episodes/:id', :controller => "admin/episodes",
               :action => 'destroy', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  get '/admin/users/:id', :controller => "admin/users",
+      :action => 'show', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
   
+ # get '/admin/users/:id/edit', :controller => "admin/users",
+ #     :action => 'edit', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
   
  # mount Refinery::Core::Engine => '/engin/refinery.geekspeak.org/'
   
@@ -107,7 +120,7 @@ BetaGeekspeakOrg::Application.routes.draw do
   match '/alex'    => redirect("/geeks/alex")
   match '/john'    => redirect("/geeks/john")
   match '/users'    => redirect("/geeks")
-  match '/users/:name' => redirect("/geeks/%{name}")
+  match '/users/:name' => redirect("/geeks/%{name}"),:format => false
          
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
