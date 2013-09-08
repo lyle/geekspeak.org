@@ -12,3 +12,24 @@ end
 </div>
 <% end %>
 
+<% content_for :sidebar do %>
+	<ul class="nav nav-list">
+	  <li class="nav-header">Episode Archive</li>
+		<li><%= link_to "2013", "/episodes/2013/"  %></li>
+		<li><%= link_to "2012", "/episodes/2012/"  %></li>
+		<li><%= link_to "2011", "/episodes/2011/"  %></li>
+		<li><%= link_to "2010", "/episodes/2010/"  %></li>
+		<li><%= link_to "2009", "/episodes/2009/"  %></li>
+		<li><%= link_to "2008", "/episodes/2008/"  %></li>
+		<li><%= link_to "2007", "/episodes/2007/"  %></li>
+		<li><%= link_to "2006", "/episodes/2006/"  %></li>
+		<li>2005 offline</li>
+		<li>2004 offline</li>
+		<li>2003 offline</li>
+		<li>2002 offline</li>
+		<li>2001 offline</li>
+		<li>2000 offline</li>
+		<li>1999 offline</li>
+		<li>1998 offline</li>
+	</ul>
+<% end %>

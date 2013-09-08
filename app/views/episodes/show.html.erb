@@ -32,16 +32,8 @@
 <%= textilize(@episode.content).html_safe  unless @episode.content.blank? %>
 
 <% content_for :sidebar do %>
-    <%= render :partial => 'audios',
-			:locals => {:episode => @episode} if @episode.episode_audios.length > 0 || user_signed_in? %>
+	<% if not user_signed_in? %>
 	<ul class="nav nav-list">
-	<% if user_signed_in? %>
-		<li class="nav-header"><%= link_to "#{content_tag("i","",:class=>"icon-plus")}Bits to Add".html_safe, new_bit_path %></li>
-		<li>
-			<%=  render( :partial => 'bits/bits_episode_search_form', :locals => {:bits => @bits, :episode => @episode}) %>
-		</li>
-	<% else %>
-	 	<li class="nav-header">Advertising to Support the Show</li>
 		<li>
 			<script type="text/javascript"><!--
 			google_ad_client = "ca-pub-6121986314656343";
@@ -53,23 +45,18 @@
 			</script>
 			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
 		</li>
+	</ul>
+	<% end %>
+    <%= render :partial => 'audios',
+			:locals => {:episode => @episode} if @episode.episode_audios.length > 0 || user_signed_in? %>
+	<ul class="nav nav-list">
+	<% if user_signed_in? %>
+		<li class="nav-header"><%= link_to "#{content_tag("i","",:class=>"icon-plus")}Bits to Add".html_safe, new_bit_path %></li>
+		<li>
+			<%=  render( :partial => 'bits/bits_episode_search_form', :locals => {:bits => @bits, :episode => @episode}) %>
+		</li>
 	<% end %>
 	</ul>	
 	<%= render :partial => 'participants',
 			:locals => {:participants => @episode.participants} if @episode.participants.length > 0%>
-
-
-
-	<% if true %>
-		<ul class="nav nav-list">
-		  <li class="nav-header">Episode Archive</li>
-			<li><%= link_to "2012", "/episodes/2012/"  %></li>
-			<li><%= link_to "2011", "/episodes/2011/"  %></li>
-			<li><%= link_to "2010", "/episodes/2010/"  %></li>
-			<li><%= link_to "2009", "/episodes/2009/"  %></li>
-			<li><%= link_to "2008", "/episodes/2008/"  %></li>
-			<li><%= link_to "2007", "/episodes/2007/"  %></li>
-			<li><%= link_to "2006", "/episodes/2006/"  %></li>
-		</ul>
-	<% end %>
 <% end %>
