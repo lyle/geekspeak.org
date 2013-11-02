@@ -4,7 +4,7 @@ xml.rss "version" => "2.0",
         "xmlns:atom" => "http://www.w3.org/2005/Atom",
         "xmlns:itunes" =>"http://www.itunes.com/dtds/podcast-1.0.dtd" do
     xml.channel do
-        xml.title 'GeekSpeak, KUSP'
+        xml.title 'GeekSpeak'
         xml.itunes(:subtitle, "Bridging the gap between Geeks and the rest of humanity.")
         xml.itunes(:author, "Lyle Troxell")
         xml.itunes(:owner) do
