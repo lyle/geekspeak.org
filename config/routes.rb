@@ -25,8 +25,6 @@ BetaGeekspeakOrg::Application.routes.draw do
     resources :participants
   end
   
-  get '/admin/users/:id', :controller => "admin/users",
-      :action => 'show', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
 
   match "/episodes/:year/" => "episodes#year_archive", 
                :constraints => {:year => /\d{4}/ }
@@ -50,8 +48,8 @@ BetaGeekspeakOrg::Application.routes.draw do
   get '/admin/users/:id', :controller => "admin/users",
       :action => 'show', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
   
- # get '/admin/users/:id/edit', :controller => "admin/users",
- #     :action => 'edit', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
+  get '/admin/users/:id/edit', :controller => "admin/users",
+      :action => 'edit', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
   
  # mount Refinery::Core::Engine => '/engin/refinery.geekspeak.org/'
   
