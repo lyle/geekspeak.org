@@ -33,7 +33,7 @@ xml.rss "version" => "2.0",
         
         @episodes.each do |episode|
             xml.item do
-                xml.title episode.title
+                xml.title episode.title + " " + episode.showdate_as_url
                 xml.link episode_url(episode)
                 xml.description textilize(episode.abstract)
                 xml.pubDate episode.airdate_to_s_rfc822
