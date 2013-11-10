@@ -26,7 +26,7 @@ xml.rss "version" => "2.0",
         xml.itunes(:image, :href=> "http://geekspeak.org/images/GeekSpeak_Logo09022012.png")
         xml.image do
           xml.url "http://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
-          xml.title "GeekSpeak, KUSP"
+          xml.title "GeekSpeak"
           xml.link episodes_url
         end
         
