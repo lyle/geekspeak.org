@@ -15,7 +15,7 @@ xml.rss "version" => "2.0",
         xml.atom(:link, :href=>"http://geekspeak.org/shows/npr-feed.xml", :rel=> "self", :type=>"application/rss+xml")
            # atom:link href="http://dallas.example.com/rss.xml" rel="self" type="application/rss+xml" />
         xml.pubDate CGI.rfc1123_date(@episodes.first.updated_at)
-        xml.description h("GeekSpeak is a group of professional geeks who discuss the week's latest news and trends. They help people with such things as Windows, Macintosh, and Linux computing, digital photography, the free software movement, Web 2.0, digital video and audio editing, Adobe software, processor and platform technologies, social networks, solar technology, science, technical politics, passwords, and much more. The Geeks also interview technologists, hackers, developers, entrepreneurs, great thinkers, and people with real information to share. If it's geeky, then it's on GeekSpeak! GeekSpeak is broadcast live every Saturday at 10 a.m. PST on KUSP FM and HD radio, and is available via podcast at NPR.")
+        xml.description "GeekSpeak is a group of professional geeks who discuss the week's latest news and trends. They help people with such things as Windows, Macintosh, and Linux computing, digital photography, the free software movement, Web 2.0, digital video and audio editing, Adobe software, processor and platform technologies, social networks, solar technology, science, technical politics, passwords, and much more. The Geeks also interview technologists, hackers, developers, entrepreneurs, great thinkers, and people with real information to share. If it's geeky, then it's on GeekSpeak! GeekSpeak is broadcast live every Saturday at 10 a.m. PST on KUSP FM and HD radio, and is available via podcast at NPR."
         xml.itunes(:summary, "GeekSpeak is a group of professional geeks who discuss the week's latest news and trends. They help people with such things as Windows, Macintosh, and Linux computing, digital photography, the free software movement, Web 2.0, digital video and audio editing, Adobe software, processor and platform technologies, social networks, solar technology, science, technical politics, passwords, and much more. The Geeks also interview technologists, hackers, developers, entrepreneurs, great thinkers, and people with real information to share. If it's geeky, then it's on GeekSpeak! GeekSpeak is broadcast live every Saturday at 10 a.m. PST on KUSP FM and HD radio, and is available via podcast at NPR.")
         xml.language "en-us"
         xml.generator "https://github.com/lyle/geekspeak.org"
@@ -35,7 +35,9 @@ xml.rss "version" => "2.0",
             xml.item do
                 xml.title episode.title + " " + episode.showdate_as_url
                 xml.link episode_url(episode)
-                xml.description textilize(episode.abstract)
+                # this produces lovely HTML transformation - but NPR uses it for the itunes summary - and it isn't legal that way
+                # xml.description textilize(episode.abstract)
+                xml.description to_text( :html => textilize(episode.abstract))
                 xml.pubDate episode.airdate_to_s_rfc822
                 if (episode.airdate < Date.parse("2012-07-29")) then
                     xml.guid "http://geekspeak.org/shows/#{episode.showdate_as_url}/"
