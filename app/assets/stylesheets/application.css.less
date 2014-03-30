@@ -3,6 +3,8 @@
 @navbarBackground:                #000;
 @navbarBackgroundHighlight:       #666;
 @navbarLinkColor:                 #fff;
+@linkColor:             #08c;
+@linkColorHover:        darken(@linkColor, 15%);
 
 #logo {
     position:relative;
@@ -103,3 +105,33 @@ h3.segment.title {display:none;}
   
 }
 .bitsort, .tools i {display:none}
+
+
+blockquote {
+  margin-left:20px;
+  margin-right:20px;
+  position:relative;
+  border-left: none;
+  color: darken(@linkColor, 15%);
+}
+blockquote:after, blockquote:before {
+  font-size:3em;
+  font-family:Serif;
+  position:absolute;
+}
+blockquote:before {
+  content: '\201c';
+  left: -1ex;
+  font-weight: 300;
+}
+blockquote:after {
+  content: '\201d';
+  right: -1ex;
+}
+
+blockquote p {
+  margin-bottom: 0;
+  font-size:1.1em;
+  font-weight: 300;
+  line-height: 1.5em;
+}
