@@ -3,9 +3,12 @@
 @navbarBackground:                #000;
 @navbarBackgroundHighlight:       #666;
 @navbarLinkColor:                 #fff;
+@navbarInverseLinkColorHover:     #fff;
 @linkColor:             #08c;
 @linkColorHover:        darken(@linkColor, 15%);
-
+.navbar .nav > li > a:hover {
+  color: @navbarInverseLinkColorHover;
+}
 #logo {
     position:relative;
     margin: -80px 10px 0px;
@@ -135,3 +138,99 @@ blockquote p {
   font-weight: 300;
   line-height: 1.5em;
 }
+
+.breadcrumb {
+  background-color: inherit;
+}
+
+.navbar-fixed-top .navbar-inner,
+footer {
+  .box-shadow(0 0 rgba(0,0,0,0));
+  background-image: none;
+  background-color:#979797;
+  border-radius:0;
+}
+footer {
+  border-radius: 0;
+  padding: 1ex;
+}
+.login .icon-user {
+  color: darken(#979797, 10%)
+}
+
+
+@media (max-width: 979px) {
+  .navbar-fixed-top {
+    margin-bottom: 0px;
+  }
+  .breadcrumb {
+    margin: 0;
+    padding: 0;
+  }
+  #main {
+   margin:1em;
+   width: 100%;
+  }
+  h1, h2, h3 {
+    margin: 0;
+  }
+  h1 { 
+    font-size: 2em;
+  }
+  h3.title {
+    margin-bottom: 1em;
+  }
+  h3.subtitle {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  #sidebar{
+    width: 100%;
+    clear: both;
+    margin: 1em;
+    padding: 0px;
+  }
+  .item {
+    margin-bottom: 2em;
+  }
+  .item .title {
+    text-align: center;
+    line-height: 2ex;
+  }
+  .abstractimage {
+    margin: 0 0 1em 0;
+    width:100%;
+    text-align: center;
+  }
+  div.audio > a {
+    display: block;
+    overflow: hidden;
+    text-indent: -3000px;
+    margin-top: -22px;
+    width: 50%;
+    position: absolute;
+    right: 1em;
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 20px;
+
+  }
+  div.audio > a:before {
+    font-family: FontAwesome;
+    content: '\f04b';
+    text-indent: 0;
+    position: absolute;
+    left:.4em;
+  }
+  div.audio > a:after {
+    content: 'Play Episode';
+    text-indent: 0px;
+    position: absolute;
+    right:.4em;
+  }
+  .abstract {
+    margin-top: 2ex;
+  }
+}
+
