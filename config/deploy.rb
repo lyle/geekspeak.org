@@ -8,7 +8,8 @@ load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/check"
 
-server "gs-b.geekspeak.org", :web, :app, :db, primary: true
+#server "gs-b.geekspeak.org", :web, :app, :db, primary: true
+server "play.benlomond.org", :web, :app, :db, primary: true
 
 set :user, "deployer"
 set :application, "geekspeak.org"
@@ -27,12 +28,16 @@ ssh_options[:forward_agent] = true
 namespace :deploy do
      namespace :assets do
        task :precompile, :roles => :web, :except => { :no_release => true } do
-         from = source.next_revision(current_revision)
-         if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
-           run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
-         else
-           logger.info "Skipping asset pre-compilation because there were no asset changes"
-         end
+        begin
+          from = source.next_revision(current_revision)
+        rescue
+          err_no = true
+        end
+        if err_no || capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
+         run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
+        else
+         logger.info "Skipping asset pre-compilation because there were no asset changes"
+        end
      end
      
    end
