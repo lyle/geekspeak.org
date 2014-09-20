@@ -36,6 +36,12 @@ ActiveAdmin::Dashboards.build do
            end
       end
     end
+    section "Collect News Like a Pro", :priority => 12 do
+      div
+        div "Grab this 'Add GS Bit' bookmarklet and drag it to your bookmarks"
+        div "Then, when visiting pages you want to use in a show, simply select text and click your new 'Add GS Bit' bookmark."
+        render "admin/bits_bookmarklet"
+    end
 
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can

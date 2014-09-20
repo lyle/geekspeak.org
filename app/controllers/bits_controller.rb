@@ -14,8 +14,12 @@ class BitsController < ApplicationController
     end
 
     def new
-        session[:return_to] ||= request.referer
-        @bit = Bit.new
+        if params[:return_url]
+            session[:return_to] = params[:return_url]
+        else
+            session[:return_to] ||= request.referer
+        end
+        @bit = Bit.new(params[:bit])
         @bit.user = current_user
     end
     

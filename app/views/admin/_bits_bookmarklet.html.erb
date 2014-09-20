@@ -1,0 +1,36 @@
+<a id="gs_bookmarklet" href='javascript:var c=document.getSelection();location.href="http://localhost:3000/bits/new/?return_url="+encodeURIComponent(document.URL)+"&bit[url]="+encodeURIComponent(document.URL)+"&bit[title]="+encodeURIComponent(document.title)+"&bit[body]="+((c&&c.type&&c.type==="Range")?".bq "+encodeURIComponent(document.getSelection()):"");'>Add GS Bit</a> &lt;--don't click this, it is for other pages
+
+<style>
+    #gs_bookmarklet {
+        margin:20px;
+        padding:20px;
+        border: 1px solid blue;
+        display:inline-block;
+        -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.0em;
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 12px;
+  margin-right: 3px;
+  padding: 7px 16px 6px;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  background: white;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#e7e7e7));
+  background: -moz-linear-gradient(-90deg, white, #e7e7e7);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='white', endColorstr='#e7e7e7');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='white', endColorstr='#e7e7e7');
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0 rgba(255, 255, 255, 0.8) inset;
+  border: solid 1px #c7c7c7;
+  border-color: #c7c7c7;
+  border-top-color: lightgrey;
+  border-right-color: #c7c7c7;
+  border-bottom-color: #c2c2c2;
+  border-left-color: #c7c7c7;
+  text-shadow: white 0 1px 0;
+  color: #5e6469;
+    }
+</style>
