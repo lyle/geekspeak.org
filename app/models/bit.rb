@@ -1,4 +1,6 @@
 class Bit < ActiveRecord::Base
+    validates :title, length: { maximum: 255 }
+    validates :url, length: { maximum: 255 }
     #has_many :segment_bits
     #has_many :segments, :through => :segment_bits   
     has_many :bit_episodes, dependent: :destroy
