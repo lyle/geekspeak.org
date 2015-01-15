@@ -5,7 +5,7 @@
 	<%= f.input :title, :input_html => {:maxlength => 255}%>
 	<%= f.input :url, :input_html => {:maxlength => 255}%>
 	<%= f.association :user, :collection => User.all, :priority => [26] %>
-	<%= f.input :body, hint: "#{link_to 'You can use Textile for markup', 'http://warpedvisions.org/projects/textile-cheat-sheet.md'}"  %>
+	<%= f.input :body %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>

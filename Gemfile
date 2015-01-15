@@ -73,6 +73,6 @@ group :production do
  gem 'execjs'
 end
 
-gem 'high_voltage'
+gem 'high_voltage', '~> 2.2.1'
 gem 'sanitize'
 gem 'ruby-mp3info', :require => 'mp3info'

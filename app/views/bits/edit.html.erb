@@ -1,2 +1,14 @@
 <%= render :partial => 'form' %>
+<p>
+  <b>Apearing in Episodes</b>
+  <ul>
+    <% @bit.episodes.each do |ep| %>
+    <li><%= link_to ep.title, episode_path(ep)%></li>
+    <% end %>
+  </ul>
+</p>
 <%= button_to 'Delete', bit_path(@bit), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' -%>
+
+<% content_for :sidebar do %>
+<% render file: "pages/_/textile.html" %>
+<% end %>

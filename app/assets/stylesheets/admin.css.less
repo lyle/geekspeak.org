@@ -89,3 +89,36 @@
   .tools {
     width: 4em;}
 } 
+#main {
+  width: 400px;
+}
+
+@media (max-width: 978px) {
+  .admin {
+  #content {
+    width:100%;
+  }pack
+  #main,
+  #sidebar {
+    width: 45%;
+    display:inline-block;
+    margin: 0;
+    padding: 0;
+  }
+  #sidebar {
+    clear:none;
+  }
+  }
+}
+
+.admin #sidebar {
+  width: 45%;
+  box-sizing: border-box;
+  margin-left: 0;
+}
+
+.admin #main {
+  width: 55%;
+  box-sizing: border-box;
+  margin-left: 0;
+}

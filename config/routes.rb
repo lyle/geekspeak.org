@@ -118,7 +118,7 @@ BetaGeekspeakOrg::Application.routes.draw do
   match '/users'    => redirect("/geeks")
   match '/users/:name' => redirect("/geeks/%{name}"),:format => false
          
-  match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
+  #match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
 
 

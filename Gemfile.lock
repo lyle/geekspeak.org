@@ -109,7 +109,7 @@ GEM
     haml (4.0.3)
       tilt
     has_scope (0.5.1)
-    high_voltage (1.2.2)
+    high_voltage (2.2.1)
     highline (1.6.19)
     hike (1.2.3)
     i18n (0.6.4)
@@ -286,7 +286,7 @@ DEPENDENCIES
   friendly_id (~> 4.0.9)
   guard-rspec
   haml
-  high_voltage
+  high_voltage (~> 2.2.1)
   jquery-rails
   jquery-ui-rails
   kaminari
