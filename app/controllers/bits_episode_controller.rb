@@ -18,5 +18,13 @@ class BitsEpisodeController < ApplicationController
     end
     redirect_to @bits_episode.episode
   end
+
+  def destroy
+    bits_episode =  BitEpisode.find(params[:id])
+    episode = bits_episode.episode
+    bits_episode.destroy
+    flash[:notice] = "Unlinked Bit to Episode"
+    redirect_to episode
+  end
  
 end
