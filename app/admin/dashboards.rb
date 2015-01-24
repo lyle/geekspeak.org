@@ -26,7 +26,9 @@ ActiveAdmin::Dashboards.build do
            end
       end
     end
-    section "Recent Episodes" do
+    section "Episodes" do
+      div link_to("New Episode", new_episode_path(),:class=>"button")
+      div "Recent Episodes"
       table_for Episode.recent.limit(8).collect do |episode|
            column :title do |episode|
              link_to(episode.title, episode_path(episode)) 

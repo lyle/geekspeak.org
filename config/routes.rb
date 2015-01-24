@@ -6,14 +6,10 @@ BetaGeekspeakOrg::Application.routes.draw do
             :controller => :users,
             :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
 
-  
-#  resources :segment_bits
+  resources :episode_audios
+  resources :episode_images
+  resources :bits
 
- # resources :bits
- resources :episode_audios
- resources :episode_images
- resources :bits
- 
   resources :bits_episode do
     collection { post :sort }
   end
@@ -23,7 +19,8 @@ BetaGeekspeakOrg::Application.routes.draw do
     resources :episode_audios
     resources :episode_images
   end
-  
+
+  match "/episodes/pending/" => "episodes#pending"
   resources :participants
 
 
@@ -33,7 +30,7 @@ BetaGeekspeakOrg::Application.routes.draw do
                :constraints => {:year => /\d{4}/, :month => /0[1-9]|1[0-2]/ }
                
                
-  devise_for :users, ActiveAdmin::Devise.config
+  devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   
   ActiveAdmin.routes(self)
   

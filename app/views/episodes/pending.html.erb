@@ -1,0 +1,7 @@
+<h3>Episodes that are not yet live</h3>
+
+<ul>
+    <% for episode in @episodes do %>
+        <li><%= link_to(episode.slug, episode_path(episode)) %> <%=episode.status %> </li>
+    <% end %> 
+</ul>

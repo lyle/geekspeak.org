@@ -28,6 +28,8 @@ class Episode < ActiveRecord::Base
   
   accepts_nested_attributes_for :segments  ,:allow_destroy => true
   
+  validates :slug, uniqueness: true
+
   belongs_to :owner,
              :class_name => "User",
              :foreign_key => "user_id"

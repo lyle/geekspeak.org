@@ -60,7 +60,26 @@
                     </ul>
                 </li>
                 <li><%= link_to "Contact Us", "/contact" %></li>
-                <li class="login"><a href="/admin" accesskey="a"><i class="icon-user"></i></a></li>
+              <% if user_signed_in? %>
+                <li class="dropdown"><a id="blogDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledb="blogDrop">
+                        <li>
+                            <%= link_to("New Bit", new_bit_path())%>
+                        </li>
+                        <li>
+                            <%= link_to("New Episode", new_episode_path())%>
+                        </li>
+                        <li>
+                            <%= link_to("Pending Episodes", controller: "episodes", action: "pending") %>
+                        </li>
+                        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                    </ul>
+                </li>
+              <% else %>
+                  <li class="login">
+                  <%= link_to(content_tag(:i, '' ,:class=>'icon-user'), new_user_session_path)  %>  
+                  </li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
