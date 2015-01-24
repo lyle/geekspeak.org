@@ -7,7 +7,7 @@
 
 <%  if user_signed_in?  %>
 	<div class="span5 offset3"> 
-		<%= link_to "Edit", edit_admin_episode_path(@episode) %> | 
+		<%= link_to "Edit", edit_episode_path(@episode) %> | 
 		<%= link_to "Images", episode_episode_images_path(@episode)  %>
 	</div>
 <% end %>
@@ -18,7 +18,7 @@
 
 <!--%= textilize(@episode.abstract).html_safe  unless @episode.abstract.blank? %-->
 <%= best_in_place_if user_signed_in?, @episode, :abstract, :type => :textarea,
-  :ok_button => 'Save', :cancel_button => 'Cancel',
+  :ok_button => 'Save', :cancel_button => 'Cancel', :nil => 'ADD AN ABSTRACT (click)',
   :display_with => lambda { |v| textilize(v).html_safe }
   %>
 
@@ -29,7 +29,7 @@
 </div>
 <hr>
 
-<%= textilize(@episode.content).html_safe  unless @episode.content.blank? %>
+<%= textilize(@episode.content).html_safe unless @episode.content.blank? %>
 
 <% content_for :sidebar do %>
 	<% if not user_signed_in? %>
@@ -58,5 +58,5 @@
 	<% end %>
 	</ul>	
 	<%= render :partial => 'participants',
-			:locals => {:participants => @episode.participants} if @episode.participants.length > 0%>
+			:locals => {:participants => @episode.participants, :episode => @episode, :current_user => current_user} if @episode.participants.length > 0 || user_signed_in?%>
 <% end %>

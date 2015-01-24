@@ -62,13 +62,16 @@ class EpisodesController < ApplicationController
     if @episode.update_with_conflict_validation(params[:episode])
       
 
+      respond_to do |format|
+        format.html {redirect_to(@episode, :notice => "Successfully updated episode.")}
+        format.json { respond_with_bip(@episode) }
+      end
       #format.html {
       #  flash[:notice] = "Successfully updated episode."
       #  respond_with(@episode)
       #}
       #format.json { respond_with_bip(@episode) }
     end
-    respond_with_bip(@episode)
     
   end
 

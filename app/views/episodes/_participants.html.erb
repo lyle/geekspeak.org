@@ -1,8 +1,10 @@
 
 
-<ul class="nav nav-list">
+<ul class="nav nav-list participants" id="participant_list">
   <li class="nav-header">This Episode's Geeks</li>
-	<% participants.each do |participant| %>
-	  <li> <%= link_to "#{participant.user.display_name} (#{participant.role})" , user_path(participant.user) %>	 </li>
-	<% end %>
+  <%= render :partial => 'participant',
+            :collection => participants,
+            :locals => {:current_user=>current_user} %>
+  <%= render :partial => 'participant_form',
+            :locals => {:episode => episode, :current_user => current_user} if current_user.present?%>
 </ul>

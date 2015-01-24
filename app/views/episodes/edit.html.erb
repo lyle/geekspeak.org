@@ -1,6 +1,33 @@
 <% title "Edit Episode" %>
 
-<%= render 'form' %>
+<%= form_for @episode,  :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :airdate %>Don't change this unless you mean to.<br />
+    <%= f.date_select :airdate %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :abstract %><br />
+    <%= f.text_area :abstract %>
+  </p>
+  <p>
+    <%= f.label :status %>Live means podcast, refresh is public.<br />
+    <%= f.select :status, status_list 
+     %>
+  </p>
+    
+  <p>
+    <%= f.label :teaser %><br />
+   <%= f.file_field :teaser %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>
+
 
 <p>
   <%= link_to "Show", @episode %> |
