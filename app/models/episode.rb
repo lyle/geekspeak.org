@@ -38,7 +38,7 @@ class Episode < ActiveRecord::Base
                     :path => ":rails_root/public/episodes/:showdate_as_url/teaser-:style.:extension",
                     :url => "/episodes/:showdate_as_url/teaser-:style.:extension"
 
-  attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :lock_version, :participants_attributes, :bits_attributes
+  attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :lock_version, :participants_attributes, :bits_attributes, :publication_time
   
   def update_with_conflict_validation(*args)
     update_attributes(*args)
@@ -52,7 +52,11 @@ class Episode < ActiveRecord::Base
   end
   
   def airdate_to_s_rfc822
-     Time.new(airdate.year, airdate.month, airdate.day).advance(:hours => 10).rfc2822 
+    if publication_time 
+      publication_time.rfc2822
+    else
+      Time.new(airdate.year, airdate.month, airdate.day).advance(:hours => 10).rfc2822
+    end
   end
   
   def showdate_as_file_part

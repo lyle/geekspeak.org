@@ -16,8 +16,11 @@
   </p>
   <p>
     <%= f.label :status %>Live means podcast, refresh is public.<br />
-    <%= f.select :status, status_list 
-     %>
+    <%= f.select :status, status_list %>
+  </p>
+  <p>
+    <%= f.label :publication_time %>When to Publish the Podcast<br />
+    <%= f.datetime_select :publication_time, start_year: 2000 %>
   </p>
     
   <p>

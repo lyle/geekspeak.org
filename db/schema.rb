@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130607054136) do
+ActiveRecord::Schema.define(:version => 20150414033531) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20130607054136) do
     t.datetime "updated_at",                         :null => false
     t.text     "content"
     t.integer  "lock_version",        :default => 0
+    t.datetime "publication_time"
   end
 
   add_index "episodes", ["slug"], :name => "index_episodes_on_slug"
