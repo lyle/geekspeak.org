@@ -62,6 +62,7 @@ ActiveAdmin.register User do
       
       f.input :admin
       f.input :active
+      f.input :bio, label: "Biography (textile support)"
     end
     f.buttons
   end

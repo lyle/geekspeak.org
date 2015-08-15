@@ -1,17 +1,20 @@
 <% title @user.display_name %>
 
-<p>
- <%= @user.login.capitalize %>
-
-  last logged in <%= time_ago_in_words(@user.current_sign_in_at) unless @user.current_sign_in_at.blank? %> ago.
+<h1><%= @user.display_name %></h1>
+<%= textilize(@user.bio).html_safe unless @user.bio.blank? %>
+<% unless @user.current_sign_in_at.blank? %> 
+<p><%= @user.login.capitalize %> last logged in <%= time_ago_in_words(@user.current_sign_in_at)  %> ago.
 </p>
+<% end %>
 
+<% if @user.episodes.count > 0 then %>
 <ul>
-  <li class="nav-header"><%= @user.login.capitalize %> was involved in these episodes</li>
+  <li class="nav-header"><%= @user.login %> was involved in these episodes</li>
 	<% @user.episodes.each do |episode| %>
 	  <li> <%= link_to "#{episode.to_param} #{episode.title}", episode_path(episode) %></li>
 	<% end %>
 </ul>
+<% end %>
 
 <p>
   <%= link_to "Edit", edit_admin_user_path(@user) if :user_signed_in?  %>
