@@ -32,4 +32,10 @@ class User < ActiveRecord::Base
     }
     ret
   end
+  def as_json options={}
+    {
+      login: login,
+      display_name: display_name
+    }
+  end
 end
