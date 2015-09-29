@@ -29,23 +29,20 @@ xml.rss "version" => "2.0",
           xml.title "GeekSpeak"
           xml.link episodes_url
         end
-        xml.copyright "Creative Commons Attribution 3.0 United States License"
         
         
         @episodes.each do |episode|
             xml.item do
                 xml.title episode.title + " " + episode.showdate_as_url
                 xml.link episode_url(episode)
-                xml.description textilize(episode.abstract)
+                # this produces lovely HTML transformation - but NPR uses it for the itunes summary - and it isn't legal that way
+                # xml.description textilize(episode.abstract)
+                xml.description to_text( :html => textilize(episode.abstract))
                 xml.pubDate episode.airdate_to_s_rfc822
                 if (episode.airdate < Date.parse("2012-07-29")) then
                     xml.guid "http://geekspeak.org/shows/#{episode.showdate_as_url}/"
                 else
-                    if(episode.guid_override.blank?) then
-                        xml.guid "#{episodes_url}#{episode.showdate_as_url}/"
-                    else
-                        xml.guid episode.guid_override
-                    end
+                    xml.guid "#{episodes_url}#{episode.showdate_as_url}/"
                 end
                 xml.itunes(:subtitle, episode.on_air_participants.collect{|p| p.user.display_name}.to_sentence)
                 #xml.itunes(:summary, strip_tags(textilize(episode.abstract) ).strip   )

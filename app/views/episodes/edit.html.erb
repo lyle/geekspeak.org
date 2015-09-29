@@ -22,6 +22,10 @@
     <%= f.label :publication_time %>When to Publish the Podcast<br />
     <%= f.datetime_select :publication_time, start_year: 2000 %>
   </p>
+  <p>
+    <%= f.label :guid_override %>Guid Override (to sync NPR RSS feed)<br />
+    <%= f.text_field :guid_override %>
+  </p>
     
   <p>
     <%= f.label :teaser %><br />

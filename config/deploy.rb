@@ -22,8 +22,8 @@ set :repository, "git@github.com:lyle/#{application}.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
-
+#ssh_options[:forward_agent] = true
+set :ssh_options, { :forward_agent => true }
 
 namespace :deploy do
      namespace :assets do

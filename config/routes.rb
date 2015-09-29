@@ -1,5 +1,5 @@
 BetaGeekspeakOrg::Application.routes.draw do
-  match "shows/npr-feed.xml" => "feeds#episodes",
+  match "shows/npr-feed.xml" => "feeds#nprepisodes",
             :defaults => { :format => 'xml' }
 
   match "episodes/rss.xml" => "feeds#episodes",

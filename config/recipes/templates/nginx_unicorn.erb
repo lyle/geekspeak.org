@@ -14,6 +14,7 @@ server {
   }
   # serve npr's podcast if someone asks for our older rss
   rewrite ^/shows/rss.xml$ http://www.npr.org/rss/podcast.php?id=510168 ;
+  #TO TURN ON NEW PODCAST TO SOME USERS --->rewrite ^/shows/rss.xml$ http://geekspeak.org/episodes/rss.xml permanent ;
   # move the individule show pages to the episodes url but remove index.html
   rewrite "/shows/([0-9]{4}.*)index.html" /episodes/$1 permanent;
   # move the individule show pages to the episodes url.. /2012 and anything after
