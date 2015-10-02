@@ -34,6 +34,12 @@
 <% content_for :sidebar do %>
 	<% if not user_signed_in? %>
 	<ul class="nav nav-list">
+	<li class="nav-header">Podcast</li>
+    <li><%= link_to "RSS File", "http://geekspeak.org/episodes/rss.xml"  %></li>
+    <li><%= link_to "GeekSpeak on iTunes", "https://itunes.apple.com/us/podcast/geekspeak/id74173088"  %></li>
+    <li><%= link_to "GeekSpeak on Overcast", "https://overcast.fm/itunes74173088/geekspeak" %></li>
+
+	<li class="nav-header">Advertisement</li>
 		<li>
 			<script type="text/javascript"><!--
 			google_ad_client = "ca-pub-6121986314656343";
