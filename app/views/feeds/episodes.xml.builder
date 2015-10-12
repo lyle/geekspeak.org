@@ -23,6 +23,7 @@ xml.rss "version" => "2.0",
         xml.itunes(:category, :text=>"Technology")
         xml.itunes(:explicit,"clean")
         xml.itunes(:keywords, "geek, geekspeek, radio, technology")
+        xml.itunes("new-feed-url","http://geekspeak.org/episodes/rss.xml")
         xml.itunes(:image, :href=> "http://geekspeak.org/images/GeekSpeak_Logo09022012.png")
         xml.image do
           xml.url "http://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
