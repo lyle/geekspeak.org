@@ -6,11 +6,13 @@ elsif params[:action] == 'month_archive'
 end 
 %>
 <% title  " Episodes" %>
+<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-4" >
 <% for episode in @episodes %>
-<div class="item clearfix">
+<li >
 	<%= render :partial => "episodes/episode", :object => episode %>
-</div>
+</li>
 <% end %>
+</ul>
 
 <% content_for :sidebar do %>
 	<ul class="nav nav-list">

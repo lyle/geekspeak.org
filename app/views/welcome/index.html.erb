@@ -1,13 +1,11 @@
 
-
+<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
 <% for episode in @episodes %>
-	<div class="item clearfix">
-		<%= render :partial => "episodes/episode", :object => episode %>
-	</div>
+<li >
+    <%= render :partial => "episodes/episode", :object => episode %>
+</li>
 <% end %>
-
-
-
+</ul>
 
 
 

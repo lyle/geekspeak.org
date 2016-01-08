@@ -2,7 +2,7 @@ BetaGeekspeakOrg::Application.routes.draw do
   #match "shows/npr-feed.xml" => "feeds#nprepisodes",
   #          :defaults => { :format => 'xml' }
 
-  match "episodes/rss.xml" => "feeds#episodes",
+  get "episodes/rss.xml", to: "feeds#episodes",
             :defaults => { :format => 'xml' }
 
   resources :geeks, :as => :users,
@@ -17,19 +17,19 @@ BetaGeekspeakOrg::Application.routes.draw do
     collection { post :sort }
   end
   
- 
   resources :episodes, :id => /[0-9]+\/[0-9]+\/[0-9]+/ do
     resources :episode_audios
     resources :episode_images
   end
 
-  match "/episodes/pending/" => "episodes#pending"
+  get "/episodes/pending/", to: "episodes#pending"
+
   resources :participants
 
 
-  match "/episodes/:year/" => "episodes#year_archive", 
+  get "/episodes/:year/", to: "episodes#year_archive", 
                :constraints => {:year => /\d{4}/ }
-  match "/episodes/:year/:month/" => "episodes#month_archive", 
+  get "/episodes/:year/:month/", to: "episodes#month_archive", 
                :constraints => {:year => /\d{4}/, :month => /0[1-9]|1[0-2]/ }
                
                
@@ -107,17 +107,17 @@ BetaGeekspeakOrg::Application.routes.draw do
   
   root :to => 'welcome#index'
   
-  match '/lyle'    => redirect("/geeks/lyle")
-  match '/ben'     => redirect("/geeks/ben")
-  match '/alan'    => redirect("/geeks/alan")
-  match '/al'    => redirect("/geeks/alan")
-  match '/lindsey' => redirect("/geeks/lindsey")
-  match '/rick'    => redirect("/geeks/rick")
-  match '/brian'    => redirect("/geeks/brian")
-  match '/alex'    => redirect("/geeks/alex")
-  match '/john'    => redirect("/geeks/john")
-  match '/users'    => redirect("/geeks")
-  match '/users/:name' => redirect("/geeks/%{name}"),:format => false
+  get '/lyle'   , to: redirect("/geeks/lyle")
+  get '/ben'    , to: redirect("/geeks/ben")
+  get '/alan'   , to: redirect("/geeks/alan")
+  get '/al'   , to: redirect("/geeks/alan")
+  get '/lindsey', to: redirect("/geeks/lindsey")
+  get '/rick'   , to: redirect("/geeks/rick")
+  get '/brian'   , to: redirect("/geeks/brian")
+  get '/alex'   , to: redirect("/geeks/alex")
+  get '/john'   , to: redirect("/geeks/john")
+  get '/users'   , to: redirect("/geeks")
+  get '/users/:name', to: redirect("/geeks/%{name}"),:format => false
          
   #match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 

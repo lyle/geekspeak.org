@@ -12,6 +12,15 @@ ActiveAdmin.setup do |config|
   #
   config.site_title_link = "/"
 
+
+# All namespace root is the index action of the DashboardController
+config.root_to = "episodes#index"
+ 
+# config.namespace :admin do |admin_namespace|
+#   # /admin renders the AdminAccountController index action
+#   admin_namespace.root_to = "accounts#index"
+# end
+
   # == Default Namespace
   #
   # Set the default namespace each administration resource

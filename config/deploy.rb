@@ -9,7 +9,8 @@ load "config/recipes/rbenv"
 load "config/recipes/check"
 
 #server "gs-b.geekspeak.org", :web, :app, :db, primary: true
-server "play.benlomond.org", :web, :app, :db, primary: true
+#server "play.benlomond.org", :web, :app, :db, primary: true
+server "ny.geekspeak.org", :web, :app, :db, primary: true
 
 set :user, "deployer"
 set :application, "geekspeak.org"

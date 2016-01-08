@@ -9,7 +9,7 @@
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to_function 'Cancel', "history.back()", :class => 'btn' %>
+      <%= link_to 'Cancel', "#", onclick: "history.back()", class:'btn' %>
     </div>
   </fieldset>
 <% end %>

@@ -4,8 +4,8 @@
       %div.tools
         %i.icon-resize-vertical.bitsort
           =content_tag(:span, episode_bit.bit.user.initial,:class=>'author')
-        = link_to content_tag(:i, '' ,:class=>'icon-edit'), edit_bit_path(episode_bit.bit,  {:return_url=>request.url}), :class=>'bit-edit'
-        = link_to content_tag(:i, '' ,:class=>'icon-remove'), {:controller => 'bits_episode', :action => 'destroy', :id => episode_bit.id }, :method => :delete, :class=>'bit-edit' 
+        = link_to content_tag(:i, 'e' ,:class=>'icon-edit'), edit_bit_path(episode_bit.bit,  {:return_url=>request.url}), :class=>'bit-edit'
+        = link_to content_tag(:i, 'x' ,:class=>'icon-remove'), {:controller => 'bits_episode', :action => 'destroy', :id => episode_bit.id }, :method => :delete, :class=>'bit-edit' 
       = link_to_unless episode_bit.bit.url.blank?, episode_bit.bit.title, episode_bit.bit.url, :rel=>"tooltip", :title=> episode_bit.bit.url
       %a{:href=>"#{user_path(episode_bit.bit.user)}", :title=>"Added by #{episode_bit.bit.user.display_name}",:rel=>"tooltip",:data=>{:placement=>"right"}}
         %i.icon-question-sign.icon-white

@@ -1,0 +1,36 @@
+@import "foundation_and_overrides";
+/* Add imports of custom sass/scss files here */
+
+
+@import "episode_blocks";
+/*@import "slabtext";*/
+
+body {
+    background-color: #EFEFEF;
+}
+.container {
+    margin:0 rem-calc(10)
+}
+#content {
+    margin-top:rem-calc(10)
+}
+.slabtexted .slabtext
+        {
+        display:-moz-inline-box;
+        display:inline-block;
+        white-space:nowrap;
+        }
+.slabtextinactive .slabtext
+        {
+        display:inline;
+        white-space:normal;
+        font-size:1em !important;
+        letter-spacing:inherit !important;
+        word-spacing:inherit !important;
+        *letter-spacing:0 !important;
+        *word-spacing:0 !important;
+        }
+.slabtextdone .slabtext
+        {
+        display:block;
+        }

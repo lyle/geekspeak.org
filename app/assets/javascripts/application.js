@@ -6,23 +6,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require foundation
+//= require jquery-ui
 //= require jquery.purr
 //= require best_in_place
 //= require jquery.pjax
-//= require twitter/bootstrap/bootstrap-transition
-//= require twitter/bootstrap/bootstrap-alert
-//= require twitter/bootstrap/bootstrap-modal
-//= require twitter/bootstrap/bootstrap-dropdown
-//= require twitter/bootstrap/bootstrap-scrollspy
-//= require twitter/bootstrap/bootstrap-tab
-//= require twitter/bootstrap/bootstrap-tooltip
-//= require twitter/bootstrap/bootstrap-popover
-//= require twitter/bootstrap/bootstrap-button
-//= require twitter/bootstrap/bootstrap-collapse
-//= require twitter/bootstrap/bootstrap-carousel
-//= require twitter/bootstrap/bootstrap-typeahead
-//= require bootstrap
+//= require jquery.slabtext.min.js
+
 //// require_tree .
 
 
@@ -52,4 +42,13 @@ $('div.btn-group').each(function(){
       }
     });
   });
+});
+$(function(){ $(document).foundation();
+
+ $("h4").slabText({
+            // Don't slabtext the headers if the viewport is under 380px
+            "viewportBreakpoint":380,
+            "maxFontSize":64
+        });
+
 });

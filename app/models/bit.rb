@@ -10,15 +10,15 @@ class Bit < ActiveRecord::Base
     belongs_to :user
     attr_accessible :title, :url, :user_id, :body, :status
 
-    scope :on, where(:status => 'on')
+    scope :on, -> {where(:status => 'on')}
   
-    scope :fresh, joins("left outer join bit_episodes on bits.id = bit_episodes.bit_id").
-                select('bits.*, bit_episodes.episode_id').
-                where('bit_episodes.episode_id is null')
-    scope :re_used, joins("left outer join bit_episodes on bits.id = bit_episodes.bit_id").
-              select('bits.*, bit_episodes.episode_id').
-              where('bit_episodes.episode_id is NOT null')
-    scope :recent, order("updated_at desc")
+    scope :fresh, -> {joins("left outer join bit_episodes on bits.id = bit_episodes.bit_id").
+                    select('bits.*, bit_episodes.episode_id').
+                    where('bit_episodes.episode_id is null')}
+    scope :re_used, -> {joins("left outer join bit_episodes on bits.id = bit_episodes.bit_id").
+                  select('bits.*, bit_episodes.episode_id').
+                  where('bit_episodes.episode_id is NOT null')}
+    scope :recent, -> {order("updated_at desc")}
               
     def self.freshness(purity)
         case purity

@@ -1,4 +1,4 @@
 <li id="participant_<%= participant.id%>">
-<%= link_to( content_tag(:i, '' ,:class=>'icon-remove'), {:controller => 'participants', :action => 'destroy', :id => participant.id }, :method => :delete, remote: true) if user_signed_in? %>
+<%= link_to( content_tag(:i, '-' ,:class=>'icon-remove'), {:controller => 'participants', :action => 'destroy', :id => participant.id }, :method => :delete, remote: true) if user_signed_in? %>
 
  <%= link_to "#{participant.user.display_name}" , user_path(participant.user) %>     (<%= best_in_place_if current_user.present?, participant, :role, :type => :select, :collection => Participant::ROLES.map {|p| [ p, p ] } %>)</li>
