@@ -10,7 +10,7 @@ namespace :postgresql do
     run "#{sudo} apt-get install wget ca-certificates"
     run "wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | #{sudo} apt-key add -"
     run "#{sudo} apt-get -y update"
-    run "#{sudo} apt-get -y install postgresql libpq-dev"
+    run "#{sudo} apt-get -y install postgresql-9.5 libpq-dev"
   end
   after "deploy:install", "postgresql:install"
 
