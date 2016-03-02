@@ -45,10 +45,10 @@ $('div.btn-group').each(function(){
 });
 $(function(){ $(document).foundation();
 
- $("h4").slabText({
-            // Don't slabtext the headers if the viewport is under 380px
-            "viewportBreakpoint":380,
-            "maxFontSize":64
-        });
+ // $("h4").slabText({
+ //            // Don't slabtext the headers if the viewport is under 380px
+ //            "viewportBreakpoint":380,
+ //            "maxFontSize":64
+ //        });
 
 });

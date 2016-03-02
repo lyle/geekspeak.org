@@ -1,12 +1,15 @@
     <div class="episode-block pannel">
         <div class="airdate right header" data-tooltip aria-haspopup="true" class="has-tip" title="originally aired"><%=h episode.airdate.strftime("%Y-%m-%d") %></div>
         <div class="season-episode left header"><%=h "#{episode.season_name} #{episode.episode_name}" %></div>
-        
-
-		<%= content_tag(:div, image_tag(episode.teaser.url(:medium)), :class => "abstractimage") if episode.teaser?%>
+        <div class="abstractimage">
+            <% if episode.teaser %>
+                <%= image_tag(episode.teaser.url(:medium)) %>
+            <% else %>
+                
+            <% end %>
+        </div>
         <h4><%= link_to "#{episode.title}", "/episodes/#{episode.to_param}" %></h4>
-		
-		<% if ! episode.episode_audios.first.blank? %><div class="audio"><%= link_to "#{episode.episode_audios.first.audio_file_name}  #{number_to_human_size(episode.episode_audios.first.audio_file_size)}", episode.episode_audios.first.audio.url %></div><% end %>
-		<div class="abstract"><%= textilize(episode.abstract).html_safe %>
-		</div>
-	</div>	
+        <% if ! episode.episode_audios.first.blank? %><div class="audio"><%= link_to "#{episode.episode_audios.first.audio_file_name}  #{number_to_human_size(episode.episode_audios.first.audio_file_size)}", episode.episode_audios.first.audio.url %></div><% end %>
+        <div class="abstract"><%= textilize(episode.abstract).html_safe %>
+        </div>
+    </div>	
