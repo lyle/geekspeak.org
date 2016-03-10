@@ -86,7 +86,7 @@ end
                
   devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   
-#  ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self)
   
   
   # get '/admin/episodes/:id', :controller => "admin/episodes",
@@ -97,11 +97,11 @@ end
   #             :action => 'update', :id => /[0-9]+\/[0-9]+\/[0-9]+/
   # delete '/admin/episodes/:id', :controller => "admin/episodes",
   #             :action => 'destroy', :id => /[0-9]+\/[0-9]+\/[0-9]+/
-  # get '/admin/users/:id', :controller => "admin/users",
-  #     :action => 'show', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
+   get '/admin/users/:id', :controller => "admin/users",
+       :action => 'show', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
   
-  # get '/admin/users/:id/edit', :controller => "admin/users",
-  #     :action => 'edit', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
+   get '/admin/users/:id/edit', :controller => "admin/users",
+       :action => 'edit', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
   
  # mount Refinery::Core::Engine => '/engin/refinery.geekspeak.org/'
   
