@@ -25,9 +25,18 @@ gem "paperclip", "~> 3.5.1"
 gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
+#gem 'capistrano'
 #gem 'capistrano-rbenv'
+gem 'capistrano', '~> 3.0', require: false, group: :development
+group :development do
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+end
 
+group :development do
+  gem 'capistrano-rbenv', '~> 2.0', require: false
+  #gem 'capistrano-chruby', github: 'capistrano/chruby', require: false
+end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
