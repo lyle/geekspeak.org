@@ -1,7 +1,12 @@
 <!--h3>Check this out...</h3-->
 <ul class="nav nav-list">
   <!--li class="nav-header">Partners</li-->
-    <li><%= link_to "KUSP - broadcast Saturdays 10am PST", "http://www.kusp.org/"  %></li>
+    <li class="nav-header">Our Live Event</li>
+    <li><ul class="thumbnails">
+            <li class="span2">
+                <%= link_to image_tag("http://live.geekspeak.org/events/63/logo.png", :title => "Our Live Event", :class=>'thumbnail') , "http://live.GeekSpeak.org"  %><br />Join us!<br/>May 21st @ 10am<br />Cruzio Works, Santa Cruz<br /><a href="http://live.geekspeak.org">Get a Free Ticket</a>
+            </li>
+        </ul></li>
     <li class="nav-header">Podcast</li>
     <li><%= link_to "RSS File", "http://geekspeak.org/episodes/rss.xml"  %></li>
     <li><%= link_to "GeekSpeak on iTunes", "https://itunes.apple.com/us/podcast/geekspeak/id74173088"  %></li>
@@ -15,7 +20,7 @@
 			</li>
 		</ul>
 	</li-->
-	<li class="nav-header">Other Programs on KUSP</li>
+	<li class="nav-header">Formorly on KUSP with...</li>
 	<li><%= link_to "7the Avenue Project", "http://7thavenueproject.com/" %></li>
 	<li><%= link_to "Ask Dr. Dawn", "http://www.askdrdawn.com/" %></li>
 	<li class="nav-header">GeekSpeak on Social Networks</li>
