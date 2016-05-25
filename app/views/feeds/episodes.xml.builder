@@ -4,9 +4,9 @@ xml.rss "version" => "2.0",
         "xmlns:atom" => "http://www.w3.org/2005/Atom",
         "xmlns:itunes" =>"http://www.itunes.com/dtds/podcast-1.0.dtd" do
     xml.channel do
-        xml.title 'GeekSpeak'
+        xml.title 'GeekSpeak | How Technology Affects Society and Culture from the Geek Perspective'
         xml.itunes(:subtitle, "Bridging the gap between Geeks and the rest of humanity.")
-        xml.itunes(:author, "Lyle Troxell")
+        xml.itunes(:author, "Lyle Troxell & The Geeks")
         xml.itunes(:owner) do
             xml.itunes(:name, "Lyle Troxell")
             xml.itunes(:email, "lyle@geekspeak.org")
@@ -20,9 +20,17 @@ xml.rss "version" => "2.0",
         xml.language "en-us"
         xml.generator "https://github.com/lyle/geekspeak.org"
         xml.category "Technology"
-        xml.itunes(:category, :text=>"Technology")
+        xml.itunes(:category, :text=>"Technology") do
+            xml.itunes(:category, :text=>"Tech News")
+        end
+        xml.itunes(:category, :text=>"News & Politics")
+        xml.itunes(:category, :text=>"Business") do
+            xml.itunes(:category, :text=>"Business News")
+        end
+        xml.itunes(:category, :text=>"Arts & Entertainment")
+
         xml.itunes(:explicit,"clean")
-        xml.itunes(:keywords, "geek, geekspeek, radio, technology")
+        xml.itunes(:keywords, "geeks, facebook, netflix, google, technology, society, social, kusp")
         xml.itunes(:"new-feed-url","http://geekspeak.org/episodes/rss.xml")
         xml.itunes(:image, :href=> "http://geekspeak.org/images/GeekSpeak_Logo09022012.png")
         xml.image do
@@ -49,7 +57,6 @@ xml.rss "version" => "2.0",
                     end
                 end
                 xml.itunes(:subtitle, episode.on_air_participants.collect{|p| p.user.display_name}.to_sentence)
-                #xml.itunes(:summary, strip_tags(textilize(episode.abstract) ).strip   )
                 xml.itunes(:summary, to_text( :html => textilize(episode.abstract) ))
                 xml.itunes(:explicit, "No")
                 xml.itunes(:author, episode.hosts.collect{|p| p.user.display_name}.to_sentence)
