@@ -33,34 +33,48 @@
 
 <% content_for :sidebar do %>
 	<% if not user_signed_in? %>
-	<ul class="nav nav-list">
-	<li class="nav-header">Our Live Event</li>
-    <li><ul class="thumbnails">
-            <li class="span2">
-                <%= link_to image_tag("http://live.geekspeak.org/events/63/logo.png", :title => "Our Live Event", :class=>'thumbnail') , "http://live.GeekSpeak.org"  %><br />Join us!<br/>May 21st @ 10am<br />Cruzio Works, Santa Cruz<br /><a href="http://live.geekspeak.org">Get a Free Ticket</a>
-            </li>
-        </ul></li>
-	<li class="nav-header">Podcast</li>
-    <li><%= link_to "RSS File", "http://geekspeak.org/episodes/rss.xml"  %></li>
-    <li><%= link_to "GeekSpeak on iTunes", "https://itunes.apple.com/us/podcast/geekspeak/id74173088"  %></li>
-    <li><%= link_to "GeekSpeak on Overcast", "https://overcast.fm/itunes74173088/geekspeak" %></li>
 
-	<li class="nav-header">Advertisement</li>
-		<li>
-			<script type="text/javascript"><!--
+	<ul class="nav nav-list">
+    <li><img src="/assets/GeekSpeak_logo_200w.png"></li>
+
+	<!-- <li class="nav-header">Advertisement</li>
+		<li-->
+			<!--script type="text/javascript"--><!--
 			google_ad_client = "ca-pub-6121986314656343";
 			/* GeekSpeak Home Small */
 			google_ad_slot = "1666270328";
 			google_ad_width = 234;
 			google_ad_height = 60;
 			//-->
-			</script>
-			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-		</li>
+			<!--/script-->
+			<!--script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script-->
+		<!--/li> -->
 	</ul>
 	<% end %>
     <%= render :partial => 'audios',
 			:locals => {:episode => @episode} if @episode.episode_audios.length > 0 || user_signed_in? %>
+	<% if not user_signed_in? %>
+	
+	<ul class="nav nav-list">
+	<li class="nav-header">Podcast</li>
+    <li><%= link_to "RSS File", "http://geekspeak.org/episodes/rss.xml"  %></li>
+    <li><%= link_to "GeekSpeak on iTunes", "https://itunes.apple.com/us/podcast/geekspeak/id74173088"  %></li>
+    <li><%= link_to "GeekSpeak on Overcast", "https://overcast.fm/itunes74173088/geekspeak" %></li>
+
+	<!-- <li class="nav-header">Advertisement</li>
+		<li-->
+			<!--script type="text/javascript"--><!--
+			google_ad_client = "ca-pub-6121986314656343";
+			/* GeekSpeak Home Small */
+			google_ad_slot = "1666270328";
+			google_ad_width = 234;
+			google_ad_height = 60;
+			//-->
+			<!--/script-->
+			<!--script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script-->
+		<!--/li> -->
+	</ul>
+	<% end %>
 	<ul class="nav nav-list">
 	<% if user_signed_in? %>
 		<li class="nav-header"><%= link_to "#{content_tag("i","",:class=>"icon-plus")}Bits to Add".html_safe, new_bit_path %></li>
