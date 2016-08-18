@@ -87,6 +87,20 @@ class Episode < ActiveRecord::Base
   def normalize_friendly_id(text)
     text
   end
+
+  def rss_description
+    output = textilize(abstract) + "<ul>"
+    bit_episodes.each do |episode_bit|
+      output += "<li>"
+      if episode_bit.bit.url
+        output = output + "<a href=\"#{episode_bit.bit.url}\">#{episode_bit.bit.title}</a>"
+      else
+        output = output + episode_bit.bit.title
+      end
+      output += "</li>"
+    end
+    return output + "</ul>"
+  end
   
   
 end
