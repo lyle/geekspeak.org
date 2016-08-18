@@ -92,10 +92,10 @@ class Episode < ActiveRecord::Base
     output = textilize(abstract) + "<ul>"
     bit_episodes.each do |episode_bit|
       output += "<li>"
-      if episode_bit.bit.url
-        output = output + "<a href=\"#{episode_bit.bit.url}\">#{episode_bit.bit.title}</a>"
-      else
+      if episode_bit.bit.url.blank?
         output = output + episode_bit.bit.title + textilize(episode_bit.bit.body)
+      else
+        output = output + "<a href=\"#{episode_bit.bit.url}\">#{episode_bit.bit.title}</a>"
       end
       output += "</li>"
     end
