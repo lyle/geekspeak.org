@@ -95,7 +95,7 @@ class Episode < ActiveRecord::Base
       if episode_bit.bit.url
         output = output + "<a href=\"#{episode_bit.bit.url}\">#{episode_bit.bit.title}</a>"
       else
-        output = output + episode_bit.bit.title
+        output = output + episode_bit.bit.title + textilize(episode_bit.bit.body)
       end
       output += "</li>"
     end
