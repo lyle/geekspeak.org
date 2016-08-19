@@ -10,6 +10,12 @@ module LayoutHelper
   def subtitle(the_subtitle)
     content_for(:subtitle) { h(the_subtitle.to_s) }
   end
+  def description(the_description)
+    content_for(:description) { h(the_description.to_s) }
+  end
+  def image_url(the_image_url)
+    content_for(:image_url) { h(the_image_url.to_s) }
+  end
   def show_title?
     @show_title
   end
