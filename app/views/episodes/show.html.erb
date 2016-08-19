@@ -1,13 +1,13 @@
 <% title "#{@episode.title}" %>
 <% subtitle "GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
-<% description "#{to_text(:html => textilize(@episode.abstract))} - GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
+<% description "#{to_text(:html => textilize(@episode.abstract))} - GeekSpeak Podcast for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
 
 <% if @episode.teaser? %>
 <% image_url "#{request.base_url}#{@episode.teaser.url(:original)}" %>
 <% end %>
 
 <h1><%= best_in_place_if user_signed_in?, @episode, :title, :data => {:lock_version => @episode.lock_version}%></h1>
-<%= content_tag(:h3, ("GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}"), :class=>"subtitle") %>
+<%= content_tag(:h3, ("GeekSpeak Podcast for #{@episode.airdate.strftime("%Y-%m-%d")}"), :class=>"subtitle") %>
 
 <%  if user_signed_in?  %>
 	<div class="span5 offset3"> 
