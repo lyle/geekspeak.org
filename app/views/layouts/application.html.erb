@@ -7,7 +7,7 @@
     <meta name="description" itemprop="description"
     content="<%= content_for?(:description) ? h(yield :description) : "A podcast created in Silicon Valley about how technology affects society and culture from the Geek perspective" %>" />
   
-    <meta property="og:title" content="<%= content_for?(:title) ? h( yield :title) : "GeekSpeak" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %>" />
+    <meta property="og:title" content="<%= content_for?(:title) ? h( yield :title) : "GeekSpeak Podcast" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %>" />
     <meta property="og:url" content="<%= request.original_url %>" />
     <meta property="og:image" content="<%= content_for?(:image_url) ? h(yield :image_url) : "https://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png" %>" />
     <meta property="og:site_name" content="GeekSpeak" />
@@ -18,7 +18,7 @@
     <meta name="twitter:site" content="@kuspgeeks" />
     <meta name="twitter:creator" content="@lyle" />
     <meta name="twitter:domain" content="geekspeak.org" />
-    <meta name="twitter:title" content="<%= content_for?(:title) ? h( yield :title) : "GeekSpeak" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %>" />
+    <meta name="twitter:title" content="<%= content_for?(:title) ? h( yield :title) : "GeekSpeak Podcast" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %>" />
     <meta name="twitter:description" content="<%= content_for?(:description) ? h(yield :description) : "A podcast created in Silicon Valley about how technology affects society and culture from the Geek perspective" %>" />
     <meta name="twitter:image" content="<%= content_for?(:image_url) ? h(yield :image_url) : "https://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png" %>"/>
 
