@@ -7,4 +7,7 @@ class FeedsController < ApplicationController
     def episodes
         @episodes = Episode.joins(:episode_audios).where(:status => 'live').where(['publication_time < ? OR publication_time IS NULL', DateTime.now]).order('airdate DESC').limit(60)
     end
+    def sitemap
+        @episodes = Episode.where(:status => 'live').where(['publication_time < ? OR publication_time IS NULL', DateTime.now]).order('airdate DESC')
+    end
 end

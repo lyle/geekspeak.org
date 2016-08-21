@@ -4,6 +4,8 @@ BetaGeekspeakOrg::Application.routes.draw do
 
   match "episodes/rss.xml" => "feeds#episodes",
             :defaults => { :format => 'xml' }
+  match "sitemap" => "feeds#sitemap",
+            :defaults => { :format => 'xml' }
 
   resources :geeks, :as => :users,
             :controller => :users,
