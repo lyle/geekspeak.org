@@ -1,36 +1,135 @@
 @import "foundation_and_overrides";
-/* Add imports of custom sass/scss files here */
+@import 'util/mixins';
+@import "header";
+@import "footer";
+@import "episode";
+@import "plyr";
 
+.plyr {
+  border-radius: 4px;
+  width:100%;
+}
 
-@import "episode_blocks";
-/*@import "slabtext";*/
+.season-episode {
+    opacity: 0.5;
+    font-size: 10px;
+    padding: 0px 4px;
+}
 
-body {
-    background-color: #EFEFEF;
+.episode-block {
+    margin-top:30px;
+    a.filler-image {
+        opacity: .5;
+    }
+    a:hover.filler-image {
+        opacity: 1;
+    }
+    &:hover{
+        background-color:#EEE;
+    }
+    cursor: pointer;
+    &.active {
+        transform: perspective(500px) translateZ(-2px);
+    }
 }
-.container {
-    margin:0 rem-calc(10)
-}
-#content {
-    margin-top:rem-calc(10)
-}
-.slabtexted .slabtext
-        {
-        display:-moz-inline-box;
-        display:inline-block;
-        white-space:nowrap;
+.menu.vertical {
+    .header {
+        font-weight: bold;
+    }
+    .child {
+        &>a::after {
+            content: " / ....";
         }
-.slabtextinactive .slabtext
-        {
-        display:inline;
-        white-space:normal;
-        font-size:1em !important;
-        letter-spacing:inherit !important;
-        word-spacing:inherit !important;
-        *letter-spacing:0 !important;
-        *word-spacing:0 !important;
-        }
-.slabtextdone .slabtext
-        {
+    }
+}
+.menu.vertical.participants {
+    a {
+        display: inline;
+        padding: 0;
+    }
+    .role {
+        font-size: 10px;
+        opacity: .5;
+    }
+}
+
+@media screen and (min-width: 40em){
+    h1{
+        font-size: 2rem;
+    }
+}
+button.sort-bits {
+    display: none;
+}
+body.admin {
+    button.sort-bits {
         display:block;
+        float: right;
+    }
+    .minimize {
+        .bitsort {
+            display: block;
+            width:1em;
+            @include hamburger($dark-gray, $light-gray, 1em, 20px, 2px, 3);
         }
+        .tools {
+            display:inline;
+             .bit-edit {
+                display:none;
+            }
+        }
+        .bit-body {
+            display:none;
+        }
+    }
+}
+.menu > li > a.edit {
+    display: inline;
+    padding:0;
+}
+#bits_from_search_wrapper {
+    border: 1px dashed #999;
+    border-left: 0;
+    #bits_from_search {
+        .bit {
+            border-bottom: 1px dashed #999;
+            .created_at {
+                font-size: 9px;
+                float:right;
+            }
+            .tools {
+                margin-left: -10px;
+                margin-right: 4px;
+            }
+            .title {
+                margin:0 .5em;
+            }
+        }
+        .bit:last-child {
+            border-bottom:none;
+        }
+    }
+
+}
+
+
+textarea {
+    height: 10em;
+}
+#gutter {
+    .sticky {
+        padding-bottom:30px;
+    }
+    pre {
+        font-size: 10px;
+        white-space: pre-wrap;
+    }
+}
+
+.airdate select,
+.publishdate select,
+select#episode_status,
+select#bit_user_id,
+#new_participant select {
+    width: initial;
+}

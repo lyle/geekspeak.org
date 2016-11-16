@@ -6,49 +6,101 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/sortable
+//= require jquery-ui/effect-highlight
 //= require foundation
-//= require jquery-ui
-//= require jquery.purr
 //= require best_in_place
-//= require jquery.pjax
-//= require jquery.slabtext.min.js
+//= require best_in_place.jquery-ui
 
-//// require_tree .
+//= require_tree .
+
+      $(document).foundation();
+$(function(){
+
+    $(".episode-block").on('mousedown',function(e){
+        var didNotMove = true;
+        $(this).addClass("active");
+        $(".episode-block").on('mouseup mousemove', function(e){
+            $(this).removeClass("active");
+            if (e.type === 'mouseup' && didNotMove){
+                if(e.target.nodeName == "A"){
+                    return;
+                }
+                window.location = this.dataset.url;
+            }else{
+                didNotMove = false;
+            }
+        })
+    });
+
+  var instances = plyr.setup({
+    // Output to console
+    debug: true
+  });
+ //instances.forEach(function(instance) {
+    // // Play
+    // on('.js-play', 'click', function() { 
+    //   instance.play();
+    // });
+    
+    // // Pause
+    // on('.js-pause', 'click', function() { 
+    //   instance.pause();
+    // });
+    
+    // // Stop
+    // on('.js-stop', 'click', function() { 
+    //   instance.stop();
+    // });
+    
+    // // Rewind
+    // on('.js-rewind', 'click', function() { 
+    //   instance.rewind();
+    // });
+    
+    // // Forward
+    // on('.js-forward', 'click', function() { 
+    //   instance.forward();
+    // });
+//  });
 
 
-$(function() {
-	$("#bits_search input").keyup(function() {
-		$("#bits_from_search").fadeOut();
-		$.get($("#bits_search").attr("action"), $("#bits_search").serialize(), null, "script");
-		return false;
-	});
 
 
-$('div.btn-group').each(function(){
-    var group   = $(this);
-    var form    = group.parents('form').eq(0);
-    var name    = group.attr('data-toggle-name');
-    var hidden  = $('input[name="' + name + '"]', form);
-    $('button', group).each(function(){
-      var button = $(this);
-      button.on('click', function(){
-        $(this).parent().children().removeClass('active');
-        hidden.val($(this).val());
-        hidden.trigger('change');
-        $(this).addClass('active')
-      });
-      if(button.val() == hidden.val()) {
-        button.addClass('active');
+  jQuery(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       }
     });
+
+    var toggleSort = $('<button type="button" class=" button sort-bits"><i class="icon-resize-vertical"></i> Sort Bits</button>').on('click',
+      function(event) {
+        $(this).toggleClass('active')
+        $("#bits_episode").toggleClass('minimize')
+        $("#episode_head").toggle()
+        $("#sticky-gutter").foundation('_calc', true, 50);
+      });
+
+    $('#bits_episode').sortable({
+      axis: 'y',
+      handle: '.bitsort',
+      update: function() {
+        return $.post($(this).data('update-url'), $(this).sortable('serialize'),
+                    function(){
+                      $('#bits_episode').effect('highlight', {color:'green'});
+                    })
+      }
+    }).before(toggleSort);
+
+    $('.best_in_place').best_in_place();
+    $('.best_in_place').bind("ajax:success",function() {
+        return $(this).parent().effect('highlight', {color:'green'});
+    });
+
   });
-});
-$(function(){ $(document).foundation();
 
- // $("h4").slabText({
- //            // Don't slabtext the headers if the viewport is under 380px
- //            "viewportBreakpoint":380,
- //            "maxFontSize":64
- //        });
 
+
+  
 });

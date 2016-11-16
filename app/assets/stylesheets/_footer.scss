@@ -1,0 +1,7 @@
+footer {
+    margin-top:10ex;
+    background-color:#476489;
+    background-color:$topbar-background;
+    color: scale-color($topbar-background, $lightness: 50%);
+    padding: .5ex 1em;
+}

@@ -1,132 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title><%= content_for?(:title) ? h( yield :title) : "GeekSpeak, KUSP" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %></title>
-    <meta name="google-site-verification" content="dH19q4ltuA_ozVtVLgGb4HQ_TZnu4c-ym78NFAb3XSs" />
-    <%= csrf_meta_tags %>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= content_for?(:title) ? h( yield :title) : "GeekSpeak" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %></title>
+  <%= stylesheet_link_tag    :application %>
+  <link rel="stylesheet" href="/assets/foundation-icons/foundation-icons.css" />
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%=h "admin" if user_signed_in? %>">
+<header>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--%= user_signed_in? ? stylesheet_link_tag("admin", :media => "all") : "" %-->
-
-    <%= stylesheet_link_tag    "application" %>
-
-
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application" 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-    <!-- Le fav and touch icons -->
-    <link href="/favicon.ico" rel="shortcut icon">
-  </head>
-  <body class="<%= params[:controller] %>">
-<div class="sticky">
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="/">GeekSpeak</a></h1>
-    </li>
-    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-  </ul>
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <li><%= link_to "Support GS", "/support"  %></li>
-
-              <% if user_signed_in? %>
-                <li class="has-dropdown"><a href="#">Admin</a>
-                    <ul class="dropdown">
-                        <li>
-                            <%= link_to("New Bit", new_bit_path())%>
-                        </li>
-                        <li>
-                            <%= link_to("New Episode", new_episode_path())%>
-                        </li>
-                        <li>
-                            <%= link_to("Pending Episodes", episodes_pending_url) %>
-                        </li>
-                        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-                    </ul>
-                </li>
-              <% else %>
-                  <li class="login">
-                  <%= link_to(content_tag(:i, 'login' ,:class=>'icon-user'), new_user_session_path)  %>  
-                  </li>
-              <% end %>
+  <%= render 'layouts/top_navigation' %>
+  <nav aria-label="You are here:" role="navigation">
+    <ul class="breadcrumbs">
+      <%= render_breadcrumbs :tag => :li, :separator => "" %>
     </ul>
+  </nav>
 
-    <!-- Left Nav Section -->
-    <ul class="left">
-      <li><%= link_to "Episodes", "/episodes"  %></li>
-      <li><%= link_to "Contact Us", "/contact" %></li>
-      <li class="has-dropdown"><a id="blogDrop" href="#" >Blog</a>
-                    <ul class="dropdown">
-                        <li>
-                            <a href="http://blog.geekspeak.org/">GeekSpeak Blog</a>
-                        </li>
-                        <li>
-                            <a href="http://tumblr.com/follow/geekspeak-kusp">Follow</a>
-                        </li>
-                        <li>
-                            <a href="http://blog.geekspeak.org/archive">Archive</a>
-                        </li>
-                        <li>
-                            <a href="http://blog.geekspeak.org/ask">Ask questions...</a>
-                        </li>
-                    </ul>
-                </li>
-    </ul>
-  </section>
-</nav>
+  <% flash.each do |name, msg| %>
+      <div class='callout  <%= name == "notice" ? "success" : "warning" %>'>
+          <!-- <a class="close" data-dismiss="alert">×</a> -->
+          <%= msg %>
+      </div>
+  <% end %>
+</header>
+
+<div class="row">
+<% if content_for?(:sidebar) %>
+  <main class="small-12 medium-9 columns" id="themaincontentblock" role="main">
+    <%= yield %>
+  </main>
+  <% if user_signed_in? %>
+    <div class="small-12 medium-3 columns" data-sticky-container  id="gutter">
+     <div id="sticky-gutter" class="sticky" data-sticky data-top-anchor="themaincontentblock" data-margin-top="0">
+      <%=yield(:sidebar)%>
+      </div>
+    </div>
+  <%else%>
+    <div class="small-12 medium-3 columns" id="gutter">
+      <%=yield(:sidebar)%>
+    </div>
+  <%end%>
+<% else %>
+  <main class="small-12 small-centered columns" role="main">
+    <%= yield %>
+  </main>
+<% end %>
 </div>
 
-    <div class="container">
-        <%= render_breadcrumbs %>
-        <% flash.each do |name, msg| %>
-            <div class='alert alert-<%= name == :notice ? "success" : "error" %>'>
-                <a class="close" data-dismiss="alert">×</a>
-                <%= msg %>
-            </div>
-        <% end %>
-        <div id="content">
-          <div id="main">
-            <%= yield %>
-          </div>
-          <div id="sidebar" class="well sidebar-nav">
-              <%= content_for?(:sidebar) ? yield(:sidebar) : render("shared/sidebar") %>
-          </div>
-          </div>
-      </div><!--/content-->
-<br style="clear:both">
-      <footer>
-        <p>&copy; GeekSpeak 1998-<%= Time.now.year %>
-        <span class="pull-right"><i>GeekSpeak</i> is a registered service mark of David Lawrence and is used with permission.
 
+<footer>
+    <div class="float-right">
+      <i>GeekSpeak</i> is a registered service mark of David Lawrence and is used with permission.
+    </div>
 
-</span>
-</p>
-      </footer>
+       
+    <div>
+          <%= link_to(content_tag(:i, ' login' ,:class=>'fi-unlock'), new_user_session_path) if !user_signed_in? %> 
+      &copy; GeekSpeak 1998-<%= Time.now.year %>
+    </div>
 
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
-    <!--script type="text/javascript" src="/jplayer/jquery.jplayer.min.js"></script-->
-    
-
-    <!--%= user_signed_in? ? javascript_include_tag("admin") : "" %-->
-  </body>
+</footer>
+<%= javascript_include_tag "application" %>
+</body>
 </html>

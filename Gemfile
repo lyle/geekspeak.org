@@ -16,7 +16,7 @@ gem 'pg'
   gem 'sass-rails'
   gem 'uglifier'
   gem 'foundation-rails'
-
+#  gem 'modernizr-rails'
 # gem 'jquery-rails'
 # gem 'jquery-ui-rails'
 gem "paperclip", "~> 3.5.1"
@@ -94,5 +94,5 @@ gem 'devise'
 #perhaps change remove this and move to Strong Paramaters
 gem 'protected_attributes'
 
-gem 'rails4_upgrade'
+#gem 'rails4_upgrade'
 

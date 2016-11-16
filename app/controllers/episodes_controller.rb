@@ -18,7 +18,7 @@ class EpisodesController < ApplicationController
   def year_archive
     @episodes = Episode.in_year(Date.new(params[:year].to_i))
     #.where(:status => 'live') 
-    
+    add_breadcrumb params[:year], "#{episodes_path}#{params[:year]}/"
     render :template => 'episodes/index'
   end
   def month_archive
@@ -37,7 +37,7 @@ class EpisodesController < ApplicationController
     add_breadcrumb @episode.air_day, "#{episodes_path}#{@episode.air_year}/#{@episode.air_month}/#{@episode.air_day}/"
     
     if user_signed_in?
-        @bits = Bit.freshness("fresh").order("updated_at DESC").page(params[:page]).per(50)
+        @bits = Bit.freshness("fresh").order("bits.updated_at DESC").where("bits.updated_at > ?",7.days.ago).limit(20)
     end
     
     respond_with(@episode)
