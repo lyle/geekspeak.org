@@ -77,9 +77,14 @@ $(function(){
     var toggleSort = $('<button type="button" class=" button sort-bits"><i class="icon-resize-vertical"></i> Sort Bits</button>').on('click',
       function(event) {
         $(this).toggleClass('active')
-        $("#bits_episode").toggleClass('minimize')
         $("#episode_head").toggle()
-        $("#sticky-gutter").foundation('_calc', true, 50);
+        $("#bits_episode").toggleClass('minimize').promise().done(function(){
+          $('html, body').animate({
+              scrollTop: $("#bits_episode").offset().top -10
+          }, 500).promise().done(function(){
+            $("#sticky-gutter").foundation('_calc', true, 50);
+          })
+        })
       });
 
     $('#bits_episode').sortable({

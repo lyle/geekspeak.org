@@ -11,7 +11,7 @@ end
 	<%= render :partial => "episodes/episode", :object => episode %>
 <% end %>
 </div>
-<%= URI.parser.unescape(url_for("/episodes/2014/")).force_encoding(Encoding::BINARY) %>
+
 <% content_for :sidebar do %>
 	<ul class="menu vertical">
 	  <li class="nav-header">Episode Archive</li>
