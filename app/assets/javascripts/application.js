@@ -14,25 +14,27 @@
 
 //= require_tree .
 
-      $(document).foundation();
+$(document).foundation();
 $(function(){
 
-    $(".episode-block").on('mousedown',function(e){
-        var didNotMove = true;
-        $(this).addClass("active");
-        $(".episode-block").on('mouseup mousemove', function(e){
-            $(this).removeClass("active");
-            if (e.type === 'mouseup' && didNotMove){
-                if(e.target.nodeName == "A"){
-                    return;
-                }
-                window.location = this.dataset.url;
-            }else{
-                didNotMove = false;
-            }
-        })
-    });
+  //The EPISODE BLOCK highlight and Navigation to Episode
+  $(".episode-block").on('mousedown',function(e){
+    var didNotMove = true;
+    $(this).addClass("active");
+    $(".episode-block").on('mouseup mousemove', function(e){
+      $(this).removeClass("active");
+      if (e.type === 'mouseup' && didNotMove){
+        if(e.target.nodeName == "A"){
+          return;
+        }
+        window.location = this.dataset.url;
+      }else{
+        didNotMove = false;
+      }
+    })
+  });
 
+  // The Player
   var instances = plyr.setup({
     // Output to console
     debug: true
@@ -64,17 +66,18 @@ $(function(){
     // });
 //  });
 
-
-
-
   jQuery(function() {
     $.ajaxSetup({
       headers: {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       }
     });
-
-    var toggleSort = $('<button type="button" class=" button sort-bits"><i class="icon-resize-vertical"></i> Sort Bits</button>').on('click',
+    // var refreshBits = $('#refresh-bits').on('click',
+    //   function(event){
+    //     $(this).toggleClass('loading')
+    //   });
+    var toggleSort = $('<button type="button" class=" button sort-bits"><i class="icon-resize-vertical"></i> Sort Bits</button>').
+    on('click',
       function(event) {
         $(this).toggleClass('active')
         $("#episode_head").toggle()

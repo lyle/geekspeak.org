@@ -4,9 +4,9 @@
       - if (defined? episode )
         = link_to content_tag(:i, '' ,:class=>'fi-arrow-left'),
           url_for(:controller=>'bits_episode',:action=>'create',:bit_id=>bit.id, :episode_id=>episode.id), :method => :post, :class=>'edit'
-      = link_to content_tag(:i, '' ,:class=>'fi-pencil'), edit_bit_path(bit, {:return_url=>request.url}), :class=>'edit'
       =content_tag(:span, bit.user.initial,:class=>'author')
-      =content_tag(:span, "created #{time_ago_in_words(bit.created_at)} ago",:class=>'created_at')
+      = link_to content_tag(:i, '' ,:class=>'fi-pencil'), edit_bit_path(bit, {:return_url=>request.url}), :class=>'edit'
+      =content_tag(:span, "updated #{time_ago_in_words(bit.updated_at)} ago",:class=>'small-note float-right')
     %div.title
       = bit.title
       - if (not bit.url.blank?)

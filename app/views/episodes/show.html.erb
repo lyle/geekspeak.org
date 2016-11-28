@@ -54,7 +54,7 @@
 			:locals => {:episode => @episode} if @episode.episode_audios.length > 0 || user_signed_in? %>
 	<% if user_signed_in? %>
 		<ul class="menu vertical">
-		<li class="header"><%= link_to "#{content_tag("i","",:class=>"fi-plus")}".html_safe, new_bit_path, :class=>"edit" %> Geek Bits</li></ul>
+		<li class="header"><%= link_to "#{content_tag("i","",:class=>"fi-plus")}".html_safe, new_bit_path, :class=>"edit" %> Geek Bits <!--i id="refresh-bits" class="fi-plus"--></i><span class="small-note">(recent &amp; unsused)</span></li></ul>
 		<%=  render( :partial => 'bits/bits_episode_search_form', :locals => {:bits => @bits, :episode => @episode}) %>
 	<% end %>
 	<%= render :partial => 'participants',

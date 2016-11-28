@@ -66,15 +66,28 @@ body.admin {
         display:block;
         float: right;
     }
+    .tools {
+        .bit-edit {
+            margin: 0 30px;
+        }
+        .bit-delete:hover {
+            color: map-get($foundation-palette, alert);
+        }
+    }
     .minimize {
+        .bit h4 {
+            text-indent: -1.2em;
+            margin-left: 1em;
+        }
         .bitsort {
             display: block;
             width:1em;
             @include hamburger($dark-gray, $light-gray, 1em, 20px, 2px, 3);
+            margin-bottom: 4px;
         }
         .tools {
             display:inline;
-             .bit-edit {
+             .bit-edit, .bit-delete {
                 display:none;
             }
         }
@@ -93,10 +106,6 @@ body.admin {
     #bits_from_search {
         .bit {
             border-bottom: 1px dashed #999;
-            .created_at {
-                font-size: 9px;
-                float:right;
-            }
             .tools {
                 margin-left: -10px;
                 margin-right: 4px;
@@ -110,6 +119,9 @@ body.admin {
         }
     }
 
+}
+.small-note {
+    font-size: 9px;
 }
 
 
