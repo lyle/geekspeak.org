@@ -20,6 +20,12 @@ require 'capistrano/deploy'
 require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rbenv'
+require 'capistrano/rbenv_install'
+
+#Ran on machine: sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+#Ran on machine: sudo apt-get install nodejs
+
+
 require 'capistrano/puma'
 # require 'capistrano/rails/assets'
 # require 'capistrano/rails/migrations'

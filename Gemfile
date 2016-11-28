@@ -32,6 +32,7 @@ gem 'puma'
 group :development do
   gem 'capistrano', '~> 3.0', require: false, group: :development
   gem 'capistrano-rbenv', '~> 2.0', require: false
+  gem 'capistrano-rbenv-install', '~> 1.2.0'
   gem 'capistrano-rails',   '~> 1.1', require: false
   gem 'capistrano-bundler', '~> 1.1', require: false
   gem 'capistrano3-puma',   require: false

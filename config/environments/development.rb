@@ -30,7 +30,8 @@ BetaGeekspeakOrg::Application.configure do
   
   config.active_record.mass_assignment_sanitizer = :strict
   
-
+  config.eager_load = false
+  config.log_level = :debug
   
   Paperclip.options[:command_path] = "/usr/local/bin/"
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }

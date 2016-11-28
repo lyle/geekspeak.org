@@ -5,6 +5,7 @@ tmp/
 .sass-cache/
 *.DS_Store
 config/database.yml
+config/secrets.yml
 public/system/*
 older\ content/*
 .rvmrc
