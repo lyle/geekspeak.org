@@ -12,9 +12,6 @@ class Episode < ActiveRecord::Base
   scope :recent, -> {order("airdate desc")}
   
   has_many :participants
-  has_many :segments, -> {order("position")}
-  has_many :segment_bits, :through => :segments
-  #has_many :bits, :through => :segment_bits
   
   has_many :bit_episodes, -> {order("position")}, dependent: :destroy
   has_many :bits, -> {order("bit_episodes.position")}, :through => :bit_episodes
@@ -33,7 +30,6 @@ class Episode < ActiveRecord::Base
   accepts_nested_attributes_for :participants, :allow_destroy => true
   accepts_nested_attributes_for :bits  ,:allow_destroy => true
   
-  accepts_nested_attributes_for :segments  ,:allow_destroy => true
   
   validates :slug, uniqueness: true
 
