@@ -88,6 +88,17 @@ namespace :deploy do
     end
   end
 
+  task :link_upload_folders do
+  desc 'Create Symbolic links to upload folders'
+    on roles(:app) do
+      execute "mkdir -p #{release_path}/public/shows"
+      execute "ln -nfs #{shared_path}/shows/audio #{release_path}/public/shows/audio"
+      execute "ln -nfs #{shared_path}/episodes #{release_path}/public/episodes"
+    end
+  end
+
+  after "deploy","deploy:link_upload_folders"
+
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup

@@ -119,6 +119,9 @@ GEM
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    foundation-icons-sass-rails (3.0.0)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     foundation-rails (6.2.4.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
@@ -270,6 +273,7 @@ DEPENDENCIES
   capistrano-rbenv-install (~> 1.2.0)
   capistrano3-puma
   devise
+  foundation-icons-sass-rails
   foundation-rails
   friendly_id (~> 5.1.0)
   haml
