@@ -4,7 +4,7 @@
         <% if episode.teaser.exists? %>
             <%= link_to image_tag(episode.teaser.url(:medium)), "/episodes/#{episode.to_param}" %>
         <% else %>
-            <%= link_to image_tag("/assets/GeekSpeak_logo_200w.png"), "/episodes/#{episode.to_param}", class:"filler-image" %>
+            <%= link_to image_tag("GeekSpeak_logo_200w.png"), "/episodes/#{episode.to_param}", class:"filler-image" %>
         <% end %>
     </div>
     <h4><%= link_to "#{episode.title}", "/episodes/#{episode.to_param}" %></h4>

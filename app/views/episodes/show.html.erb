@@ -47,7 +47,7 @@
 <% content_for :sidebar do %>
 	<% if not user_signed_in? %>
 		<ul class="menu vertical">
-	    <li><img src="/assets/GeekSpeak_logo_200w.png"></li>
+	    <li><%=image_tag("GeekSpeak_logo_200w.png")%></li>
 		</ul>
 	<% end %>
     <%= render :partial => 'audios',
