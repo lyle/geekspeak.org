@@ -1,10 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require "sprockets/railtie"
+
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require *Rails.groups(:assets => %w(development test))
+ #maybe rails 3 Bundler.require *Rails.groups(:assets => %w(development test))
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
@@ -37,6 +39,7 @@ module BetaGeekspeakOrg
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
@@ -50,7 +53,7 @@ module BetaGeekspeakOrg
     config.assets.version = '1.0'
     
     config.action_controller.default_url_options = { :trailing_slash => true }
-    config.assets.precompile += %w[active_admin.css active_admin/print.css active_admin.js]
+    #config.assets.precompile += %w[active_admin.css active_admin/print.css active_admin.js]
     
   end
 end
