@@ -31,14 +31,9 @@ class Episode < ActiveRecord::Base
   accepts_nested_attributes_for :bits  ,:allow_destroy => true
   
   validates :slug, uniqueness: true
-  validate :validate_airdate
+  validates :airdate, uniqueness: true
 
-  def validate_airdate
-      episode = Episode.find_by_airdate(self.airdate)
-      if episode
-        errors.add(:airdate, 'That episode already exists.')
-      end
-  end
+
   belongs_to :owner,
              :class_name => "User",
              :foreign_key => "user_id"
