@@ -2,7 +2,7 @@ class Episode < ActiveRecord::Base
   extend FriendlyId
   friendly_id :showdate_as_url, :use => :slugged
   default_scope -> {order('airdate DESC')}
-  
+
   #scope :by_year, lambda {|year| where("date >= ? and date <= ?", "#{year}-01-01", "#{year}-12-31")}
   #scope :by_year, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_year..d.end_of_year } } }
   
@@ -30,9 +30,15 @@ class Episode < ActiveRecord::Base
   accepts_nested_attributes_for :participants, :allow_destroy => true
   accepts_nested_attributes_for :bits  ,:allow_destroy => true
   
-  
   validates :slug, uniqueness: true
+  validate :validate_airdate
 
+  def validate_airdate
+      episode = Episode.find_by_airdate(self.airdate)
+      if episode
+        errors.add(:airdate, 'That episode already exists.')
+      end
+  end
   belongs_to :owner,
              :class_name => "User",
              :foreign_key => "user_id"

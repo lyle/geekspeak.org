@@ -51,11 +51,7 @@ class EpisodesController < ApplicationController
 
   def create
 
-    @date = Date.parse("#{params[:episode]["airdate(3i)"]}-#{params[:episode]["airdate(2i)"]}-#{params[:episode]["airdate(1i)"]}")
-    if @episode = Episode.find(@date.strftime("%Y/%m/%d"))
-      flash[:error] = 'Problem creating episode, one alreay exists with that date!'
-      render "new"
-    else
+      #@date = Date.parse("#{params[:episode]["airdate(3i)"]}-#{params[:episode]["airdate(2i)"]}-#{params[:episode]["airdate(1i)"]}")
       @episode = Episode.new(params[:episode])
       @episode.owner = current_user
       respond_to do |format|
@@ -63,11 +59,11 @@ class EpisodesController < ApplicationController
           flash[:notice] = 'Successfully created episode.'
           format.html { redirect_to("/episodes/#{@episode.to_param}") }
         else
-          flash[:notice] = 'Problem creating episode'
+          flash[:error] = 'Problem creating episode'
           format.html { render action: "new" }
         end
       end
-    end
+    # end
     # if @episode.valid?
     #   @episode.save
 
