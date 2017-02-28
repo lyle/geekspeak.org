@@ -12,8 +12,7 @@ xml.rss "version" => "2.0",
             xml.itunes(:email, "lyle@geekspeak.org")
         end
         xml.link episodes_url
-        xml.atom(:link, :href=>"http://geekspeak.org/episodes/rss.xml", :rel=> "self", :type=>"application/rss+xml")
-           # atom:link href="http://dallas.example.com/rss.xml" rel="self" type="application/rss+xml" />
+        xml.atom(:link, :href=>"https://geekspeak.org/episodes/rss.xml", :rel=> "self", :type=>"application/rss+xml")
         xml.pubDate CGI.rfc1123_date(@episodes.first.updated_at)
         xml.description "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, explanations allowing everyone to understand. We bridge the gaps between Geeks and the rest of humanity."
         xml.itunes(:summary, "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, explanations allowing everyone to understand. We bridge the gaps between Geeks and the rest of humanity.")
@@ -31,10 +30,10 @@ xml.rss "version" => "2.0",
 
         xml.itunes(:explicit,"clean")
         xml.itunes(:keywords, "geeks, facebook, netflix, google, technology, society, social, kusp")
-        xml.itunes(:"new-feed-url","http://geekspeak.org/episodes/rss.xml")
-        xml.itunes(:image, :href=> "http://geekspeak.org/images/GeekSpeak_Logo09022012.png")
+        xml.itunes(:"new-feed-url","https://geekspeak.org/episodes/rss.xml")
+        xml.itunes(:image, :href=> "https://geekspeak.org/images/GeekSpeak_Logo09022012.png")
         xml.image do
-          xml.url "http://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
+          xml.url "https://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
           xml.title "GeekSpeak"
           xml.link episodes_url
         end
@@ -62,9 +61,9 @@ xml.rss "version" => "2.0",
                 xml.itunes(:author, episode.hosts.collect{|p| p.user.display_name}.to_sentence)
                 xml.itunes(:duration, episode.episode_audios.first.duration_in_hms)
                 
-                xml.itunes(:image, :href=> "http://geekspeak.org#{episode.teaser.url}") if episode.teaser.file?
+                xml.itunes(:image, :href=> "https://geekspeak.org#{episode.teaser.url}") if episode.teaser.file?
                 
-                xml.enclosure :url => "http://geekspeak.org#{episode.episode_audios.first.audio.url}",
+                xml.enclosure :url => "https://geekspeak.org#{episode.episode_audios.first.audio.url}",
                     :length => episode.episode_audios.first.audio_file_size,
                     :type=> episode.episode_audios.first.audio_content_type
             end
