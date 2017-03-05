@@ -9,7 +9,7 @@ class BitsController < ApplicationController
         end
         freshness = params[:purity] || "fresh"
         #@bits = Bit.includes(:user).search(params[:search]).freshness(freshness).order("updated_at DESC").page(params[:page]).per(50)
-        @bits = Bit.includes(:user, :episodes).search(params[:search]).freshness(freshness).order("updated_at DESC").page(params[:page]).per(50)
+        @bits = Bit.includes(:user, :episodes).search(params[:search]).freshness(freshness).order("updated_at DESC").page(params[:page]).per(20)
         
     end
 

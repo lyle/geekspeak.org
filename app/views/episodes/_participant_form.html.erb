@@ -3,6 +3,6 @@
   <%= f.select(:user_id, options_for_select(User.all.collect{|p| [ p.name, p.id ] })) %>
   <%= f.select(:role, options_for_select(Participant::ROLES.map {|p| [ p, p ] })) %>
   <%= f.hidden_field(:episode_id, :value => episode.id) %>
-  <%= submit_tag("Add a Participant") %>
+  <%= submit_tag("Add a Participant", :class=>"button")  %>
 
 <% end -%>

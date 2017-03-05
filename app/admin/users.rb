@@ -11,9 +11,14 @@ ActiveAdmin.register User do
       end
       column :current_sign_in_at
       column :sign_in_count
-      default_actions
+      column :view do |user|
+        link_to("View", user_path(user))
+      end
+      column :edit do |user|
+        link_to("Edit", edit_admin_user_path(user))
+      end
   end
-  
+
   member_action :toggle_active, :method => :get do
     user = User.find(params[:id])
     user.active = ! user.active
@@ -26,31 +31,31 @@ ActiveAdmin.register User do
     user.save
     redirect_to admin_users_path, :notice => user.admin ? "#{user.name} is now an admin!": "#{user.name} is no longer an admin."
   end
-  
+
   filter :active , :as => :check_boxes
   filter :email
   filter :login
   filter :display_name
   filter :admin
-  
-  
+
+
   controller do
 
   end
-  show do 
+  show do
     h1 user.login
     h2 user.display_name
     div do
-      "Email: " + user.email 
+      "Email: " + user.email
     end
-    
+
     if (user.active)
       div "Active"
     end
     if (user.admin)
         div "Admin"
     end
-    active_admin_comments  
+    active_admin_comments
   end
   form do |f|
     f.inputs "Details" do
@@ -59,11 +64,11 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      
+
       f.input :admin
       f.input :active
       f.input :bio, label: "Biography (textile support)"
     end
-    f.buttons
+    actions
   end
 end

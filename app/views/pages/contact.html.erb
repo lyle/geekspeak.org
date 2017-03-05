@@ -1,8 +1,11 @@
 <%- content_for :title do -%>
   Contact Us
 <%- end -%>
+<%  add_breadcrumb "home", "/" %>
+<%  add_breadcrumb content_for :title %>
 
-<div>
+<div class="row">
+<div class="large-7 large-offset-1 medium-8 columns">
 
 <h2>Our email is Geeks at our domain</h2>
 
@@ -12,4 +15,12 @@
 
 <p>We all get these messages and we read them. Please help by being descriptive in the Subject line. We may use your name if we read your letter on air, though we will be careful not to use your email on air.</p>
 
+</div>
+
+<ul class="menu vertical large-4 medium-4 small-12 columns">
+    <li class="nav-header">GeekSpeak on Social Networks</li>
+    <li><%= link_to "Facebook/GeekSpeakPodcast", "https://www.facebook.com/GeekSpeakPodcast" %></li>
+    <li><%= link_to "Twitter @GeekSpeakTweets", "https://twitter.com/GeekSpeakTweets" %></li>
+    <li><%= link_to "Google+", "https://plus.google.com/100187745492111115933", :rel => "publisher" %></li>
+</ul>
 </div>

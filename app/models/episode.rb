@@ -1,34 +1,38 @@
 class Episode < ActiveRecord::Base
   extend FriendlyId
   friendly_id :showdate_as_url, :use => :slugged
-  default_scope :order => 'airdate DESC'
-  
+  default_scope -> {order('airdate DESC')}
+
   #scope :by_year, lambda {|year| where("date >= ? and date <= ?", "#{year}-01-01", "#{year}-12-31")}
-  scope :by_year, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_year..d.end_of_year } } }
-  scope :by_month, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_month..d.end_of_month } } }
-  scope :recent, order("airdate desc")
+  #scope :by_year, lambda { |d| { :conditions  => { :airdate  => d.beginning_of_year..d.end_of_year } } }
+  
+  scope :in_year, ->  (year){ where(airdate: (year).beginning_of_year..(year).end_of_year)}
+
+  scope :in_month, -> (month){ where(airdate: (month).beginning_of_month..(month).end_of_month)}
+  scope :recent, -> {order("airdate desc")}
   
   has_many :participants
-  has_many :segments, :order => "position"
-  has_many :segment_bits, :through => :segments
-  #has_many :bits, :through => :segment_bits
   
-  has_many :bit_episodes, :order => "position", dependent: :destroy
-  has_many :bits, :through => :bit_episodes, :order => "bit_episodes.position" 
+  has_many :bit_episodes, -> {order("position")}, dependent: :destroy
+  has_many :bits, -> {order("bit_episodes.position")}, :through => :bit_episodes
   
   has_many :episode_audios
   has_many :episode_images
   
-  has_many :hosts, :class_name => "Participant", :conditions => {:role => "host"}
-  has_many :on_air_participants, :class_name => "Participant", :conditions => { :role => ["host", "cohost", "guest"]}
-  
+  has_many :hosts, -> { where(participants: {role: 'host'})}, :class_name => "Participant"
+  has_many :friends, -> { where(friendship: {status: 'accepted'}).order('first_name DESC') }, :through => :friendships
+
+ 
+
+  has_many :on_air_participants, -> { where(participants: {role: ["host", "cohost", "guest"]})}, :class_name => "Participant"
+
   has_many :users,  :through => :participants
   accepts_nested_attributes_for :participants, :allow_destroy => true
   accepts_nested_attributes_for :bits  ,:allow_destroy => true
   
-  accepts_nested_attributes_for :segments  ,:allow_destroy => true
-  
   validates :slug, uniqueness: true
+  validates :airdate, uniqueness: true
+
 
   belongs_to :owner,
              :class_name => "User",
@@ -39,7 +43,43 @@ class Episode < ActiveRecord::Base
                     :url => "/episodes/:showdate_as_url/teaser-:style.:extension"
 
   attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :lock_version, :participants_attributes, :bits_attributes, :publication_time, :guid_override
-  
+
+  def season_name
+    "Season #{season_number}"
+  end
+  def episode_name
+    if season_number < 1
+      "beta #{episode_number}"
+    else
+      "Episode #{episode_number}"
+    end
+  end
+  def season_number
+    if air_year.to_i < 2000
+      -(2000 - air_year.to_i)
+    else
+      air_year.to_i - 2000
+    end
+  end
+  def episode_number
+    #we need to do this better for multiple episodes per week
+    #we will add fields in the datebase for Episode 
+    if airdate.beginning_of_year.cwday == airdate.cwday
+      #This year started on a Saturday so the cweek will be off on the count
+      #cweek starts on monday - so let's make the weekCounterDay Monday
+      weekCounterDay = airdate+2
+    else
+      #the year didn't start on a Saturday, so the first Saturday will happen
+      #after the first week (a monday) has started - so cweek is good for us
+      weekCounterDay = airdate
+    end
+    #and we are geeks so we like starting counts with 0
+    (weekCounterDay.cweek) -1 
+  end
+
+  def should_generate_new_friendly_id?
+       slug.blank? || airdate_changed?
+  end
   def update_with_conflict_validation(*args)
     update_attributes(*args)
   rescue ActiveRecord::StaleObjectError
@@ -103,4 +143,10 @@ class Episode < ActiveRecord::Base
   end
   
   
+end
+class Date
+  def saturday_number
+    date = self -6
+    date.cweek
+  end
 end

@@ -1,0 +1,51 @@
+.breadcrumbs {
+    @include grid-column-row(30px);
+}
+.no-js .top-bar {
+  display: none;
+}
+
+@media screen and (max-width: 40em) {
+  .menu > li.title-image {
+    display: none;
+  }
+}
+@media screen and (min-width: 40em) {
+  .no-js .top-bar {
+    display: block;
+  }
+
+  .no-js .title-bar {
+    display: none;
+  }
+}
+
+.menu > li.title-image > a {
+    padding:7px;
+}
+
+.top-bar {
+    a {
+        border-radius: 10px;
+    }
+    a:hover {
+        background-color: scale-color($topbar-background, $lightness: 10%);
+    }
+    li.title-image a {
+        background-color: transparent;
+        border-radius: 0px;
+    }
+    li ul li a:hover {
+        border-radius: 0px;
+    }
+    .header {
+        margin-left:6px;
+        color:white;
+    }
+    .collapse {
+        display: none;
+    }
+    .child {
+        text-decoration: underline;
+    }
+}

@@ -6,50 +6,109 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
-//= require jquery.purr
+//= require jquery-ui/sortable
+//= require jquery-ui/effect-highlight
+//= require foundation
 //= require best_in_place
-//= require jquery.pjax
-//= require twitter/bootstrap/bootstrap-transition
-//= require twitter/bootstrap/bootstrap-alert
-//= require twitter/bootstrap/bootstrap-modal
-//= require twitter/bootstrap/bootstrap-dropdown
-//= require twitter/bootstrap/bootstrap-scrollspy
-//= require twitter/bootstrap/bootstrap-tab
-//= require twitter/bootstrap/bootstrap-tooltip
-//= require twitter/bootstrap/bootstrap-popover
-//= require twitter/bootstrap/bootstrap-button
-//= require twitter/bootstrap/bootstrap-collapse
-//= require twitter/bootstrap/bootstrap-carousel
-//= require twitter/bootstrap/bootstrap-typeahead
-//= require bootstrap
-//// require_tree .
+//= require best_in_place.jquery-ui
 
+//= require_tree .
 
-$(function() {
-	$("#bits_search input").keyup(function() {
-		$("#bits_from_search").fadeOut();
-		$.get($("#bits_search").attr("action"), $("#bits_search").serialize(), null, "script");
-		return false;
-	});
+$(document).foundation();
+$(function(){
 
+  //The EPISODE BLOCK highlight and Navigation to Episode
+  $(".episode-block").on('mousedown',function(e){
+    var didNotMove = true;
+    $(this).addClass("active");
+    $(".episode-block").on('mouseup mousemove', function(e){
+      $(this).removeClass("active");
+      if (e.type === 'mouseup' && didNotMove){
+        if(e.target.nodeName == "A"){
+          return;
+        }
+        window.location = this.dataset.url;
+      }else{
+        didNotMove = false;
+      }
+    })
+  });
 
-$('div.btn-group').each(function(){
-    var group   = $(this);
-    var form    = group.parents('form').eq(0);
-    var name    = group.attr('data-toggle-name');
-    var hidden  = $('input[name="' + name + '"]', form);
-    $('button', group).each(function(){
-      var button = $(this);
-      button.on('click', function(){
-        $(this).parent().children().removeClass('active');
-        hidden.val($(this).val());
-        hidden.trigger('change');
-        $(this).addClass('active')
-      });
-      if(button.val() == hidden.val()) {
-        button.addClass('active');
+  // The Player
+  var instances = plyr.setup({
+    // Output to console
+    debug: true
+  });
+ //instances.forEach(function(instance) {
+    // // Play
+    // on('.js-play', 'click', function() { 
+    //   instance.play();
+    // });
+    
+    // // Pause
+    // on('.js-pause', 'click', function() { 
+    //   instance.pause();
+    // });
+    
+    // // Stop
+    // on('.js-stop', 'click', function() { 
+    //   instance.stop();
+    // });
+    
+    // // Rewind
+    // on('.js-rewind', 'click', function() { 
+    //   instance.rewind();
+    // });
+    
+    // // Forward
+    // on('.js-forward', 'click', function() { 
+    //   instance.forward();
+    // });
+//  });
+
+  jQuery(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       }
     });
+    // var refreshBits = $('#refresh-bits').on('click',
+    //   function(event){
+    //     $(this).toggleClass('loading')
+    //   });
+    var toggleSort = $('<button type="button" class=" button sort-bits"><i class="icon-resize-vertical"></i> Sort Bits</button>').
+    on('click',
+      function(event) {
+        $(this).toggleClass('active')
+        $("#episode_head").toggle()
+        $("#bits_episode").toggleClass('minimize').promise().done(function(){
+          $('html, body').animate({
+              scrollTop: $("#bits_episode").offset().top -10
+          }, 500).promise().done(function(){
+            $("#sticky-gutter").foundation('_calc', true, 50);
+          })
+        })
+      });
+
+    $('#bits_episode').sortable({
+      axis: 'y',
+      handle: '.bitsort',
+      update: function() {
+        return $.post($(this).data('update-url'), $(this).sortable('serialize'),
+                    function(){
+                      $('#bits_episode').effect('highlight', {color:'green'});
+                    })
+      }
+    }).before(toggleSort);
+
+    $('.best_in_place').best_in_place();
+    $('.best_in_place').bind("ajax:success",function() {
+        return $(this).parent().effect('highlight', {color:'green'});
+    });
+
   });
+
+
+
+  
 });

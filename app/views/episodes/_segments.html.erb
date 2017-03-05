@@ -1,8 +1,0 @@
-<div class="segments">
-<% segments.each do |segment | %>
-	<div class="segment">
-	<h3 class="segment title"><%= segment.title%></h3>
-	<%= render :partial => 'bits/bits', :locals=> {:bits => segment.bits, :display_episode => false} %>
-	</div>
-<% end %>
-</div>

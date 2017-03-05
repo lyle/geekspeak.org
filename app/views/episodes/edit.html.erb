@@ -2,39 +2,31 @@
 
 <%= form_for @episode,  :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
-  <p>
+  <div class="airdate">
     <%= f.label :airdate %>Don't change this unless you mean to.<br />
     <%= f.date_select :airdate, start_year: 2000 %>
-  </p>
-  <p>
-    <%= f.label :title %><br />
+  </div>
+    <%= f.label :title %>
     <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :abstract %><br />
+    <%= f.label :abstract %>
     <%= f.text_area :abstract %>
-  </p>
-  <p>
-    <%= f.label :status %>Live means podcast, refresh is public.<br />
+    <%= f.label :status %>
     <%= f.select :status, status_list %>
-  </p>
-  <p>
-    <%= f.label :publication_time %>When to Publish the Podcast<br />
+    <p class="help-text">'Live' means public.</p>
+
+  <div class="publishdate">
+    <%= f.label :publication_time %>
     <%= f.datetime_select :publication_time, start_year: 2000 %>
-  </p>
-  <p>
-    <%= f.label :guid_override %>Guid Override (to sync NPR RSS feed)<br />
+    <p class="help-text">When to Publish the Podcast</p>
+  </div>
+    <%= f.label :guid_override %>
     <%= f.text_field :guid_override %>
-  </p>
+    <p class="help-text">(to sync NPR RSS feed - just leave this blank)</p>
     
-  <p>
-    <%= f.label :teaser %><br />
-   <%= f.file_field :teaser %>
-  </p>
-  <p>
-    <%= f.label :content %><br />
+    <%= f.label :teaser %>
+    <%= f.file_field :teaser %>
+    <%= f.label :content %>
     <%= f.text_area :content %>
-  </p>
 
   <p><%= f.submit %></p>
 <% end %>

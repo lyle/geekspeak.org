@@ -5,6 +5,7 @@ tmp/
 .sass-cache/
 *.DS_Store
 config/database.yml
+config/secrets.yml
 public/system/*
 older\ content/*
 .rvmrc
@@ -12,3 +13,4 @@ Gemfile.lock
 *.swp
 /shared
 public/episodes
+public/shows

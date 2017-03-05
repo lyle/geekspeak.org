@@ -1,0 +1,12 @@
+
+.episode-block {
+    background-color: $white;
+    padding: rem-calc(14);
+    padding-top:rem-calc(1);
+    border: rem-calc(1) solid #DFDFD;
+
+    .header {
+        font-size: .8rem;
+        color: #9A9A9A;
+    }
+}

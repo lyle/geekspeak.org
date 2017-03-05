@@ -2,7 +2,7 @@ BetaGeekspeakOrg::Application.routes.draw do
   #match "shows/npr-feed.xml" => "feeds#nprepisodes",
   #          :defaults => { :format => 'xml' }
 
-  match "episodes/rss.xml" => "feeds#episodes",
+  get "episodes/rss.xml", to: "feeds#episodes",
             :defaults => { :format => 'xml' }
   match "sitemap" => "feeds#sitemap",
             :defaults => { :format => 'xml' }
@@ -18,20 +18,71 @@ BetaGeekspeakOrg::Application.routes.draw do
   resources :bits_episode do
     collection { post :sort }
   end
-  
- 
-  resources :episodes, :id => /[0-9]+\/[0-9]+\/[0-9]+/ do
-    resources :episode_audios
-    resources :episode_images
-  end
 
-  match "/episodes/pending/" => "episodes#pending"
+  # resources :items, id: /[0-9]+\/.+/, only: [:index, :new, :create], format: false
+  #       scope format: false do
+  #   get '/items/*id/edit', to: "items#edit"
+  #   patch '/items/*id', to: "items#update"
+  #   put '/items/*id', to: "items#update"
+  #   delete '/items/*id', to: "items#destroy"
+  #   get '/items/*id', to: "items#show"
+  # end
+
+scope :id => /[0-9]+\/[0-9]+\/[0-9]+/ do
+  #we need globs (*id) in routes for urls with slashs in them
+  get '/episodes', to: "episodes#index", as: :episodes
+  get '/episodes/new', to: "episodes#new", as: :new_episode
+  get '/episodes/*id/edit', to: "episodes#edit", as: :edit_episode
+  get '/episodes/*id', to: "episodes#show", as: :episode
+  patch '/episodes/*id', to: "episodes#update"
+  put '/episodes/*id', to: "episodes#update"
+  post '/episodes', to: "episodes#create"
+  delete '/episodes/*id', to: "episodes#destroy"
+end
+
+scope :episode_id => /[0-9]+\/[0-9]+\/[0-9]+/ do
+  # we want audio filtered by episode
+  get '/episodes/*episode_id/episode_audios', to: "episode_audios#index", as: :episode_episode_audios
+  get '/episodes/*episode_id/episode_audios/new', to: "episode_audios#new", as: :new_episode_episode_audio
+  get '/episodes/*episode_id/episode_audios/:id/edit', to: "episode_audios#edit", as: :edit_episode_episode_audio
+  get '/episodes/*episode_id/episode_audios/:id', to: "episode_audios#show", as: :episode_episode_audio
+  patch '/episodes/*episode_id/episode_audios/:id', to: "episode_audios#update"
+  put '/episodes/*episode_id/episode_audios/:id', to: "episode_audios#update"
+  post '/episodes/*episode_id/episode_audios', to: "episode_audios#create"
+  delete '/episodes/*episode_id/episode_audios/:id', to: "episode_audios#destroy"
+
+  # we want images filtered by episode
+  get '/episodes/*episode_id/episode_images', to: "episode_images#index", as: :episode_episode_images
+  get '/episodes/*episode_id/episode_images/new', to: "episode_images#new", as: :new_episode_episode_image
+  get '/episodes/*episode_id/episode_images/:id/edit', to: "episode_images#edit", as: :edit_episode_episode_image
+  get '/episodes/*episode_id/episode_images/:id', to: "episode_images#show", as: :episode_episode_image
+  patch '/episodes/*episode_id/episode_images/:id', to: "episode_images#update"
+  put '/episodes/*episode_id/episode_images/:id', to: "episode_images#update"
+  post '/episodes/*episode_id/episode_images', to: "episode_images#create"
+  delete '/episodes/*episode_id/episode_images/:id', to: "episode_images#destroy"
+
+end
+
+  # resources :episodes, :id => /[0-9]+\/[0-9]+\/[0-9]+/ do
+
+  #   #get '/episodes/*id/edit', to: "episodes#edit"
+  #   patch '/episodes/*id', to: "episodes#update"
+  #   put '/episodes/*id', to: "episodes#update"
+  #   delete '/episodes/*id', to: "episodes#destroy"
+  #   get '/episodes/*id', to: "episodes#show"
+    
+    # resources :episode_audios
+    # resources :episode_images
+  # end
+
+  get "/episodes/pending/", to: "episodes#pending"
+
   resources :participants
 
 
-  match "/episodes/:year/" => "episodes#year_archive", 
+  get "/episodes/:year/", to: "episodes#year_archive", 
                :constraints => {:year => /\d{4}/ }
-  match "/episodes/:year/:month/" => "episodes#month_archive", 
+  get "/episodes/:year/:month/", to: "episodes#month_archive", 
                :constraints => {:year => /\d{4}/, :month => /0[1-9]|1[0-2]/ }
                
                
@@ -40,19 +91,19 @@ BetaGeekspeakOrg::Application.routes.draw do
   ActiveAdmin.routes(self)
   
   
-  get '/admin/episodes/:id', :controller => "admin/episodes",
-      :action => 'show', :id => /[0-9]+\/[0-9]+\/[0-9]+/
-  get '/admin/episodes/:id/edit', :controller => "admin/episodes",
-          :action => 'edit', :id => /[0-9]+\/[0-9]+\/[0-9]+/
-  put '/admin/episodes/:id', :controller => "admin/episodes",
-              :action => 'update', :id => /[0-9]+\/[0-9]+\/[0-9]+/
-  delete '/admin/episodes/:id', :controller => "admin/episodes",
-              :action => 'destroy', :id => /[0-9]+\/[0-9]+\/[0-9]+/
-  get '/admin/users/:id', :controller => "admin/users",
-      :action => 'show', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
+  # get '/admin/episodes/:id', :controller => "admin/episodes",
+  #     :action => 'show', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  # get '/admin/episodes/:id/edit', :controller => "admin/episodes",
+  #         :action => 'edit', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  # put '/admin/episodes/:id', :controller => "admin/episodes",
+  #             :action => 'update', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+  # delete '/admin/episodes/:id', :controller => "admin/episodes",
+  #             :action => 'destroy', :id => /[0-9]+\/[0-9]+\/[0-9]+/
+   get '/admin/users/:id', :controller => "admin/users",
+       :action => 'show', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
   
-  get '/admin/users/:id/edit', :controller => "admin/users",
-      :action => 'edit', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
+   get '/admin/users/:id/edit', :controller => "admin/users",
+       :action => 'edit', :id => /[A-Za-z0-9\.\_\-]+?/, :format => false
   
  # mount Refinery::Core::Engine => '/engin/refinery.geekspeak.org/'
   
@@ -109,17 +160,17 @@ BetaGeekspeakOrg::Application.routes.draw do
   
   root :to => 'welcome#index'
   
-  match '/lyle'    => redirect("/geeks/lyle")
-  match '/ben'     => redirect("/geeks/ben")
-  match '/alan'    => redirect("/geeks/alan")
-  match '/al'    => redirect("/geeks/alan")
-  match '/lindsey' => redirect("/geeks/lindsey")
-  match '/rick'    => redirect("/geeks/rick")
-  match '/brian'    => redirect("/geeks/brian")
-  match '/alex'    => redirect("/geeks/alex")
-  match '/john'    => redirect("/geeks/john")
-  match '/users'    => redirect("/geeks")
-  match '/users/:name' => redirect("/geeks/%{name}"),:format => false
+  get '/lyle'   , to: redirect("/geeks/lyle")
+  get '/ben'    , to: redirect("/geeks/ben")
+  get '/alan'   , to: redirect("/geeks/alan")
+  get '/al'   , to: redirect("/geeks/alan")
+  get '/lindsey', to: redirect("/geeks/lindsey")
+  get '/rick'   , to: redirect("/geeks/rick")
+  get '/brian'   , to: redirect("/geeks/brian")
+  get '/alex'   , to: redirect("/geeks/alex")
+  get '/john'   , to: redirect("/geeks/john")
+  get '/users'   , to: redirect("/geeks")
+  get '/users/:name', to: redirect("/geeks/%{name}"),:format => false
          
   #match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
