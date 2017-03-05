@@ -2,26 +2,22 @@
   .bit.clearfix{:id=>"bit_#{bit.id}"}
     %div.tools
       - if (defined? episode )
-        = link_to content_tag(:i, '' ,:class=>'icon-arrow-left'),
+        = link_to content_tag(:i, '' ,:class=>'fi-arrow-left'),
           url_for(:controller=>'bits_episode',:action=>'create',:bit_id=>bit.id, :episode_id=>episode.id), :method => :post, :class=>'edit'
-      = link_to content_tag(:i, '' ,:class=>'icon-edit'), edit_bit_path(bit, {:return_url=>request.url}), :class=>'edit'
-    %h4
-      = link_to_unless bit.url.blank?, bit.title, bit.url, :rel=>"tooltip", :title=> bit.url
-      %a{:href=>"#{user_path(bit.user)}", :title=>"Added by #{bit.user.display_name}",:rel=>"tooltip",:data=>{:placement=>"right"}}
-        %i.icon-question-sign.icon-white
+      =content_tag(:span, bit.user.initial,:class=>'author')
+      = link_to content_tag(:i, '' ,:class=>'fi-pencil'), edit_bit_path(bit, {:return_url=>request.url}), :class=>'edit'
+      =content_tag(:span, "updated #{time_ago_in_words(bit.updated_at)} ago",:class=>'small-note float-right')
+    %div.title
+      = bit.title
+      - if (not bit.url.blank?)
+        =link_to content_tag(:i, '',:class=>'fi-page-export'), bit.url, :target => '_blank'
     - if display_episode
       .metadata
-        .user
-          =bit.user.name
-        .created_at
-          = bit.created_at.strftime("%B %e, %Y")
         - bit.episodes.each do |episode|
           .episode
             Used in 
             = link_to episode.title, episode
             ( #{episode.showdate_as_url} )
-    .bit-body
-      = textilize(bit.body).html_safe unless bit.body.blank? 
     
 -#  -if bits.respond_to?("current_page")
 -#    = paginate(bits, :remote => true)

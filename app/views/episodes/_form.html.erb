@@ -1,17 +1,17 @@
 <%= form_for @episode,  :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
-  <p>
+  <div class="airdate">
     <%= f.label :airdate %><br />
     <%= f.date_select :airdate , start_year: 2000 %>
-  </p>
-  <p>
+  </div>
+  <div>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
-  </p>
-  <p>
+  </div>
+  <div>
     <%= f.label :abstract %><br />
     <%= f.text_area :abstract %>
-  </p>
+  </div>
 
   <p><%= f.submit %></p>
 <% end %>

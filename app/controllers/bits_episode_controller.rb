@@ -4,7 +4,8 @@ class BitsEpisodeController < ApplicationController
   respond_to :html, :json
   def sort
     params[:bits_episode].each_with_index do |id, index|
-      BitEpisode.update_all({position: index+1}, {id:id})
+      BitEpisode.where(id:id).
+        update_all({position: index+1})
     end
     render nothing: true
   end

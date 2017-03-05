@@ -9,7 +9,7 @@ BetaGeekspeakOrg::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -19,6 +19,8 @@ BetaGeekspeakOrg::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  config.eager_load = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
@@ -31,7 +33,7 @@ BetaGeekspeakOrg::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :info
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -43,10 +45,12 @@ BetaGeekspeakOrg::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( admin.js )
+  #config.assets.precompile += %w( admin.js )
 
-  config.assets.precompile += %w( admin.css )
-  config.assets.precompile += %w[active_admin.css active_admin.js]
+  #config.assets.precompile += %w[active_admin.css active_admin.js]
+  config.assets.js_compressor = :uglifier
+  
+  #config.assets.precompile += %w( admin.css )
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

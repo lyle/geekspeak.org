@@ -1,11 +1,12 @@
-
-    <div>
-
-		<h3 class="title"><%= link_to "#{episode.title}", episode %></h3>
-		<%= content_tag(:div, image_tag(episode.teaser.url(:smaller)), :class => "abstractimage") if episode.teaser?%>
-		<div class="airdate"><%=h episode.airdate.strftime("%Y-%m-%d")   %></div>
-		<% if ! episode.episode_audios.first.blank? %><div class="audio"><%= link_to "#{episode.episode_audios.first.audio_file_name}  #{number_to_human_size(episode.episode_audios.first.audio_file_size)}", episode.episode_audios.first.audio.url %></div><% end %>
-		<div class="abstract"><%= textilize(episode.abstract).html_safe %>
-		</div>
-	</div>	
-	
+<%= content_tag :div, :class => "episode-block column", :data => {:url => "/episodes/#{episode.to_param}"} do %>
+    <div class="season-episode"><%=h "#{episode.airdate.strftime("%Y-%m-%d")}" %></div>
+    <div class="abstractimage">
+        <% if episode.teaser.exists? %>
+            <%= link_to image_tag(episode.teaser.url(:medium)), "/episodes/#{episode.to_param}" %>
+        <% else %>
+            <%= link_to image_tag("GeekSpeak_logo_200w.png"), "/episodes/#{episode.to_param}", class:"filler-image" %>
+        <% end %>
+    </div>
+    <h4><%= link_to "#{episode.title}", "/episodes/#{episode.to_param}" %></h4>
+    <div class="abstract"><%= textilize(episode.abstract).html_safe %></div>
+<% end %>

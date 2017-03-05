@@ -1,11 +1,17 @@
 <% if @participant.errors.size > 0 %>
-$("<div><%=@participant.errors.full_messages[0]%></div>").insertBefore($('#participant_list').children().first())
-.delay( 4000 ).fadeOut({done:function(){this.remove()}})
+$("#participant_list").toggle();
+$("<div class='callout alert'><%=@participant.errors.full_messages[0]%></div>").insertBefore($('#participant_list'))
+.delay( 5000 ).fadeOut({done:function(){
+    $("#participant_list").toggle();;
+    this.remove()}
+})
 <% else %>
-$('#participant_list').children().last().before("<%= j render partial: 'episodes/participant', format: 'js',
-    :locals=>{
-        :current_user=>current_user,
-        :participant=>@participant
-        }  %>")
+$('#participant_list')
+    .children().last().before(
+        "<%= j render partial: 'episodes/participant', format: 'js', :locals=>{
+            :current_user=>current_user,
+            :participant=>@participant}  %>"
+    )
+$("#sticky-gutter").foundation('_calc', true, 50);
 <% end %>
 
