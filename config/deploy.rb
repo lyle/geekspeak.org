@@ -6,7 +6,7 @@ server '138.197.206.110', port: 22, roles: [:web, :app, :db], primary: true
 
 set :application, 'geekspeak.org'
 set :repo_url, 'git@github.com:lyle/geekspeak.org.git'
-set :branch, 'rails4'
+set :branch, 'master'
 set :user, 'deployer'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
