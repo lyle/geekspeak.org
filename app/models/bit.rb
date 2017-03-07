@@ -7,7 +7,9 @@ class Bit < ActiveRecord::Base
     #acts_as_list :scope => :episode
     belongs_to :user
     attr_accessible :title, :url, :user_id, :body, :status
-
+    default_scope -> {
+        includes(:user)
+    }
     scope :on, -> {where(:status => 'on')}
   
     scope :fresh, -> {joins("left outer join bit_episodes on bits.id = bit_episodes.bit_id").

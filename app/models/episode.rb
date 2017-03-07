@@ -13,20 +13,24 @@ class Episode < ActiveRecord::Base
   
   has_many :participants
   
+  has_many :on_air_participants, -> {
+    on_air_participants
+  }, :class_name => "Participant"
+
+  has_many :hosts, -> {
+    hosts
+  }, :class_name => "Participant"
+
   has_many :bit_episodes, -> {order("position")}, dependent: :destroy
-  has_many :bits, -> {order("bit_episodes.position")}, :through => :bit_episodes
+  has_many :bits, -> {
+    order("bit_episodes.position")
+    }, :through => :bit_episodes
   
   has_many :episode_audios
   has_many :episode_images
-  
-  has_many :hosts, -> { where(participants: {role: 'host'})}, :class_name => "Participant"
-  has_many :friends, -> { where(friendship: {status: 'accepted'}).order('first_name DESC') }, :through => :friendships
-
- 
-
-  has_many :on_air_participants, -> { where(participants: {role: ["host", "cohost", "guest"]})}, :class_name => "Participant"
 
   has_many :users,  :through => :participants
+
   accepts_nested_attributes_for :participants, :allow_destroy => true
   accepts_nested_attributes_for :bits  ,:allow_destroy => true
   
@@ -130,12 +134,12 @@ class Episode < ActiveRecord::Base
 
   def rss_description
     output = textilize(abstract) + "<ul>"
-    bit_episodes.each do |episode_bit|
+    bits.each do |bit|
       output += "<li>"
-      if episode_bit.bit.url.blank?
-        output = output + episode_bit.bit.title + textilize(episode_bit.bit.body)
+      if bit.url.blank?
+        output = output + bit.title + textilize(bit.body)
       else
-        output = output + "<a href=\"#{episode_bit.bit.url}\">#{episode_bit.bit.title}</a>"
+        output = output + "<a href=\"#{bit.url}\">#{bit.title}</a>"
       end
       output += "</li>"
     end
