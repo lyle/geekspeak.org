@@ -1,7 +1,7 @@
 
 
-<ul class="nav nav-list participants" id="participant_list">
-  <li class="nav-header">This Episode's Geeks</li>
+<ul class="menu vertical participants" id="participant_list">
+  <li class="header">This Episode's Geeks</li>
   <%= render :partial => 'participant',
             :collection => participants,
             :locals => {:current_user=>current_user} %>

@@ -16,12 +16,14 @@ class EpisodesController < ApplicationController
   end
 
   def year_archive
-    @episodes = Episode.by_year(Date.strptime("#{params[:year]}-01-01")).where(:status => 'live') 
-    
+    @episodes = Episode.in_year(Date.new(params[:year].to_i))
+    #.where(:status => 'live') 
+    add_breadcrumb params[:year], "#{episodes_path}#{params[:year]}/"
     render :template => 'episodes/index'
   end
   def month_archive
-    @episodes = Episode.by_month(Date.strptime("#{params[:year]}-#{params[:month]}-01")).where(:status => 'live') 
+    @episodes = Episode.in_month(Date.new(params[:year].to_i,params[:month].to_i))
+    #.where(:status => 'live') 
     add_breadcrumb params[:year], "#{episodes_path}#{params[:year]}/"
     add_breadcrumb params[:month], "#{episodes_path}#{params[:year]}/#{params[:month]}/"
     render :template => 'episodes/index' 
@@ -35,7 +37,7 @@ class EpisodesController < ApplicationController
     add_breadcrumb @episode.air_day, "#{episodes_path}#{@episode.air_year}/#{@episode.air_month}/#{@episode.air_day}/"
     
     if user_signed_in?
-        @bits = Bit.freshness("fresh").order("updated_at DESC").page(params[:page]).per(50)
+        @bits = Bit.freshness("fresh").order("bits.updated_at DESC").where("bits.updated_at > ?",7.days.ago).limit(20)
     end
     
     respond_with(@episode)
@@ -48,24 +50,34 @@ class EpisodesController < ApplicationController
   end
 
   def create
-    @episode = Episode.new(params[:episode])
-    
-    @episode.owner = current_user
 
-    if @episode.valid?
-      @episode.save
+      #@date = Date.parse("#{params[:episode]["airdate(3i)"]}-#{params[:episode]["airdate(2i)"]}-#{params[:episode]["airdate(1i)"]}")
+      @episode = Episode.new(params[:episode])
+      @episode.owner = current_user
+      respond_to do |format|
+        if @episode.save
+          flash[:notice] = 'Successfully created episode.'
+          format.html { redirect_to("/episodes/#{@episode.to_param}") }
+        else
+          flash[:error] = 'Problem creating episode'
+          format.html { render action: "new" }
+        end
+      end
+    # end
+    # if @episode.valid?
+    #   @episode.save
 
-      flash[:notice] = "Successfully created episode."
-      respond_with(@episode)
-    else
-      flash[:notice] = "This Episode Already Exists"
-      @date = Date.parse("#{params[:episode]["airdate(3i)"]}-#{params[:episode]["airdate(2i)"]}-#{params[:episode]["airdate(1i)"]}")
+    #   flash[:notice] = "Successfully created episode."
+    #   respond_with(@episode)
+    # else
+    #   flash[:notice] = "This Episode Already Exists"
+    #   @date = Date.parse("#{params[:episode]["airdate(3i)"]}-#{params[:episode]["airdate(2i)"]}-#{params[:episode]["airdate(1i)"]}")
 
-      @episode = Episode.find(@date.strftime("%Y/%m/%d"))
+    #   @episode = Episode.find(@date.strftime("%Y/%m/%d"))
 
-      #render inline: "Ahhh, dno new ep: #{slug}"
-      respond_with(@episode)
-    end
+    #   #render inline: "Ahhh, dno new ep: #{slug}"
+    #   respond_with(@episode)
+    # end
   end
 
   def edit

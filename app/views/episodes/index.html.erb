@@ -6,35 +6,30 @@ elsif params[:action] == 'month_archive'
 end 
 %>
 <% title  " Episodes" %>
+<div class="row small-up-1 medium-up-2 large-up-4">
 <% for episode in @episodes %>
-<div class="item clearfix">
 	<%= render :partial => "episodes/episode", :object => episode %>
-</div>
 <% end %>
+</div>
 
 <% content_for :sidebar do %>
-	<ul class="nav nav-list">
-	
-	<li class="nav-header">Podcast</li>
-	<li><%= link_to "RSS File", "http://geekspeak.org/episodes/rss.xml"  %></li>
-	<li><%= link_to "GeekSpeak on iTunes", "https://itunes.apple.com/us/podcast/geekspeak/id74173088"  %></li>
-	<li><%= link_to "GeekSpeak on Overcast", "https://overcast.fm/itunes74173088/geekspeak" %></li>
-
+	<ul class="menu vertical">
 	  <li class="nav-header">Episode Archive</li>
-		<li><%= link_to "2015", "/episodes/2015/"  %></li>
-		<li><%= link_to "2014", "/episodes/2014/"  %></li>
-		<li><%= link_to "2013", "/episodes/2013/"  %></li>
-		<li><%= link_to "2012", "/episodes/2012/"  %></li>
-		<li><%= link_to "2011", "/episodes/2011/"  %></li>
-		<li><%= link_to "2010", "/episodes/2010/"  %></li>
-		<li><%= link_to "2009", "/episodes/2009/"  %></li>
-		<li><%= link_to "2008", "/episodes/2008/"  %></li>
-		<li><%= link_to "2007", "/episodes/2007/"  %></li>
-		<li><%= link_to "2006", "/episodes/2006/"  %></li>
-		<li><%= link_to "2005", "/episodes/2005/"  %></li>
-		<li><%= link_to "2004", "/episodes/2004/"  %></li>
-		<li><%= link_to "2003", "/episodes/2003/"  %></li>
-		<li><%= link_to "2002 some online", "/episodes/2002/"  %></li>
+		<%= nav_link "2016", "/episodes/2016/"  %>
+		<%= nav_link "2015", "/episodes/2015/"  %>
+		<%= nav_link "2014", "/episodes/2014/"  %>
+		<%= nav_link "2013", "/episodes/2013/"  %>
+		<%= nav_link "2012", "/episodes/2012/"  %>
+		<%= nav_link "2011", "/episodes/2011/"  %>
+		<%= nav_link "2010", "/episodes/2010/"  %>
+		<%= nav_link "2009", "/episodes/2009/"  %>
+		<%= nav_link "2008", "/episodes/2008/"  %>
+		<%= nav_link "2007", "/episodes/2007/"  %>
+		<%= nav_link "2006", "/episodes/2006/"  %>
+		<%= nav_link "2005", "/episodes/2005/"  %>
+		<%= nav_link "2004", "/episodes/2004/"  %>
+		<%= nav_link "2003", "/episodes/2003/"  %>
+		<%= nav_link "2002 some online", "/episodes/2002/"  %></li>
 		<li>2001 offline</li>
 		<li><%= link_to "2000 mostly offline", "/episodes/2000/"  %></li>
 		<li>1999 offline</li>

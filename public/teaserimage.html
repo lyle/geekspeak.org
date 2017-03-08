@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GeekSpeak: Episode Teaser Image Creator</title>
+  <style>
+    html, body {
+      background: #FFF;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      background: linear-gradient(#DDD,#FFF);
+      color: white;
+      font: italic normal 50px serif;
+      letter-spacing: -2px;
+      margin: 0;
+      padding: 0 0 .1em .2em;
+      text-shadow: 0 0 2px #DDD, -1px -4px 8px #CCC;
+    }
+    canvas {
+      background: radial-gradient(#555,#CCC,#FFE);
+      box-shadow: 0 0 100px #666;
+      display: inline-block;
+      float: left;
+      vertical-align: top;
+    }
+/*
+    input {
+      background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.15),rgba(0,0,0,.15),rgba(0,0,0,0));
+      border: none;
+      border-radius: 8px;
+      color: #FFF;
+      cursor: pointer;
+      font: bold italic 18px serif;
+      height: 75px;
+      margin: 0 0 2px 0;
+      text-align: right;
+      text-shadow: 0px 0px 8px #999;
+      transition: all .2s linear;
+      width: calc(100% - 800px);
+    }
+    input:hover {
+      color: #000;
+      letter-spacing: 1px;
+      text-shadow: 0px 0px 4px #FFF;
+    }
+*/
+  </style>
+</head>
+<body>
+
+<h1>GeekSpeak: Episode Teaser Image Creator</h1>
+
+<canvas width="800" height="800"></canvas>
+
+<!--
+<input id="exportjpg" type="button" value="Export as JPEG">
+<input id="exportpng" type="button" value="Export as PNG">
+-->
+
+<script>
+  function initImage() {
+    var data = this.dataset,
+        ratio = Math.min(this.width / T_WIDTH, this.height / T_HEIGHT),
+        offset = Math.round(Math.min(this.width, this.height) / 2);
+    data.sWidth = Math.round(T_WIDTH * ratio);
+    data.sHeight = Math.round(T_HEIGHT * ratio);
+    data.sx = Math.round(this.width / 2) - offset;
+    data.sy = Math.round(this.height / 2) - offset;
+    drawImage(this, data.sx, data.sy, data.sWidth, data.sHeight);
+  }
+  
+  function drawImage(image, sx, sy, sWidth, sHeight) {
+    var coords = IMAGE_COORDS[image.dataset.quadrant];
+    if (coords == null) {
+      return;
+    }
+    CTX.drawImage(image, sx, sy, sWidth, sHeight,
+                  coords[0], coords[1], T_WIDTH, T_HEIGHT);
+  }
+
+/*
+  function imageExport(mimeType) {
+    return function(e) {
+      window.location.href = CANVAS.toDataURL(mimeType).replace(mimeType, "image/octet-stream");
+    }
+  }
+*/
+
+  function loadImage(src, quadrant) {
+    var image = new Image(),
+        data = image.dataset;
+    data.quadrant = quadrant;
+    image.onload = initImage;
+    image.src = src;
+  }
+  
+  const T_WIDTH = 388,
+        T_HEIGHT = T_WIDTH,
+        T_OFFSET_X = T_WIDTH / 2,
+        T_OFFSET_Y = T_HEIGHT / 2,
+        IMAGE_COORDS = [
+          [8,  8], [404,  8],
+          [8,404], [404,404]
+        ],
+        CANVAS = document.getElementsByTagName("canvas")[0],
+        CTX = CANVAS.getContext('2d');
+
+  CTX.fillStyle = "#FFF";
+  CTX.fillRect(0,0,800,800);
+  IMAGE_COORDS.forEach(function(coord) {
+    CTX.clearRect(coord[0], coord[1], T_WIDTH, T_HEIGHT);
+  });
+
+/*
+  document.getElementById("exportjpg").addEventListener("click", imageExport("image/jpg"), false);
+  document.getElementById("exportpng").addEventListener("click", imageExport("image/png"), false);
+*/
+
+  function dragover(e) {
+    var box = CANVAS.getBoundingClientRect();
+    e.preventDefault();
+    // Set the dropEffect to move
+    e.dataTransfer.dropEffect = "move"
+  }
+  
+  function drop(e) {
+    e.preventDefault();
+    if (e.target !== CANVAS) {
+      return;
+    }
+    var box = CANVAS.getBoundingClientRect(),
+        halfHeight = Math.ceil(box.height / 2),
+        halfWidth = Math.ceil(box.width / 2),
+        quadrant = (2 * Math.floor(e.offsetY / halfHeight)) + Math.floor(e.offsetX / halfWidth);
+    e.dataTransfer.items[0].getAsString(function(str){
+      loadImage(str, quadrant);
+    });
+  }
+  
+  document.body.addEventListener("dragover", dragover, false);
+  document.body.addEventListener("drop", drop, false);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+lame --alt-preset cbr 96 --resample 44.1 --lowpass 16.5 --tt "Space Gates Gawks at Giant Aircraft" --ta "GeekSpeak" --ty 2016 --ti 2016-08-22.jpg  geekspeak\ 2016-08-22_mixdown.wav
+
+
+
+lame --alt-preset cbr 64 -m m --resample 44.1 --lowpass 16.5 --tt "Siri Calls a Cab for Nextdoor's Airline School" --ta "GeekSpeak" --ty 2016 --ti teaser-original.jpg  geekspeak\ 2016-09-01_mixdown.wav
+
+
+
+lame --alt-preset cbr 64 -m m --resample 44.1 --lowpass 16.5 --tt "Facebook's USB Causes Legal DOOM" --ta "GeekSpeak" --ty 2016 --ti 2016-09-14.jpg  geekspeak
+
+
+lame --alt-preset cbr 64 -m m --resample 44.1 --lowpass 16.5 --tt "We-Vibe's Update increases Battery Range to reach New York" --ta "GeekSpeak" --ty 2016 --ti 2016-09-21.png geekspeak\ 2016-09-21_mixdown.wav
+
+
+lame --alt-preset cbr 64 -m m --resample 44.1 --lowpass 16.5 --tt "Democratic Censorship Unplugs Zip-gun" --ta "GeekSpeak" --ty 2016 --ti 2016-09-26.png geekspeak\ 2016-09-28_mixdown.wav
+
+
+lame --alt-preset cbr 64 -m m --resample 44.1 --lowpass 16.5 --tt "Jack Reviews Mirai's Password" --ta "GeekSpeak" --ty 2016 --ti 2016-10-05.png geekspeak\ 2016-10-05_mixdown.wav
+
+We need no replay gain - this is to make sure it doesn't add a rule to reduce the audio of the file
+lame --alt-preset cbr 64 -m m --resample 44.1 --lowpass 16.5 --noreplaygain geekspeak\ 2016-11-09_mixdown.wav
+
+Using FFMPEG to split a Left/Right audio file into to wav files
+ffmpeg -i 2016-08-25\ stu\ and\ Lyle.mp4 -map_channel 0.0.0 stu_lyle_left.wav -map_channel 0.0.1 stu_lyle_right.wav

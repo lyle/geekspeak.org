@@ -1,7 +1,7 @@
 - bits.each do |bit|
   .bit.clearfix{:id=>"bit_#{bit.id}"}
     %div.tools 
-      = link_to content_tag(:i, '' ,:class=>'icon-arrow-left'),
+      = link_to content_tag(:i, '' ,:class=>'fi-arrow-'),
           url_for(:controller=>'bits_episode',
                   :action=>'create',
                   :bit_id=>bit.id,

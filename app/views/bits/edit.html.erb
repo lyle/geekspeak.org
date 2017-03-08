@@ -7,7 +7,7 @@
     <% end %>
   </ul>
 </p>
-<%= button_to 'Delete', bit_path(@bit), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' -%>
+<%= button_to 'Delete', bit_path(@bit), method: :delete, data: { confirm: 'Are you sure?'}, :class => 'button alert' -%>
 
 <% content_for :sidebar do %>
 <% render file: "pages/_/textile.html" %>

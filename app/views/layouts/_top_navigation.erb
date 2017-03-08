@@ -1,0 +1,47 @@
+<div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title">GeekSpeak</div>
+</div>
+<div class="top-bar" id="main-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="title-image"><a href="/"><%=image_tag("GeekSpeak_title_300w.png", width:'150', alt:"GeekSpeak")%></a></li>
+    </ul>
+  </div>
+  <% if content_for?(:sticky) %>
+<div  class="columns small-5 middle" data-sticky-container>
+  <div  class="sticky" data-sticky data-margin-top="0">
+    <%= h(yield :sticky) %>
+  </div>
+</div>
+<% end %>
+  <div class="top-bar-right">
+    <ul class="dropdown menu" data-dropdown-menu>
+
+      <li><%= nav_link "Episodes", "/episodes"  %></li>
+      <li><%= nav_link "Contact", "/contact" %></li>
+      <li><%= nav_link "Support", "/support"  %></li>
+      <li>
+        <a href="#">Podcast</a>
+        <ul class="menu vertical">
+          <li class="header">GeekSpeak Podcast</li>
+
+          <li><a href="http://geekspeak.org/episodes/rss.xml"><span class="collapse">GeekSpeak Podcast</span> RSS File</a></li>
+          <li><a href="https://itunes.apple.com/us/podcast/geekspeak/id74173088"><span class="collapse">GeekSpeak Podcast</span> on iTunes</a></li>
+          <li><a href="https://overcast.fm/itunes74173088/geekspeak"><span class="collapse">GeekSpeak Podcast</span> on Overcast</a></li>
+        </ul>
+      </li>
+       <% if user_signed_in? %>
+        <li>
+            <a href="#">Admin</a>
+            <ul class="menu vertical">
+                <li><%= link_to("New Bit", new_bit_path())%></li>
+                <li><%= link_to("New Episode", new_episode_path())%></li>
+                <li><%= link_to("Pending Episodes", episodes_pending_url) %></li>
+                <li><%= link_to(content_tag(:i, ' Logout' ,:class=>'fi-lock'), destroy_user_session_path, :method => :delete) %></li>
+            </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
