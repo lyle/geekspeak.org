@@ -8,20 +8,19 @@ class EpisodesController < ApplicationController
   
   
   def index
-    @episodes = Episode.where(:status => 'live').order('airdate DESC').limit(30)
+    @episodes = Episode.where(:status => 'live').where(['publication_time < ? OR publication_time IS NULL', DateTime.now]).order('airdate DESC').limit(30)
   end
-
   def pending
-    @episodes = Episode.where.not(status: 'live').order('airdate DESC').limit(30)
+    @episodes = Episode.where("status != 'live' OR publication_time > ?", DateTime.now).order('airdate DESC').limit(30)
   end
 
   def year_archive
-    @episodes = Episode.in_year(Date.new(params[:year].to_i)).where(:status => 'live')
+    @episodes = Episode.in_year(Date.new(params[:year].to_i)).where(:status => 'live').where(['publication_time < ? OR publication_time IS NULL', DateTime.now])
     add_breadcrumb params[:year], "#{episodes_path}#{params[:year]}/"
     render :template => 'episodes/index'
   end
   def month_archive
-    @episodes = Episode.in_month(Date.new(params[:year].to_i,params[:month].to_i)).where(:status => 'live')
+    @episodes = Episode.in_month(Date.new(params[:year].to_i,params[:month].to_i)).where(:status => 'live').where(['publication_time < ? OR publication_time IS NULL', DateTime.now])
     add_breadcrumb params[:year], "#{episodes_path}#{params[:year]}/"
     add_breadcrumb params[:month], "#{episodes_path}#{params[:year]}/#{params[:month]}/"
     render :template => 'episodes/index' 

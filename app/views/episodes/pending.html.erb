@@ -2,6 +2,6 @@
 
 <ul>
     <% for episode in @episodes do %>
-        <li><%= link_to(episode.slug, episode_path(episode)) %> <%=episode.status %> </li>
+        <li><%= link_to(episode.slug, episode_path(episode)) %> <%=episode.status %> <%if episode.publication_time > Date.current() %>| valid after: <%=episode.publication_time%><% end %></li>
     <% end %> 
 </ul>
