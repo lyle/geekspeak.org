@@ -4,8 +4,8 @@ xml.rss "version" => "2.0",
         "xmlns:atom" => "http://www.w3.org/2005/Atom",
         "xmlns:itunes" =>"http://www.itunes.com/dtds/podcast-1.0.dtd" do
     xml.channel do
-        xml.title 'GeekSpeak | How Technology Affects Society and Culture from the Geek Perspective'
-        xml.itunes(:subtitle, "Bridging the gap between Geeks and the rest of humanity.")
+        xml.title 'Geek Speak with Lyle Troxell'
+        xml.itunes(:subtitle, "How Technology Affects Society and Culture from the Geek Perspective or Bridging the gap between Geeks and the rest of humanity.")
         xml.itunes(:author, "Lyle Troxell & The Geeks")
         xml.itunes(:owner) do
             xml.itunes(:name, "Lyle Troxell")
@@ -14,8 +14,8 @@ xml.rss "version" => "2.0",
         xml.link episodes_url
         xml.atom(:link, :href=>"https://geekspeak.org/episodes/rss.xml", :rel=> "self", :type=>"application/rss+xml")
         xml.pubDate CGI.rfc1123_date(@episodes.first.updated_at)
-        xml.description "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, explanations allowing everyone to understand. We bridge the gaps between Geeks and the rest of humanity."
-        xml.itunes(:summary, "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, explanations allowing everyone to understand. We bridge the gaps between Geeks and the rest of humanity.")
+        xml.description "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, chunks. We bridge the gaps between Geeks and the rest of humanity."
+        xml.itunes(:summary, "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, chunks. We bridge the gaps between Geeks and the rest of humanity.")
         xml.language "en-us"
         xml.generator "https://github.com/lyle/geekspeak.org"
         xml.category "Technology"
@@ -23,18 +23,18 @@ xml.rss "version" => "2.0",
             xml.itunes(:category, :text=>"Tech News")
         end
         xml.itunes(:category, :text=>"News & Politics")
-        xml.itunes(:category, :text=>"Business") do
-            xml.itunes(:category, :text=>"Business News")
+        xml.itunes(:category, :text=>"Society & Culture") do
+            xml.itunes(:category, :text=>"Philosophy")
         end
         xml.itunes(:category, :text=>"Arts & Entertainment")
 
         xml.itunes(:explicit,"clean")
-        xml.itunes(:keywords, "geeks, facebook, netflix, google, technology, society, social, kusp")
+        xml.itunes(:keywords, "geeks, facebook, netflix, google, technology, society, social")
         xml.itunes(:"new-feed-url","https://geekspeak.org/episodes/rss.xml")
         xml.itunes(:image, :href=> "https://geekspeak.org/images/GeekSpeak_Logo09022012.png")
         xml.image do
           xml.url "https://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
-          xml.title "GeekSpeak"
+          xml.title "Geek Speak with Lyle Troxell"
           xml.link episodes_url
         end
         xml.copyright "Creative Commons Attribution 3.0 United States License"
