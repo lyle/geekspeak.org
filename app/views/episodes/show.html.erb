@@ -1,6 +1,5 @@
 <% title "#{@episode.title}" %>
-<% subtitle "GeekSpeak Podcast for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
-<% description "#{to_text(:html => textilize(@episode.abstract))} - Geek Speak Podcast for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
+<% description "#{to_text(:html => textilize(@episode.abstract))} - GeekSpeak Podcast for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
 
 <% if @episode.teaser? %>
 <% image_url "#{request.base_url}#{@episode.teaser.url(:original)}" %>
