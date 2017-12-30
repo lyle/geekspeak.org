@@ -34,7 +34,7 @@ class Bit < ActiveRecord::Base
     if search
       where('title LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%")
     else
-      scoped
+      recent
     end
   end
 end

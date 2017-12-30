@@ -1,5 +1,5 @@
 javascript:location.href=
-    "http://localhost:3000/bits/new/?return_url="+
+    "https://geekspeak.org/bits/new/?return_url="+
     encodeURIComponent(document.URL)+
     "&bit[url]="+
     encodeURIComponent(document.URL)+

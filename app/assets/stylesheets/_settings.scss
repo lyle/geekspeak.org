@@ -373,10 +373,10 @@ $drilldown-arrow-size: 6px;
 
 // 17. Dropdown
 // ------------
+$dropdown-border: 1px solid $gs-bg;
 
 $dropdown-padding: 1rem;
 $dropdown-background: $body-background;
-$dropdown-border: 1px solid $medium-gray;
 $dropdown-font-size: 1rem;
 $dropdown-width: 300px;
 $dropdown-radius: $global-radius;
@@ -817,8 +817,7 @@ $thumbnail-radius: $global-radius;
 
 // 53. Title Bar
 // -------------
-
-$titlebar-background: $black;
+$titlebar-background: scale-color($gs-bg, $lightness: -30%);
 $titlebar-color: $white;
 $titlebar-padding: 0.5rem;
 $titlebar-text-font-weight: bold;
@@ -843,9 +842,10 @@ $tooltip-radius: $global-radius;
 
 // 55. Top Bar
 // -----------
+$topbar-background: $titlebar-background;
+
 
 $topbar-padding: 0.5rem;
-$topbar-background: $light-gray;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
 $topbar-input-width: 200px;
