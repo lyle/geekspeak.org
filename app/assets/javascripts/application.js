@@ -6,8 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/sortable
-//= require jquery-ui/effect-highlight
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/effects/effect-highlight
 //= require foundation
 //= require best_in_place
 //= require best_in_place.jquery-ui

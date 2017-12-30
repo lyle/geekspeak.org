@@ -19,7 +19,7 @@ gem 'pg'
   gem 'foundation-icons-sass-rails'
 #  gem 'modernizr-rails'
 # gem 'jquery-rails'
-# gem 'jquery-ui-rails'
+gem 'jquery-ui-rails'
 gem "paperclip", "~> 3.5.1"
 
 # Use unicorn as the web server
@@ -59,7 +59,7 @@ end
 
 gem "nifty-generators", :group => :development
 
-gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'activeadmin', '~> 1.0.0'
 #gem 'activeadmin', '0.5.0'
 # gem "meta_search",    '>= 1.1.0.pre'
 gem 'haml'
@@ -98,4 +98,6 @@ gem 'devise'
 gem 'protected_attributes'
 
 #gem 'rails4_upgrade'
+
+gem 'nokogiri', '~> 1.8.1'
 
