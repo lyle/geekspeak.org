@@ -20,7 +20,7 @@ gem 'pg'
 #  gem 'modernizr-rails'
 # gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem "paperclip", "~> 3.5.1"
+gem "paperclip", "~> 5.0.0"
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -45,6 +45,8 @@ class Episode < ActiveRecord::Base
   has_attached_file :teaser, :styles => {:large=> "800x800", :medium => "600x600>", :small => "300x600", :smaller=> "200x200", :thumb => "100x100>" },
                     :path => ":rails_root/public/episodes/:showdate_as_url/teaser-:style.:extension",
                     :url => "/episodes/:showdate_as_url/teaser-:style.:extension"
+  validates_attachment_content_type :teaser, :content_type => ["image/jpg", "image/jpeg"]
+
 
   attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :lock_version, :participants_attributes, :bits_attributes, :publication_time, :guid_override
 
