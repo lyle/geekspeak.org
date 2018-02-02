@@ -5,7 +5,7 @@ class EpisodeAudio < ActiveRecord::Base
   has_attached_file :audio,
                     :path => ":rails_root/public/shows/audio/:basename.:extension",
                     :url => "/shows/audio/:basename.:extension"
-  validates_attachment_content_type :audio, :content_type => ["audio/mp3","audio/x-mp3"]
+  validates_attachment_content_type :audio, :content_type => [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio' ]
                     
   before_save :save_audio_duration
   
