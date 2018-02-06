@@ -11,7 +11,7 @@ class EpisodesController < ApplicationController
     @episodes = Episode.where(:status => 'live').where(['publication_time < ? OR publication_time IS NULL', DateTime.now]).order('airdate DESC').limit(30)
   end
   def pending
-    @episodes = Episode.where("status != 'live' OR publication_time > ?", DateTime.now).order('airdate DESC').limit(30)
+    @episodes = Episode.where("status <> 'live' OR ( publication_time IS NOT NULL AND publication_time > ? )", DateTime.now).order('airdate DESC').limit(30)
   end
 
   def year_archive
