@@ -5,7 +5,7 @@ xml.rss "version" => "2.0",
         "xmlns:itunes" =>"http://www.itunes.com/dtds/podcast-1.0.dtd" do
     xml.channel do
         xml.title 'Geek Speak with Lyle Troxell'
-        xml.itunes(:subtitle, "How Technology Affects Society and Culture from the Geek Perspective or Bridging the gap between Geeks and the rest of humanity.")
+        xml.itunes(:subtitle, "Exploring the intersection of Humanity and Technology coming from the fringes of Silicon Valley.")
         xml.itunes(:author, "Lyle Troxell & The Geeks")
         xml.itunes(:owner) do
             xml.itunes(:name, "Lyle Troxell")
