@@ -12,7 +12,7 @@ xml.urlset "xmlns" => xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" do
     end
     @episodes.each do |episode|
         xml.url do
-            xml.loc episode_url(episode)
+            xml.loc episode_url(episode, :protocol => "https" )
             xml.lastmod episode.updated_at.utc.iso8601
         end
     end
