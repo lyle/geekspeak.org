@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 ruby "2.2.4"
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.7.1'
 
-gem 'pg'
+gem 'pg', "~>0.20.0"
 
 #gem 'commonjs', "0.2.0"
 
@@ -20,7 +20,7 @@ gem 'pg'
 #  gem 'modernizr-rails'
 # gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.2.0"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -90,7 +90,7 @@ group :production do
 end
 
 gem 'high_voltage', '~> 2.2.1'
-gem 'sanitize'
+gem 'sanitize', '~> 4.6.3'
 gem 'ruby-mp3info', :require => 'mp3info'
 
 gem 'devise'
@@ -100,5 +100,5 @@ gem 'protected_attributes'
 
 #gem 'rails4_upgrade'
 
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri', '~> 1.8.2'
 
