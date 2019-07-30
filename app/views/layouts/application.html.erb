@@ -8,6 +8,8 @@
   <title><%= content_for?(:title) ? h( yield :title) : "GeekSpeak a Podcast with Lyle Troxell" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %></title>
   <%= stylesheet_link_tag    :application %>
   <%= csrf_meta_tags %>
+  <link type="application/rss+xml" rel="alternate"
+      title="Geek Speak with Lyle Troxell" href="https://geekspeak.org/episodes/rss.xml"/>
       <meta name="description" itemprop="description"
     content="<%= content_for?(:description) ? h(yield :description) : "A podcast created in Silicon Valley about how technology affects society and culture from the Geek perspective. Airing weekly since 1998." %>" />
   

@@ -11,7 +11,7 @@ xml.rss "version" => "2.0",
             xml.itunes(:name, "Lyle Troxell")
             xml.itunes(:email, "lyle@geekspeak.org")
         end
-        xml.link episodes_url
+        xml.link "https://geekspeak.org/"
         xml.atom(:link, :href=>"https://geekspeak.org/episodes/rss.xml", :rel=> "self", :type=>"application/rss+xml")
         xml.pubDate CGI.rfc1123_date(@episodes.first.updated_at)
         xml.description "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, chunks. We bridge the gaps between Geeks and the rest of humanity."
@@ -35,7 +35,7 @@ xml.rss "version" => "2.0",
         xml.image do
           xml.url "https://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
           xml.title "Geek Speak with Lyle Troxell"
-          xml.link episodes_url
+          xml.link "https://geekspeak.org/"
         end
         xml.copyright "Creative Commons Attribution 3.0 United States License"
         
