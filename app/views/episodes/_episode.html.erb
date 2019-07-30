@@ -1,13 +1,13 @@
-<%= content_tag :div, :class => "episode-block column", :data => {:url => episode_url(episode )} do %>
+<%= content_tag :div, :class => "episode-block column", :data => {:url => episode_url(episode, :protocol => "https" )} do %>
     <div class="season-episode"><%=h "#{episode.airdate.strftime("%Y-%m-%d")}" %></div>
     <div class="abstractimage">
         <% if episode.teaser.exists? %>
-            <%= link_to image_tag(episode.teaser.url(:medium)), episode_url(episode ) %>
+            <%= link_to image_tag(episode.teaser.url(:medium)), episode_url(episode, :protocol => "https" ) %>
         <% else %>
-            <%= link_to image_tag("GeekSpeak_logo_200w.png"), episode_url(episode ), class:"filler-image" %>
+            <%= link_to image_tag("GeekSpeak_logo_200w.png"), episode_url(episode, :protocol => "https" ), class:"filler-image" %>
         <% end %>
     </div>
-    <h4><%= link_to "#{episode.title}", episode_url(episode ) %></h4>
+    <h4><%= link_to "#{episode.title}", episode_url(episode, :protocol => "https" ) %></h4>
     <div class="abstract"><%= textilize(episode.abstract).html_safe %></div>
 <% end %>
 
