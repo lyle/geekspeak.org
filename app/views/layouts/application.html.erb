@@ -38,6 +38,10 @@
       <%= render_breadcrumbs :tag => :li, :separator => "" %>
     </ul>
   </nav>
+  
+<% if content_for?(:sharesheet) %>
+	<%= yield(:sharesheet)%>
+<% end %>
 
   <% flash.each do |name, msg| %>
       <div class='callout  <%= name == "notice" ? "success" : "warning" %>'>

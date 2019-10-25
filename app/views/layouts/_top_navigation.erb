@@ -8,13 +8,7 @@
       <li class="title-image"><a href="/"><%=image_tag("GeekSpeak_title_300w.png", width:'150', alt:"GeekSpeak")%></a></li>
     </ul>
   </div>
-  <% if content_for?(:sticky) %>
-<div  class="columns small-5 middle" data-sticky-container>
-  <div  class="sticky" data-sticky data-margin-top="0">
-    <%= h(yield :sticky) %>
-  </div>
-</div>
-<% end %>
+
   <div class="top-bar-right">
     <ul class="dropdown menu" data-dropdown-menu>
 

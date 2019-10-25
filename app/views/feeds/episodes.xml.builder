@@ -2,11 +2,13 @@ xml.instruct! :xml, version: "1.0"
 xml.rss "version" => "2.0",
         "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
         "xmlns:atom" => "http://www.w3.org/2005/Atom",
+        "xmlns:googleplay" => "http://www.google.com/schemas/play-podcasts/1.0",
         "xmlns:itunes" =>"http://www.itunes.com/dtds/podcast-1.0.dtd" do
     xml.channel do
         xml.title 'Geek Speak with Lyle Troxell'
         xml.itunes(:subtitle, "Exploring the intersection of Humanity and Technology coming from the fringes of Silicon Valley.")
-        xml.itunes(:author, "Lyle Troxell & The Geeks")
+        xml.itunes(:author, "Lyle Troxell")
+        xml.googleplay(:author, "Lyle Troxell")
         xml.itunes(:owner) do
             xml.itunes(:name, "Lyle Troxell")
             xml.itunes(:email, "lyle@geekspeak.org")
@@ -16,7 +18,7 @@ xml.rss "version" => "2.0",
         xml.pubDate CGI.rfc1123_date(@episodes.first.updated_at)
         xml.description "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, chunks. We bridge the gaps between Geeks and the rest of humanity."
         xml.itunes(:summary, "A weekly talk show about technology, science, and human creativity that excites, educates, and fosters curiosity. Discussions touch upon how technology affects society and how we react to that change. Hosts are passionate about explaining complex concepts in simple, easy to digest, chunks. We bridge the gaps between Geeks and the rest of humanity.")
-        xml.language "en-us"
+        xml.language "en"
         xml.generator "https://github.com/lyle/geekspeak.org"
         xml.category "Technology"
         xml.itunes(:category, :text=>"Technology") do
@@ -32,6 +34,7 @@ xml.rss "version" => "2.0",
         xml.itunes(:keywords, "geeks, facebook, netflix, google, technology, society, social")
         xml.itunes(:"new-feed-url","https://geekspeak.org/episodes/rss.xml")
         xml.itunes(:image, :href=> "https://geekspeak.org/images/GeekSpeak_Logo09022012.png")
+        xml.googleplay(:image, :href=> "https://geekspeak.org/images/GeekSpeak_Logo09022012.png")
         xml.image do
           xml.url "https://geekspeak.org/images/GeekSpeak_Logo_400x400_09022012.png"
           xml.title "Geek Speak with Lyle Troxell"

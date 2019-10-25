@@ -5,18 +5,24 @@
 <% image_url "#{request.base_url}#{@episode.teaser.url(:original)}" %>
 <% end %>
 
-<%if @episode.episode_audios.length > 0 %>
-  <% content_for :sticky do  %>
- 	<audio controls>
-	  <source src="<%=h @episode.episode_audios[0].audio.url%>" type="audio/mp3">
-	</audio>
-  <% end %>
+
+<% if not user_signed_in? %>
+	<% content_for :sharesheet do  %>
+		<%= render :partial => 'sharesheet',
+		:locals =>  {:episode => @episode} %>
+	<% end %>
 <% end %>
+<!--% if content_for?(:sticky) %>
+<div  class="columns small-12 middle" data-sticky-container>
+  <div  class="sticky" data-sticky data-margin-top="0">
+	<%= h(yield :sticky) %>
+  </div>
+</div>
+<--% end %-->
 <div id="episode_head">
-	<div class="row season-episode">
-		<!--div class="column medium-6 small-12 text-left"><%=h "#{@episode.season_name} #{@episode.episode_name}" %></div-->
+	<!--div class="row season-episode">
 		<div class="column medium-12 small-12 medium-text-right small-text-left"><%="GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}"%></div>
-	</div>
+	</div-->
 
 
 	<h1><%= best_in_place_if user_signed_in?, @episode, :title, :data => {:lock_version => @episode.lock_version}%></h1>
