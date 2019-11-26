@@ -5,5 +5,5 @@
 # Disallow: /
 
 User-Agent: *
-Disallow /auth/login/
-Disallow /auth/secret/new/
+Disallow: /auth/login/
+Disallow: /auth/secret/new/
