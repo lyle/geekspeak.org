@@ -1,4 +1,5 @@
 <% title "#{@episode.title}" %>
+<% cononical_url "https://geekspeak.org#{episode_path(@episode)}" %>
 <% description "#{to_text(:html => textilize(@episode.abstract))} - GeekSpeak Podcast for #{@episode.airdate.strftime("%Y-%m-%d")}" %>
 
 <% if @episode.teaser? %>

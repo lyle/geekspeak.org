@@ -10,6 +10,10 @@
   <%= csrf_meta_tags %>
   <link type="application/rss+xml" rel="alternate"
       title="Geek Speak with Lyle Troxell" href="https://geekspeak.org/episodes/rss.xml"/>
+
+  <% if content_for?(:cononical_url) %>
+    <link rel="canonical" href="<%= yield :cononical_url %>" />
+  <% end %>
       <meta name="description" itemprop="description"
     content="<%= content_for?(:description) ? h(yield :description) : "A podcast created in Silicon Valley about how technology affects society and culture from the Geek perspective. Airing weekly since 1998." %>" />
   

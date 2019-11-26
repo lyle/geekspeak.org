@@ -7,6 +7,9 @@ module LayoutHelper
     content_for(:title) { h(page_title.to_s) }
     @show_title = show_title
   end
+  def cononical_url(the_url)
+    content_for(:cononical_url) { h(the_url.to_s) }
+  end
   def subtitle(the_subtitle)
     content_for(:subtitle) { h(the_subtitle.to_s) }
   end
