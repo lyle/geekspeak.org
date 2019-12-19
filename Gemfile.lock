@@ -197,7 +197,7 @@ GEM
     protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
     puma (3.11.4)
-    rack (1.6.10)
+    rack (1.6.12)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.7.1)
