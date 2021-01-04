@@ -53,10 +53,8 @@ module BetaGeekspeakOrg
     config.assets.version = '1.0'
     
     config.action_controller.default_url_options = { :trailing_slash => true }
-    #config.assets.precompile += %w[active_admin.css active_admin/print.css active_admin.js]
-
-
-    config.active_record.raise_in_transactional_callbacks = true
+    config.assets.precompile += %w[active_admin.css active_admin/print.css active_admin.js]
     
+    config.sass.preferred_syntax = :sass 
   end
 end

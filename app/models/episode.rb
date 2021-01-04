@@ -48,8 +48,6 @@ class Episode < ActiveRecord::Base
   validates_attachment_content_type :teaser, :content_type => ["image/jpg", "image/jpeg"]
   before_save :default_values
 
-  attr_accessible :title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :lock_version, :participants_attributes, :bits_attributes, :publication_time, :guid_override
-
   def default_values
     self.status ||= 'pending'
   end

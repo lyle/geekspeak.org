@@ -1,5 +1,5 @@
 class ParticipantsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show]
 
   respond_to :html, :json
   def index
@@ -55,4 +55,10 @@ class ParticipantsController < ApplicationController
       format.js
     end
   end
+
+  private
+  def participant_params
+    params.require(:participant).permit(:episode_id, :user_id, :role)
+  end
+
 end

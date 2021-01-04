@@ -1,5 +1,5 @@
 class EpisodeImagesController < ApplicationController
-    before_filter :authenticate_user!, :except =>[:show, :index]
+    before_action :authenticate_user!, :except =>[:show, :index]
     def show
 
         @episode_image = EpisodeImage.find( params[:episode_image] )
@@ -25,11 +25,14 @@ class EpisodeImagesController < ApplicationController
 
 
     def destroy
-
-
       @episode_image = EpisodeImage.find( params[:id] )
       @episode = @episode_image.episode
       @episode_image.destroy
       redirect_to episode_url(@episode), :notice => "Successfully destroyed episode_image."
+    end
+
+    private
+    def episode_image_params
+      params.require(:episode_image).permit(:image)
     end
 end

@@ -1,5 +1,5 @@
 class EpisodeAudiosController < ApplicationController
-    before_filter :authenticate_user!, :except =>[:show, :index]
+  before_action :authenticate_user!, :except =>[:show, :index]
   def show
     
       @episode_audio = EpisodeAudio.find( params[:episode_audio] )
@@ -33,5 +33,10 @@ class EpisodeAudiosController < ApplicationController
     @episode = @episode_audio.episode
     @episode_audio.destroy
     redirect_to episode_url(@episode), :notice => "Successfully destroyed episode_audio."
+  end
+
+  private
+  def episode_audio_params
+    params.require(:episode_audio).permit(:audio, :duration)
   end
 end

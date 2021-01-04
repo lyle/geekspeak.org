@@ -5,7 +5,6 @@ class BitEpisode < ActiveRecord::Base
   default_scope -> {
     includes(:bit)
   }
-  attr_accessible :episode_id, :bit_id, :position, :bits_attributes
   accepts_nested_attributes_for :bit
   
 end

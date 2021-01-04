@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
-ruby "2.2.4"
-gem 'rails', '4.2.7.1'
+ruby "2.5.8"
+gem 'rails', '5.2'
 
 gem 'pg', "~>0.20.0"
 
@@ -60,7 +60,7 @@ end
 
 gem "nifty-generators", :group => :development
 
-gem 'activeadmin', '~> 1.0.0'
+gem 'activeadmin', '~> 2.9.0'
 #gem 'activeadmin', '0.5.0'
 # gem "meta_search",    '>= 1.1.0.pre'
 gem 'haml'
@@ -89,14 +89,11 @@ group :production do
   #gem 'execjs'
 end
 
-gem 'high_voltage', '~> 2.2.1'
+gem 'high_voltage', '~> 3.1'
 gem 'sanitize', '~> 4.6.3'
 gem 'ruby-mp3info', :require => 'mp3info'
 
 gem 'devise'
-
-#perhaps change remove this and move to Strong Paramaters
-gem 'protected_attributes'
 
 #gem 'rails4_upgrade'
 

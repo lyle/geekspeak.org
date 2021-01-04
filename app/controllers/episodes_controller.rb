@@ -1,6 +1,6 @@
 class EpisodesController < ApplicationController
   respond_to :html, :json
-  before_filter :authenticate_user!, :except => [:index, :show, :year_archive, :month_archive]
+  before_action :authenticate_user!, :except => [:index, :show, :year_archive, :month_archive]
   
   add_breadcrumb "home", "/", :title => "GS Home"
   add_breadcrumb "episodes", :episodes_path
@@ -107,4 +107,10 @@ class EpisodesController < ApplicationController
     respond_with(@episode)
     
   end
+
+  private
+  def episode_params
+    params.require(:episode).permit(:title, :promo, :abstract, :content, :user_id, :status, :airdate, :teaser, :lock_version, :participants_attributes, :bits_attributes, :publication_time, :guid_override)
+  end
+
 end

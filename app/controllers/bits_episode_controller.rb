@@ -1,5 +1,5 @@
 class BitsEpisodeController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   respond_to :html, :json
   def sort
@@ -27,5 +27,8 @@ class BitsEpisodeController < ApplicationController
     flash[:notice] = "Unlinked Bit to Episode"
     redirect_to episode
   end
- 
+  private
+  def bits_episode_params
+    params.require(:bits_episode).permit(:episode_id, :bit_id, :position, :bits_attributes)
+  end
 end
