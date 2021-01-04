@@ -52,9 +52,9 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (6.5.0)
-      activerecord (>= 5.0, < 6.1)
-    acts_as_list (1.0.2)
+    acts-as-taggable-on (7.0.0)
+      activerecord (>= 5.0, < 6.2)
+    acts_as_list (1.0.3)
       activerecord (>= 4.2)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
@@ -108,7 +108,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.10.0)
     execjs (2.7.0)
-    ffi (1.13.1)
+    ffi (1.14.2)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -131,7 +131,7 @@ GEM
       activesupport (>= 4.1)
     high_voltage (3.1.2)
     highline (2.0.3)
-    i18n (1.8.5)
+    i18n (1.8.6)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.12.0)
       actionpack (>= 5.2, < 6.2)
@@ -219,7 +219,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (13.0.1)
+    rake (13.0.3)
     ransack (2.3.0)
       actionpack (>= 5.0)
       activerecord (>= 5.0)
@@ -274,7 +274,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tzinfo (1.2.8)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -289,7 +289,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
-  activeadmin (~> 2.9.0)
+  activeadmin
   acts-as-taggable-on
   acts_as_list
   best_in_place (~> 3.0.1)

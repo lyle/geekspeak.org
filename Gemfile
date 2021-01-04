@@ -60,7 +60,7 @@ end
 
 gem "nifty-generators", :group => :development
 
-gem 'activeadmin', '~> 2.9.0'
+gem 'activeadmin'
 #gem 'activeadmin', '0.5.0'
 # gem "meta_search",    '>= 1.1.0.pre'
 gem 'haml'

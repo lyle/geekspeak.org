@@ -49,7 +49,7 @@ class EpisodesController < ApplicationController
   def create
 
       #@date = Date.parse("#{params[:episode]["airdate(3i)"]}-#{params[:episode]["airdate(2i)"]}-#{params[:episode]["airdate(1i)"]}")
-      @episode = Episode.new(params[:episode])
+      @episode = Episode.new(episode_params)
       @episode.owner = current_user
       respond_to do |format|
         if @episode.save
@@ -84,7 +84,7 @@ class EpisodesController < ApplicationController
 
   def update
     @episode = Episode.find(params[:id])
-    if @episode.update_with_conflict_validation(params[:episode])
+    if @episode.update_with_conflict_validation(episode_params)
       
 
       respond_to do |format|

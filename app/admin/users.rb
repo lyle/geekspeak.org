@@ -1,4 +1,7 @@
 ActiveAdmin.register User do
+
+  permit_params :login, :display_name, :email, :admin, :active, :bio
+
   index do
       column :login
       column :display_name
