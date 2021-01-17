@@ -1,8 +1,8 @@
 # Load DSL and set up stages
-require 'capistrano/setup'
+require "capistrano/setup"
 
 # Include default deployment tasks
-require 'capistrano/deploy'
+require "capistrano/deploy"
 
 # Include tasks from other gems included in your Gemfile
 #
@@ -17,22 +17,22 @@ require 'capistrano/deploy'
 #
 # require 'capistrano/rvm'
 # require 'capistrano/chruby'
-require 'capistrano/rails'
-require 'capistrano/bundler'
-require 'capistrano/rbenv'
-require 'capistrano/rbenv_install'
-require 'capistrano/nginx'
+require "capistrano/rails"
+require "capistrano/bundler"
+require "capistrano/rbenv"
+require "capistrano/rbenv_install"
+require "capistrano/nginx"
 #Ran on machine: sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
 #Ran on machine: sudo apt-get install nodejs
 
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
 
-require 'capistrano/puma'
+require "capistrano/puma"
 install_plugin Capistrano::Puma
 # require 'capistrano/rails/assets'
 # require 'capistrano/rails/migrations'
 # require 'capistrano/passenger'
-
+install_plugin Capistrano::Puma::Daemon
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
-Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
+Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
