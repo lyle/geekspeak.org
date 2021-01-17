@@ -2,6 +2,7 @@ class ParticipantsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
 
   respond_to :html, :json
+
   def index
     @participants = Participant.all
   end
@@ -16,20 +17,19 @@ class ParticipantsController < ApplicationController
   end
 
   def create
+    @participant = Participant.new(participant_params)
 
-    @participant = Participant.new(params[:participant])
-
-      if @participant.save
-        respond_to do |format|
-          format.html { redirect_to @participant, :notice => "Successfully created participant."}
-          format.js
-        end
-      else
-        respond_to do |format|
-          format.html {render :action => 'new'}
-          format.js
-        end
+    if @participant.save
+      respond_to do |format|
+        format.html { redirect_to @participant, :notice => "Successfully created participant." }
+        format.js
       end
+    else
+      respond_to do |format|
+        format.html { render :action => "new" }
+        format.js
+      end
+    end
   end
 
   def edit
@@ -38,12 +38,12 @@ class ParticipantsController < ApplicationController
 
   def update
     @participant = Participant.find(params[:id])
-    if @participant.update_attributes(params[:participant])
-      redirect_to @participant, :notice  => "Successfully updated participant."
+    if @participant.update_attributes(participant_params)
+      redirect_to @participant, :notice => "Successfully updated participant."
     else
-      render :action => 'edit'
+      render :action => "edit"
     end
-    
+
     respond_with_bip(@participant)
   end
 
@@ -51,14 +51,14 @@ class ParticipantsController < ApplicationController
     @participant = Participant.find(params[:id])
     @participant.destroy
     respond_to do |format|
-      format.html {redirect_to participants_url, :notice => "Successfully destroyed participant."}
+      format.html { redirect_to participants_url, :notice => "Successfully destroyed participant." }
       format.js
     end
   end
 
   private
+
   def participant_params
     params.require(:participant).permit(:episode_id, :user_id, :role)
   end
-
 end

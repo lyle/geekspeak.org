@@ -15,7 +15,7 @@ class EpisodeAudiosController < ApplicationController
   end
   def create
     @episode = Episode.find(params[:episode_id])
-    @episode_audio = @episode.episode_audios.build( params[:episode_audio] )
+    @episode_audio = @episode.episode_audios.build(episode_audio_params)
     @episode_audio.audio.instance_write :file_name, "GeekSpeak_#{@episode.showdate_as_file_part}#{File.extname(@episode_audio.audio.instance_read(:file_name)).downcase}"
     #@episode_audio.length = Mp3Info.open(episode_audio.audio.path).length
     if @episode_audio.save

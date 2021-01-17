@@ -15,7 +15,7 @@ class EpisodeImagesController < ApplicationController
     end
     def create
       @episode = Episode.find(params[:episode_id])
-      @episode_image = @episode.episode_images.build( params[:episode_image] )
+      @episode_image = @episode.episode_images.build( episode_image_params )
       if @episode_image.save
         redirect_to episode_url(@episode), :notice => "Successfully Added Image"
       else
