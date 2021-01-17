@@ -1,6 +1,5 @@
 class BitsController < ApplicationController
-    before_filter :authenticate_user!, :except => [:index, :show]
-   # before_filter :set_defalt_path
+    before_action :authenticate_user!, :except => [:index, :show]
     
     respond_to :html, :json
     def index
@@ -28,7 +27,7 @@ class BitsController < ApplicationController
     end
 
     def create
-        @bit = Bit.new(params[:bit])
+        @bit = Bit.new(bit_params)
         if @bit.save
           redirect_smart "Successfully updated bit."
         else
@@ -57,7 +56,7 @@ class BitsController < ApplicationController
 
     def update
         @bit = Bit.find(params[:id])
-        if @bit.update_attributes(params[:bit])
+        if @bit.update(bit_params)
           redirect_smart "Successfully updated bit."
         else
           render :action => 'edit'
@@ -68,5 +67,9 @@ class BitsController < ApplicationController
         @bit = Bit.find(params[:id])
         @bit.destroy
         redirect_smart "Successfully destroyed bit."
+    end
+    private
+    def bit_params
+      params.require(:bit).permit(:title, :url, :user_id, :body, :status)
     end
 end

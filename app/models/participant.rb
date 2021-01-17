@@ -24,6 +24,4 @@ class Participant < ActiveRecord::Base
   
   ROLES = ["host", "cohost", "guest", "phones", "geek", "support"]
 
-  
-  attr_accessible :episode_id, :user_id, :role
 end

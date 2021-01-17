@@ -6,7 +6,6 @@ class Bit < ActiveRecord::Base
     has_many :episodes, :through => :bit_episodes
     #acts_as_list :scope => :episode
     belongs_to :user
-    attr_accessible :title, :url, :user_id, :body, :status
     default_scope -> {
         includes(:user)
     }

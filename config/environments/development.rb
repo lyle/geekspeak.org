@@ -28,7 +28,7 @@ BetaGeekspeakOrg::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
-  config.active_record.mass_assignment_sanitizer = :strict
+  config.assets.check_precompiled_asset = false
   
   config.eager_load = false
   config.log_level = :debug

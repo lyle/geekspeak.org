@@ -8,10 +8,10 @@
 
 
 <% if not user_signed_in? %>
-	<% content_for :sharesheet do  %>
-		<%= render :partial => 'sharesheet',
+<% content_for :sharesheet do  %>
+<%= render :partial => 'sharesheet',
 		:locals =>  {:episode => @episode} %>
-	<% end %>
+<% end %>
 <% end %>
 <!--% if content_for?(:sticky) %>
 <div  class="columns small-12 middle" data-sticky-container>
@@ -21,53 +21,55 @@
 </div>
 <--% end %-->
 <div id="episode_head">
-	<!--div class="row season-episode">
+    <!--div class="row season-episode">
 		<div class="column medium-12 small-12 medium-text-right small-text-left"><%="GeekSpeak for #{@episode.airdate.strftime("%Y-%m-%d")}"%></div>
 	</div-->
 
 
-	<h1><%= best_in_place_if user_signed_in?, @episode, :title, :data => {:lock_version => @episode.lock_version}%></h1>
+    <h1><%= best_in_place_if user_signed_in?, @episode, :title, :data => {:lock_version => @episode.lock_version}%></h1>
 
-	<%  if user_signed_in?  %>
-		<div class="span5 offset3"> 
-			<%= link_to "Edit", edit_episode_path(@episode) %> | 
-			<%= link_to "Images", episode_episode_images_path(@episode)  %>
-		</div>
-	<% end %>
+    <%  if user_signed_in?  %>
+    <div class="span5 offset3">
+        <%= link_to "Edit", edit_episode_path(@episode) %> |
+        <%= link_to "Images", episode_episode_images_path(@episode)  %>
+    </div>
+    <% end %>
 
-	<div class="row abstract">
-		<div class="column small-12 medium-6 abstractimage">
-		<%= image_tag(@episode.teaser.url(:medium)) if @episode.teaser?%>
-		</div>
+    <div class="row abstract">
+        <div class="column small-12 medium-6 abstractimage">
+            <%= image_tag(@episode.teaser.url(:medium)) if @episode.teaser?%>
+        </div>
 
-		<div class="column small-12 medium-6 abstractimage">
-		<%= best_in_place_if user_signed_in?, @episode, :abstract, :type => :textarea,
+        <div class="column small-12 medium-6 abstractimage">
+            <%= best_in_place_if user_signed_in?, @episode, :abstract, :type => :textarea,
 		  :ok_button => 'Save', :cancel_button => 'Cancel', :nil => 'ADD AN ABSTRACT (click)',
 		  :display_with => lambda { |v| textilize(v).html_safe }
 		  %>
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
-<div id="bits_episode" data-update-url="https://geekspeak.org/bits_episode/sort/">
-<%= render :partial => 'bits/bits_episode', :locals=> {:bits_episode => @episode.bit_episodes, :display_episode => false} %>
+<div id="bits_episode" data-update-url="/bits_episode/sort/">
+    <%= render :partial => 'bits/bits_episode', :locals=> {:bits_episode => @episode.bit_episodes, :display_episode => false} %>
 </div>
 <hr>
 <%= textilize(@episode.content).html_safe unless @episode.content.blank? %>
 
 <% content_for :sidebar do %>
-	<% if not user_signed_in? %>
-		<ul class="menu vertical">
-	    <li><%=image_tag("GeekSpeak_logo_200w.png")%></li>
-		</ul>
-	<% end %>
-    <%= render :partial => 'audios',
+<% if not user_signed_in? %>
+<ul class="menu vertical">
+    <li><%=image_tag("GeekSpeak_logo_200w.png")%></li>
+</ul>
+<% end %>
+<%= render :partial => 'audios',
 			:locals => {:episode => @episode} if @episode.episode_audios.length > 0 || user_signed_in? %>
-	<% if user_signed_in? %>
-		<ul class="menu vertical">
-		<li class="header"><%= link_to "#{content_tag("i","",:class=>"fi-plus")}".html_safe, new_bit_path, :class=>"edit" %> Geek Bits <!--i id="refresh-bits" class="fi-plus"--></i><span class="small-note">(recent &amp; unsused)</span></li></ul>
-		<%=  render( :partial => 'bits/bits_episode_search_form', :locals => {:bits => @bits, :episode => @episode}) %>
-	<% end %>
-	<%= render :partial => 'participants',
+<% if user_signed_in? %>
+<ul class="menu vertical">
+    <li class="header"><%= link_to "#{content_tag("i","",:class=>"fi-plus")}".html_safe, new_bit_path, :class=>"edit" %> Geek Bits
+        <!--i id="refresh-bits" class="fi-plus"--></i><span class="small-note">(recent &amp; unsused)</span></li>
+</ul>
+<%=  render( :partial => 'bits/bits_episode_search_form', :locals => {:bits => @bits, :episode => @episode}) %>
+<% end %>
+<%= render :partial => 'participants',
 			:locals => {:participants => @episode.participants, :episode => @episode, :current_user => current_user} if @episode.participants.length > 0 || user_signed_in?%>
 <% end %>

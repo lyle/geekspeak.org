@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="dH19q4ltuA_ozVtVLgGb4HQ_TZnu4c-ym78NFAb3XSs" />
   <title><%= content_for?(:title) ? h( yield :title) : "GeekSpeak a Podcast with Lyle Troxell" %> <%= content_for?(:subtitle) ? h( "- #{yield :subtitle}")  : ""  %></title>
-  <%= stylesheet_link_tag    :application %>
+  <%= stylesheet_link_tag  "application" %>
   <%= csrf_meta_tags %>
   <link type="application/rss+xml" rel="alternate"
       title="Geek Speak with Lyle Troxell" href="https://geekspeak.org/episodes/rss.xml"/>
