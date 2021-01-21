@@ -1,7 +1,8 @@
 # config valid only for current version of Capistrano
 lock "3.15.0"
 
-server "138.197.206.110", port: 22, roles: [:web, :app, :db], primary: true
+server "142.93.92.112", port: 22, roles: [:web, :app, :db], primary: true
+# before 2021 server "138.197.206.110", port: 22, roles: [:web, :app, :db], primary: true
 
 set :application, "geekspeak.org"
 set :repo_url, "git@github.com:lyle/geekspeak.org.git"
