@@ -97,3 +97,9 @@ It looks like we need Node on the box to.
 ```
 sudo apt-get install nodejs
 ```
+
+## Nginx
+
+```
+sudo apt install nginx
+```
