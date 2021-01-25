@@ -66,6 +66,34 @@ Until now GeekSpeak.org has been using rvm (ruby version manager), but we are sw
 
 ## Data
 
-Create a postgres database with the name geekspeak_org_dev, with owner geekspeak_org - and set up a pw.
+You need postgres db installed on the target machine - for ubuntu
+
+```
+sudo apt install postgresql postgresql-contrib libpq-dev
+```
+
+Then start the service
+
+```
+sudo systemctl start postgresql@12-main
+```
+
+Create a postgres database with the name geekspeak_org, with owner geekspeak_org - and set up a pw.
+
+```
+sudo -u postgres psql
+postgres=# create database geekspeak_org_production;
+postgres=# create user geekspeak_org with encrypted password 'mypass';
+postgres=# grant all privileges on database geekspeak_org_production to geekspeak_org;
+```
+
 Get a backup of the GeekSpeak database (example: "2016-01-02_geekspeak.org_production") and import it into running database:
-`psql -h localhost -d geekspeak_org_dev -U geekspeak_org -f 2016-01-02_geekspeak.org_production`
+`psql -h localhost -d geekspeak_org_production -U geekspeak_org -f 2016-01-02_geekspeak.org_production`
+
+## Build requirements
+
+It looks like we need Node on the box to.
+
+```
+sudo apt-get install nodejs
+```
