@@ -7,6 +7,8 @@ Episodes can also have images and, of course, audio files.
 
 ## Install for Local Development
 
+brew install postgres
+
 - Install rbenv
 - In the source directory - look at `.ruby_version` for the current version (in this example 2.2.4) and make sure it is installed,
 
@@ -33,7 +35,25 @@ This codebase is not really generic enough to run other Podcasts without a bit o
 
 ## Install Process
 
-brew install postgres
+We use Capistrano - to install on a new machine we will need the new machine to be able to read github public table.
+Run ssh-agent
+
+```
+ssh-agent
+ssh-add -l
+```
+
+If you do not have an identity on your local machine you will need to go through the process of making sure both your local rsa pub is on Github as you, and also that you have that idenity added to the agent
+
+```
+ssh-add
+```
+
+(on a Mac, you can get the password for the private key be looking in keychain)
+
+### Secrets and Database file
+
+On the new machine put the secrets.yml and database.yml files in geekspeak.org/shared/config
 
 ## Ruby
 
