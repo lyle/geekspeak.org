@@ -89,7 +89,7 @@ group :production do
 end
 
 gem "high_voltage", "~> 3.1"
-gem "sanitize", "~> 4.6.3"
+gem "sanitize", "~> 5.2.1"
 gem "ruby-mp3info", :require => "mp3info"
 
 gem "devise"
