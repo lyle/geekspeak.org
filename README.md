@@ -103,3 +103,13 @@ sudo apt-get install nodejs
 ```
 sudo apt install nginx
 ```
+
+## Restarting the Service former way
+
+If Puma goes down, when it is not a sysdemon
+
+this seemed to do the trick
+
+```
+~/apps/geekspeak.org/current$ bundle exec puma -C /mnt/volume-sfo2-01/geekspeak-shared/puma.rb  --daemon
+```
